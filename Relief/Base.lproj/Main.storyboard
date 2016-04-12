@@ -11,12 +11,12 @@
                 <viewControllerPlaceholder storyboardName="Login" id="tVI-hu-8L1" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0l-1e-7Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1587.5" y="275"/>
+            <point key="canvasLocation" x="1564.5" y="275"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -24,12 +24,31 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="68p-aj-VWI">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="68p-aj-VWI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="4qg-Tp-aZF"/>
+                            <constraint firstItem="68p-aj-VWI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Iko-1e-GL0"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="68p-aj-VWI" secondAttribute="bottom" id="Kf2-AY-isc"/>
+                            <constraint firstAttribute="trailing" secondItem="68p-aj-VWI" secondAttribute="trailing" id="M7m-fU-JOA"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YqU-nJ-1jw"/>
+                    <navigationItem key="navigationItem" id="YqU-nJ-1jw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="i5n-GK-sRU">
+                            <connections>
+                                <action selector="createEventButtonTapped:" destination="BYZ-38-t0r" id="ygY-Q3-JFq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="mapView" destination="68p-aj-VWI" id="aaQ-z5-FnP"/>
                         <segue destination="Srk-8g-Sgz" kind="presentation" id="ia3-0t-N0N"/>
                         <segue destination="tVI-hu-8L1" kind="presentation" id="6ol-Gq-ZBZ"/>
+                        <segue destination="KHL-fy-y6Z" kind="presentation" identifier="showEventInformation" id="MbA-da-Uuw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -42,7 +61,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="eventDetail" storyboardName="Detail" id="Srk-8g-Sgz" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kq-pq-6oI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589.5" y="429"/>
+            <point key="canvasLocation" x="1566" y="429"/>
+        </scene>
+        <!--CreateEvent-->
+        <scene sceneID="eH5-B1-VFg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateEvent" id="KHL-fy-y6Z" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3dR-vh-Vuy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1585.5" y="567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yvO-TW-num">
