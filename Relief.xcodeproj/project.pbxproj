@@ -12,6 +12,7 @@
 		021ADEDA1CBD7F0B00DCD798 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021ADED81CBD7F0B00DCD798 /* Main.storyboard */; };
 		021ADEDC1CBD7F0B00DCD798 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 021ADEDB1CBD7F0B00DCD798 /* Assets.xcassets */; };
 		021ADEDF1CBD7F0B00DCD798 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021ADEDD1CBD7F0B00DCD798 /* LaunchScreen.storyboard */; };
+		021ADEE71CBD814700DCD798 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021ADEE61CBD814700DCD798 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		021ADEDB1CBD7F0B00DCD798 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		021ADEDE1CBD7F0B00DCD798 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		021ADEE01CBD7F0B00DCD798 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		021ADEE61CBD814700DCD798 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = ../Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				021ADED41CBD7F0B00DCD798 /* AppDelegate.swift */,
 				021ADED61CBD7F0B00DCD798 /* ViewController.swift */,
 				021ADED81CBD7F0B00DCD798 /* Main.storyboard */,
+				021ADEE61CBD814700DCD798 /* Event.swift */,
 				021ADEDB1CBD7F0B00DCD798 /* Assets.xcassets */,
 				021ADEDD1CBD7F0B00DCD798 /* LaunchScreen.storyboard */,
 				021ADEE01CBD7F0B00DCD798 /* Info.plist */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				021ADED71CBD7F0B00DCD798 /* ViewController.swift in Sources */,
+				021ADEE71CBD814700DCD798 /* Event.swift in Sources */,
 				021ADED51CBD7F0B00DCD798 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +293,7 @@
 				021ADEE51CBD7F0B00DCD798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
