@@ -25,22 +25,10 @@ class Message {
     var endpoint = "message"
     
     var jsonValue: [String: AnyObject] {
-        guard let unwrappedIdentifier as? String {
-            
-                else {
 
-        return [senderNameKey: senderName, senderIdKey: senderId, textKey: text, identifierKey: unwrappedIdentifier]
-
-    } else {
-    
-    return [senderNameKey: senderName, senderIdKey: senderId, textKey: text]
-    
-    }
+        return [senderNameKey: senderName, senderIdKey: senderId, textKey: text, identifierKey: identifier ?? ""]
         
     }
-    
-    }
-    
     
     init?(dictionary: Dictionary<String, AnyObject>) {
         guard let senderName = dictionary[senderNameKey] as? String,

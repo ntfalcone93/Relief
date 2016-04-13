@@ -26,20 +26,9 @@ class User {
     
     var jsonValue: [String:AnyObject] {
         
-        let unwrappedLastName = lastName
-        let unwrappedIdentifier = identifier {
-            if identifier = String {
-            
-            return [firstNameKey: firstName, identifierKey: unwrappedIdentifier, eventIdsKey: eventIds.toDic()]
-        
-            } else if unwrappedLastName = String {
-        
-        return [firstNameKey: firstName, lastNameKey: lastName, identifierKey: unwrappedIdentifier, eventIdsKey: eventIds.toDic()]
-        
-        }
+        return [firstNameKey: firstName, lastNameKey: lastName ?? "", identifierKey: identifier ?? "", eventIdsKey: eventIds.toDic()]
     }
-}
-    
+
     init(firstName: String, lastName: String?, identifier: String, eventIds: [String], endpoint: String) {
         self.firstName = firstName
         self.lastName = lastName
