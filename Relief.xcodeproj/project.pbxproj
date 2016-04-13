@@ -90,14 +90,9 @@
 		021ADEC81CBD7F0B00DCD798 = {
 			isa = PBXGroup;
 			children = (
-				74BF48AE1CBE9EE900273466 /* libc++.tbd */,
-				74BF48AC1CBE9EE300273466 /* libicucore.tbd */,
-				74BF48AA1CBE9EDE00273466 /* SystemConfiguration.framework */,
-				74BF48A81CBE9ED800273466 /* Security.framework */,
-				74BF48A61CBE9ED200273466 /* CFNetwork.framework */,
-				74BF48A41CBE9EBF00273466 /* Firebase.framework */,
 				021ADED31CBD7F0B00DCD798 /* Relief */,
 				021ADED21CBD7F0B00DCD798 /* Products */,
+				E60E01201CBEA55A004C8656 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,6 +169,19 @@
 				74C457311CBDD18A00B363AA /* SWRevealViewController.m */,
 			);
 			name = "Reveal Controller";
+			sourceTree = "<group>";
+		};
+		E60E01201CBEA55A004C8656 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				74BF48AE1CBE9EE900273466 /* libc++.tbd */,
+				74BF48AC1CBE9EE300273466 /* libicucore.tbd */,
+				74BF48AA1CBE9EDE00273466 /* SystemConfiguration.framework */,
+				74BF48A81CBE9ED800273466 /* Security.framework */,
+				74BF48A61CBE9ED200273466 /* CFNetwork.framework */,
+				74BF48A41CBE9EBF00273466 /* Firebase.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E6E1ACC01CBD92AE005A5792 /* View Controllers */ = {

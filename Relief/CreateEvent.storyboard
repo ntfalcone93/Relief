@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hth-PH-GXH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ybZ-LY-3O7">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -26,20 +26,20 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-G5-4Cm">
-                                <rect key="frame" x="20" y="44" width="560" height="30"/>
+                                <rect key="frame" x="20" y="88" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tf-7n-rC5">
-                                <rect key="frame" x="0.0" y="171" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="165" width="600" height="216"/>
                             </pickerView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Other Event Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dWf-NJ-J06">
-                                <rect key="frame" x="20" y="395" width="560" height="30"/>
+                                <rect key="frame" x="20" y="394" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Event type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDA-xi-d6a">
-                                <rect key="frame" x="20" y="146" width="560" height="20"/>
+                                <rect key="frame" x="20" y="140" width="560" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="m1j-RT-GeS"/>
                                 </constraints>
@@ -50,7 +50,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dWf-NJ-J06" firstAttribute="top" secondItem="0tf-7n-rC5" secondAttribute="bottom" constant="8" symbolic="YES" id="18k-XX-yBb"/>
+                            <constraint firstItem="dWf-NJ-J06" firstAttribute="top" secondItem="0tf-7n-rC5" secondAttribute="bottom" constant="13" id="18k-XX-yBb"/>
                             <constraint firstItem="TSJ-G5-4Cm" firstAttribute="leading" secondItem="POT-3m-gpZ" secondAttribute="leadingMargin" id="1cH-09-zim"/>
                             <constraint firstItem="sDA-xi-d6a" firstAttribute="leading" secondItem="POT-3m-gpZ" secondAttribute="leadingMargin" id="2EK-La-Ga2"/>
                             <constraint firstItem="dWf-NJ-J06" firstAttribute="trailing" secondItem="kCf-WH-GOV" secondAttribute="trailing" id="Nd9-lV-Npc"/>
@@ -63,10 +63,17 @@
                             <constraint firstItem="TSJ-G5-4Cm" firstAttribute="top" secondItem="i3k-9R-Gbo" secondAttribute="bottom" constant="24" id="n8s-VC-Z0o"/>
                             <constraint firstItem="0tf-7n-rC5" firstAttribute="top" secondItem="sDA-xi-d6a" secondAttribute="bottom" constant="5" id="rHw-ld-rXe"/>
                             <constraint firstItem="0tf-7n-rC5" firstAttribute="leading" secondItem="POT-3m-gpZ" secondAttribute="leading" id="rnL-4A-DnG"/>
-                            <constraint firstItem="sDA-xi-d6a" firstAttribute="top" secondItem="TSJ-G5-4Cm" secondAttribute="bottom" constant="72" id="sId-lL-Prn"/>
+                            <constraint firstItem="sDA-xi-d6a" firstAttribute="top" secondItem="TSJ-G5-4Cm" secondAttribute="bottom" constant="22" id="sId-lL-Prn"/>
                             <constraint firstItem="dWf-NJ-J06" firstAttribute="leading" secondItem="kCf-WH-GOV" secondAttribute="leading" id="yN9-pW-pSQ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Un6-ih-7lV">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QBv-X9-E3S">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="hth-PH-GXH" id="Prn-sw-6Tk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="otherTypeTextField" destination="dWf-NJ-J06" id="XoK-Th-PIU"/>
                         <outlet property="titleTextField" destination="TSJ-G5-4Cm" id="igi-Ht-ovw"/>
@@ -74,6 +81,24 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="exZ-Rd-C4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1392" y="331"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="t1t-iQ-LdN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ybZ-LY-3O7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cjw-QZ-IgC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hth-PH-GXH" kind="relationship" relationship="rootViewController" id="lWf-oi-sUk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pQO-hm-yaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="580" y="331"/>
         </scene>
