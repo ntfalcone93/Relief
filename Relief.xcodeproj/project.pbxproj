@@ -28,6 +28,7 @@
 		74BF48B91CBE9F3900273466 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48B81CBE9F3900273466 /* MessageController.swift */; };
 		74BF48BB1CBE9F4000273466 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48BA1CBE9F4000273466 /* FirebaseController.swift */; };
 		74BF48BD1CBE9F4600273466 /* GlobalKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48BC1CBE9F4600273466 /* GlobalKeys.swift */; };
+		74BF48C31CBEE83700273466 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48C21CBEE83700273466 /* EventController.swift */; };
 		74C457321CBDD18A00B363AA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C457311CBDD18A00B363AA /* SWRevealViewController.m */; };
 		E6E1ACBD1CBD9022005A5792 /* CreateEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6E1ACBC1CBD9022005A5792 /* CreateEvent.storyboard */; };
 		E6E1ACBF1CBD92A9005A5792 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */; };
@@ -61,6 +62,7 @@
 		74BF48B81CBE9F3900273466 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		74BF48BA1CBE9F4000273466 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		74BF48BC1CBE9F4600273466 /* GlobalKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalKeys.swift; sourceTree = "<group>"; };
+		74BF48C21CBEE83700273466 /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventController.swift; path = ../EventController.swift; sourceTree = "<group>"; };
 		74C4572F1CBDD18900B363AA /* Relief-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Relief-Bridging-Header.h"; sourceTree = "<group>"; };
 		74C457301CBDD18A00B363AA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		74C457311CBDD18A00B363AA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				74BF48BE1CBE9F5D00273466 /* FirebaseChat */,
+				740BF2DA1CBEED0600320A1A /* Controllers */,
 				021ADEE81CBD832600DCD798 /* Storyboards */,
 				E6E1ACC01CBD92AE005A5792 /* View Controllers */,
 				021ADEEA1CBD837D00DCD798 /* Model Objects */,
@@ -153,6 +156,14 @@
 				241620A41CBEC03F004883AE /* User.swift */,
 			);
 			name = "Model Objects";
+			sourceTree = "<group>";
+		};
+		740BF2DA1CBEED0600320A1A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				74BF48C21CBEE83700273466 /* EventController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		74BF48BE1CBE9F5D00273466 /* FirebaseChat */ = {
@@ -282,6 +293,7 @@
 				E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */,
 				74BF48B91CBE9F3900273466 /* MessageController.swift in Sources */,
 				E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */,
+				74BF48C31CBEE83700273466 /* EventController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
