@@ -16,6 +16,7 @@
 		021ADEEC1CBD83F800DCD798 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021ADEEB1CBD83F800DCD798 /* Detail.storyboard */; };
 		021ADEEE1CBD840400DCD798 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021ADEED1CBD840400DCD798 /* Login.storyboard */; };
 		24F615A11CBDAFCC0013C82C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F615A01CBDAFCC0013C82C /* User.swift */; };
+		24F615A31CBE14F60013C82C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F615A21CBE14F60013C82C /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		021ADEEB1CBD83F800DCD798 /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		021ADEED1CBD840400DCD798 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		24F615A01CBDAFCC0013C82C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		24F615A21CBE14F60013C82C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				021ADEE61CBD814700DCD798 /* Event.swift */,
 				24F615A01CBDAFCC0013C82C /* User.swift */,
+				24F615A21CBE14F60013C82C /* Message.swift */,
 			);
 			name = "Model Objects";
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			files = (
 				24F615A11CBDAFCC0013C82C /* User.swift in Sources */,
 				021ADED71CBD7F0B00DCD798 /* ViewController.swift in Sources */,
+				24F615A31CBE14F60013C82C /* Message.swift in Sources */,
 				021ADEE71CBD814700DCD798 /* Event.swift in Sources */,
 				021ADED51CBD7F0B00DCD798 /* AppDelegate.swift in Sources */,
 			);
