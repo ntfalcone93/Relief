@@ -8,11 +8,15 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
     // MARK: - IBOutlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var longGestureRecognizer: UILongPressGestureRecognizer!
+    
+    // MARK: - Properties
+    let coreLocationManager = CLLocationManager()
     
     // MARK: - Logic Properties
     var annotationAdded = false
@@ -40,11 +44,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         self.mapView.addOverlay(circle)
         self.mapView.addAnnotation(annotation)
         count = count + 1
-        
-        // Goofy logic is a duct tape fix for double annotation firing
+        // Logic is a duct tape fix for double annotation firing
         // Remove one annotation checks if an annotation has been previously added, if it has it removes the last annotation added
         removeOneAnnotation(annotation, overlay: circle)
-        
         // Checks annotation second check: Default value of false
         if annotationSecondCheck {
             // sets annotationadded to true to remove the second annotation added
@@ -56,14 +58,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     }
     
     @IBAction func eventsButtonTapped(sender: UIBarButtonItem) {
-        
         // If the events button is tapped, the view will toggle the toggleMode and animate the
         // movement of the views
         toggleMap()
     }
     
     @IBAction func tapGestureFired(sender: UITapGestureRecognizer) {
-        
         // toggle mode must be map hidden to allow users to properly interact with the map
         // implementing the tap gesture when the map is hidden allows for quick and easy
         // navigation back to the map from the event table view
@@ -75,20 +75,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         }
     }
     
-    // MARK: - ViewController Methods
+    // MARK: - View Controller Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
         self.longGestureRecognizer.delegate = self
-        self.setMapWithInitialLocation(CLLocation(latitude: 21.282778, longitude: -157.829444))
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeAnnotationFromCancel), name: "cancelEvent", object: nil)
+        self.setUpCoreLocation()
+        self.mapView.showsUserLocation = true
+        self.mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
+        if let initialLocationCoordinate = self.coreLocationManager.location {
+            self.setMapWithInitialLocation(initialLocationCoordinate)
+        }
     }
     
-    // MARK: - MKMapViewDelegate
+    // MARK: - Map View Delegate
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         let circle = MKCircleRenderer(overlay: overlay)
         circle.strokeColor = UIColor.purpleColor()
@@ -130,7 +134,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         self.mapView.removeAnnotation(annotation)
         self.mapView.removeOverlay(overlay)
     }
-    
+
     @objc func removeAnnotationFromCancel() {
         guard let annotation = self.currentAnnotation, overlay = self.currentOverlay else { return }
         self.mapView.removeAnnotation(annotation)
@@ -158,12 +162,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         case .MapHidden:
             toggleMode = .MapShown
             self.revealViewController().revealToggle(self)
-            
         case .MapShown:
             toggleMode = .MapHidden
             self.revealViewController().revealToggle(self)
         }
-        
+    }
+    
+    // MARK: - Core Location
+    func setUpCoreLocation() {
+        self.coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest // use the highest level of accuracy
+        self.coreLocationManager.requestWhenInUseAuthorization()
+        self.coreLocationManager.startUpdatingLocation()
     }
     
 }
