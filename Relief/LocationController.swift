@@ -24,4 +24,20 @@ class LocationController {
         setUpCoreLocation()
     }
     
+    // Enter address to get Location for Event
+    static func getCoordinatesFromCity(address: String, completion: (longitude: CLLocationDegrees?, latitude: CLLocationDegrees?) -> Void ) {
+        CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+                completion(longitude: nil, latitude: nil)
+            } else {
+                if let placemarks = placemarks, firstPlacemark = placemarks.first, location = firstPlacemark.location {
+                    completion(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
+                } else {
+                    completion(longitude: nil, latitude: nil)
+                }
+            }
+        }
+    }
+    
 }
