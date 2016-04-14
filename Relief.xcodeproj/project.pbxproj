@@ -35,7 +35,7 @@
 		E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */; };
 		E6E1ACC41CBD9C08005A5792 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */; };
 		E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */; };
-		E6E1ACC81CBD9C37005A5792 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC71CBD9C37005A5792 /* MainViewController.swift */; };
+		E6E1ACC81CBD9C37005A5792 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +71,7 @@
 		E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		E6E1ACC71CBD9C37005A5792 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +201,7 @@
 		E6E1ACC01CBD92AE005A5792 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E6E1ACC71CBD9C37005A5792 /* MainViewController.swift */,
+				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
 				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
 				E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */,
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,
@@ -242,7 +242,7 @@
 				TargetAttributes = {
 					021ADED01CBD7F0B00DCD798 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = CA4H3H7CZW;
+						DevelopmentTeam = 22C3FKDR9Y;
 					};
 				};
 			};
@@ -285,7 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6E1ACC81CBD9C37005A5792 /* MainViewController.swift in Sources */,
+				E6E1ACC81CBD9C37005A5792 /* MapViewController.swift in Sources */,
 				E6E1ACC41CBD9C08005A5792 /* EventViewController.swift in Sources */,
 				74BF48BD1CBE9F4600273466 /* GlobalKeys.swift in Sources */,
 				74BF48B51CBE9F2C00273466 /* Thread.swift in Sources */,
