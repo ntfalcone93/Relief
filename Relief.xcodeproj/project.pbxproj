@@ -31,6 +31,8 @@
 		74BF48BD1CBE9F4600273466 /* GlobalKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48BC1CBE9F4600273466 /* GlobalKeys.swift */; };
 		74BF48C31CBEE83700273466 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48C21CBEE83700273466 /* EventController.swift */; };
 		74C457321CBDD18A00B363AA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C457311CBDD18A00B363AA /* SWRevealViewController.m */; };
+		E6DC4CF51CC0371B00768D4E /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DC4CF41CC0371B00768D4E /* LocationController.swift */; };
+		E6DC4CF71CC0372800768D4E /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DC4CF61CC0372800768D4E /* MapController.swift */; };
 		E6E1ACBD1CBD9022005A5792 /* CreateEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6E1ACBC1CBD9022005A5792 /* CreateEvent.storyboard */; };
 		E6E1ACBF1CBD92A9005A5792 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */; };
 		E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */; };
@@ -68,6 +70,8 @@
 		74C4572F1CBDD18900B363AA /* Relief-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Relief-Bridging-Header.h"; sourceTree = "<group>"; };
 		74C457301CBDD18A00B363AA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		74C457311CBDD18A00B363AA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		E6DC4CF41CC0371B00768D4E /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		E6DC4CF61CC0372800768D4E /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		E6E1ACBC1CBD9022005A5792 /* CreateEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateEvent.storyboard; sourceTree = "<group>"; };
 		E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
+				E6DC4CF41CC0371B00768D4E /* LocationController.swift */,
+				E6DC4CF61CC0372800768D4E /* MapController.swift */,
 				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
 				E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */,
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,
@@ -297,6 +303,7 @@
 				241620A71CBED891004883AE /* UserController.swift in Sources */,
 				74C457321CBDD18A00B363AA /* SWRevealViewController.m in Sources */,
 				74BF48B71CBE9F3300273466 /* ThreadController.swift in Sources */,
+				E6DC4CF71CC0372800768D4E /* MapController.swift in Sources */,
 				021ADEE71CBD814700DCD798 /* Event.swift in Sources */,
 				021ADED51CBD7F0B00DCD798 /* AppDelegate.swift in Sources */,
 				74BF48BB1CBE9F4000273466 /* FirebaseController.swift in Sources */,
@@ -305,6 +312,7 @@
 				E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */,
 				74BF48B91CBE9F3900273466 /* MessageController.swift in Sources */,
 				E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */,
+				E6DC4CF51CC0371B00768D4E /* LocationController.swift in Sources */,
 				74BF48C31CBEE83700273466 /* EventController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
