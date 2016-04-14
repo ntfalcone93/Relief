@@ -21,3 +21,6 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+Relief/MainViewController.swift
+Relief.xcodeproj/project.xcworkspace/xcuserdata/Kaeosm.xcuserdatad/UserInterfaceState.xcuserstate
+.DS_Store
