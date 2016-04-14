@@ -11,23 +11,23 @@ import UIKit
 
 enum EventType: String {
     case Epidemic
-    case AnimalAndInsectInfestation
+    case AnimalAndInsectInfestation = "Animal And Insect Infestation"
     case Earthquakes
-    case DryMassMovement
+    case DryMassMovement = "Dry Mass Movement"
     case Tsunamis
-    case VolcanicEruptions
+    case VolcanicEruptions = "Volcanic Eruptions"
     case Drought
-    case ExtremeTemperatues
-    case WildfiresAndUrbanFires
+    case ExtremeTemperatues = "Extreme Temperatures"
+    case WildfiresAndUrbanFires = "Wild Fires And Urban Fires"
     case Floods
-    case WetMassMovement
-    case TropicalStormsHurricanesTyphoonsAndCyclones
-    case StormsAndTidalWaves
-    case IndustrialAccidents
-    case TransportAccidents
-    case ComplexEmergencies
-    case FamineOrFoodInsecurity
-    case DisplacedPopulations
+    case WetMassMovement = "Wet Mass Movement"
+    case TropicalStormsHurricanesTyphoonsAndCyclones = "Tropical Storms Hurricane Typhoons And Cyclones"
+    case StormsAndTidalWaves = "Storms And Tidal Waves"
+    case IndustrialAccidents = "Industrial Accidents"
+    case TransportAccidents = "Transport Accidents"
+    case ComplexEmergencies = "Complex Emergencies"
+    case FamineOrFoodInsecurity = "Famine Or Food Insecurity"
+    case DisplacedPopulations = "Displaced Populations"
 }
 
 class Event {
