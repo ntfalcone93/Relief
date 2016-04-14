@@ -7,16 +7,32 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     // MARK: - IBOutlets
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var typePickerView: UIPickerView!
-    @IBOutlet var otherTypeTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
+    
+    var currentEventType: EventType?
     
     // MARK: - IBActions
     @IBAction func confirmButtonTapped(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        guard let titleText = titleTextField.text where titleText.isEmpty == false else { return } // Fire alert
+        guard let eventType = currentEventType else { return } // Fire alert
+        guard let collectionPoint = addressTextField.text else { return } // Fire alert (do check for valid)
+        let location = CLLocation() // Added as placehold location - MUST CHANGE / FIX
+        
+        EventController.sharedInstance.createEvent(eventType, title: titleText, collectionPoint: collectionPoint, location: location) { (success) in
+            if success {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                // Fire alert
+            }
+        }
+        
+        
     }
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
@@ -24,7 +40,26 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         NSNotificationCenter.defaultCenter().postNotificationName("cancelEvent", object: nil)
     }
     
-    var pickerViewDataSource = ["Earchquake", "Tornado", "Charazard Attack", "Other"]
+    var pickerViewDataSource =
+        [EventType.AnimalAndInsectInfestation,
+         EventType.ComplexEmergencies,
+         EventType.DisplacedPopulations,
+         EventType.Drought,
+         EventType.DryMassMovement,
+         EventType.Earthquakes,
+         EventType.Epidemic,
+         EventType.ExtremeTemperatues,
+         EventType.FamineOrFoodInsecurity,
+         EventType.Floods,
+         EventType.IndustrialAccidents,
+         EventType.StormsAndTidalWaves,
+         EventType.TransportAccidents,
+         EventType.TropicalStormsHurricanesTyphoonsAndCyclones,
+         EventType.Tsunamis,
+         EventType.VolcanicEruptions,
+         EventType.WetMassMovement,
+         EventType.WildfiresAndUrbanFires]
+    
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerViewDataSource.count
     }
@@ -34,7 +69,11 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerViewDataSource[row]
+        return pickerViewDataSource[row].rawValue
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.currentEventType = pickerViewDataSource[row]
     }
     
     override func viewDidLoad() {
