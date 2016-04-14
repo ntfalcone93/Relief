@@ -16,6 +16,14 @@
 		021ADEEE1CBD840400DCD798 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021ADEED1CBD840400DCD798 /* Login.storyboard */; };
 		241620A51CBEC03F004883AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241620A41CBEC03F004883AE /* User.swift */; };
 		241620A71CBED891004883AE /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241620A61CBED891004883AE /* UserController.swift */; };
+		74B58DA51CC0543200AD9B75 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B58DA41CC0543200AD9B75 /* CoreLocation.framework */; };
+		74B58DA71CC054A400AD9B75 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B58DA61CC054A400AD9B75 /* libsqlite3.tbd */; };
+		74B58DA91CC054AF00AD9B75 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B58DA81CC054AF00AD9B75 /* libz.tbd */; };
+		74B58DB91CC0567B00AD9B75 /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DAB1CC0567B00AD9B75 /* GeoFire.m */; };
+		74B58DBA1CC0567B00AD9B75 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DAD1CC0567B00AD9B75 /* GFQuery.m */; };
+		74B58DBB1CC0567B00AD9B75 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DAF1CC0567B00AD9B75 /* GFBase32Utils.m */; };
+		74B58DBC1CC0567B00AD9B75 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DB11CC0567B00AD9B75 /* GFGeoHash.m */; };
+		74B58DBD1CC0567B00AD9B75 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DB31CC0567B00AD9B75 /* GFGeoHashQuery.m */; };
 		74BF48A51CBE9EBF00273466 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48A41CBE9EBF00273466 /* Firebase.framework */; };
 		74BF48A71CBE9ED200273466 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48A61CBE9ED200273466 /* CFNetwork.framework */; };
 		74BF48A91CBE9ED800273466 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48A81CBE9ED800273466 /* Security.framework */; };
@@ -53,6 +61,24 @@
 		021ADEED1CBD840400DCD798 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		241620A41CBEC03F004883AE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		241620A61CBED891004883AE /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		74B58DA41CC0543200AD9B75 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		74B58DA61CC054A400AD9B75 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		74B58DA81CC054AF00AD9B75 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		74B58DAA1CC0567B00AD9B75 /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
+		74B58DAB1CC0567B00AD9B75 /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
+		74B58DAC1CC0567B00AD9B75 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
+		74B58DAD1CC0567B00AD9B75 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
+		74B58DAE1CC0567B00AD9B75 /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
+		74B58DAF1CC0567B00AD9B75 /* GFBase32Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBase32Utils.m; sourceTree = "<group>"; };
+		74B58DB01CC0567B00AD9B75 /* GFGeoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHash.h; sourceTree = "<group>"; };
+		74B58DB11CC0567B00AD9B75 /* GFGeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHash.m; sourceTree = "<group>"; };
+		74B58DB21CC0567B00AD9B75 /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
+		74B58DB31CC0567B00AD9B75 /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
+		74B58DB41CC0567B00AD9B75 /* GeoFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
+		74B58DB51CC0567B00AD9B75 /* GFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
+		74B58DB61CC0567B00AD9B75 /* GFCircleQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
+		74B58DB71CC0567B00AD9B75 /* GFRegionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
+		74B58DB81CC0567B00AD9B75 /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
 		74BF48A41CBE9EBF00273466 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		74BF48A61CBE9ED200273466 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		74BF48A81CBE9ED800273466 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -85,6 +111,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74B58DA91CC054AF00AD9B75 /* libz.tbd in Frameworks */,
+				74B58DA71CC054A400AD9B75 /* libsqlite3.tbd in Frameworks */,
+				74B58DA51CC0543200AD9B75 /* CoreLocation.framework in Frameworks */,
 				74BF48AF1CBE9EE900273466 /* libc++.tbd in Frameworks */,
 				74BF48AD1CBE9EE300273466 /* libicucore.tbd in Frameworks */,
 				74BF48AB1CBE9EDE00273466 /* SystemConfiguration.framework in Frameworks */,
@@ -118,9 +147,10 @@
 			isa = PBXGroup;
 			children = (
 				74BF48BE1CBE9F5D00273466 /* FirebaseChat */,
+				74B58D8B1CC050E400AD9B75 /* GeoFire */,
+				E6E1ACC01CBD92AE005A5792 /* View Controllers */,
 				740BF2DA1CBEED0600320A1A /* Controllers */,
 				021ADEE81CBD832600DCD798 /* Storyboards */,
-				E6E1ACC01CBD92AE005A5792 /* View Controllers */,
 				021ADEEA1CBD837D00DCD798 /* Model Objects */,
 				74C457331CBDD19300B363AA /* Reveal Controller */,
 				021ADEE91CBD836C00DCD798 /* Other */,
@@ -169,6 +199,28 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		74B58D8B1CC050E400AD9B75 /* GeoFire */ = {
+			isa = PBXGroup;
+			children = (
+				74B58DAA1CC0567B00AD9B75 /* GeoFire+Private.h */,
+				74B58DAB1CC0567B00AD9B75 /* GeoFire.m */,
+				74B58DAC1CC0567B00AD9B75 /* GFQuery+Private.h */,
+				74B58DAD1CC0567B00AD9B75 /* GFQuery.m */,
+				74B58DAE1CC0567B00AD9B75 /* GFBase32Utils.h */,
+				74B58DAF1CC0567B00AD9B75 /* GFBase32Utils.m */,
+				74B58DB01CC0567B00AD9B75 /* GFGeoHash.h */,
+				74B58DB11CC0567B00AD9B75 /* GFGeoHash.m */,
+				74B58DB21CC0567B00AD9B75 /* GFGeoHashQuery.h */,
+				74B58DB31CC0567B00AD9B75 /* GFGeoHashQuery.m */,
+				74B58DB41CC0567B00AD9B75 /* GeoFire.h */,
+				74B58DB51CC0567B00AD9B75 /* GFQuery.h */,
+				74B58DB61CC0567B00AD9B75 /* GFCircleQuery.h */,
+				74B58DB71CC0567B00AD9B75 /* GFRegionQuery.h */,
+				74B58DB81CC0567B00AD9B75 /* GeoFire-Prefix.pch */,
+			);
+			name = GeoFire;
+			sourceTree = "<group>";
+		};
 		74BF48BE1CBE9F5D00273466 /* FirebaseChat */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +249,9 @@
 		E60E01201CBEA55A004C8656 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				74B58DA81CC054AF00AD9B75 /* libz.tbd */,
+				74B58DA61CC054A400AD9B75 /* libsqlite3.tbd */,
+				74B58DA41CC0543200AD9B75 /* CoreLocation.framework */,
 				74BF48AE1CBE9EE900273466 /* libc++.tbd */,
 				74BF48AC1CBE9EE300273466 /* libicucore.tbd */,
 				74BF48AA1CBE9EDE00273466 /* SystemConfiguration.framework */,
@@ -302,8 +357,10 @@
 				E6E1ACBF1CBD92A9005A5792 /* LoginViewController.swift in Sources */,
 				241620A71CBED891004883AE /* UserController.swift in Sources */,
 				74C457321CBDD18A00B363AA /* SWRevealViewController.m in Sources */,
+				74B58DBD1CC0567B00AD9B75 /* GFGeoHashQuery.m in Sources */,
 				74BF48B71CBE9F3300273466 /* ThreadController.swift in Sources */,
 				E6DC4CF71CC0372800768D4E /* MapController.swift in Sources */,
+				74B58DBC1CC0567B00AD9B75 /* GFGeoHash.m in Sources */,
 				021ADEE71CBD814700DCD798 /* Event.swift in Sources */,
 				021ADED51CBD7F0B00DCD798 /* AppDelegate.swift in Sources */,
 				74BF48BB1CBE9F4000273466 /* FirebaseController.swift in Sources */,
@@ -311,9 +368,12 @@
 				74BF48B31CBE9F2600273466 /* Message.swift in Sources */,
 				E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */,
 				74BF48B91CBE9F3900273466 /* MessageController.swift in Sources */,
+				74B58DBB1CC0567B00AD9B75 /* GFBase32Utils.m in Sources */,
+				74B58DB91CC0567B00AD9B75 /* GeoFire.m in Sources */,
 				E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */,
 				E6DC4CF51CC0371B00768D4E /* LocationController.swift in Sources */,
 				74BF48C31CBEE83700273466 /* EventController.swift in Sources */,
+				74B58DBA1CC0567B00AD9B75 /* GFQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +440,8 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Relief-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -418,6 +480,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Relief-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "-Swift.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -432,6 +496,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Relief",
 				);
 				INFOPLIST_FILE = Relief/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -453,6 +518,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Relief",
 				);
 				INFOPLIST_FILE = Relief/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

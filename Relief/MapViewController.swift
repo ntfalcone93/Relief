@@ -60,6 +60,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
+        
     }
     
     // MARK: - Map View Delegate
