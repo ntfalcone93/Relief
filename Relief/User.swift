@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class User {
+class User: FirebaseType {
     
     private let firstNameKey = "firstName"
     private let lastNameKey = "lastName"
@@ -29,20 +29,18 @@ class User {
         return [firstNameKey: firstName, lastNameKey: lastName ?? "", identifierKey: identifier ?? "", eventIdsKey: eventIds.toDic()]
     }
 
-    init(firstName: String, lastName: String?, identifier: String, eventIds: [String], endpoint: String) {
+    init(firstName: String, lastName: String?, identifier: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.identifier = identifier
-        self.eventIds = eventIds
-        self.endpoint = endpoint
+        self.eventIds = []
     }
     
-    init?(dictionary: Dictionary<String, AnyObject>) {
-        guard let firstName = dictionary[firstNameKey] as? String,
-            let lastName = dictionary[lastNameKey] as? String,
-            let identifier = dictionary[identifierKey] as? String,
-            let eventIds = dictionary[eventIdsKey] as? [String],
-            let endpoint = dictionary[endpointKey] as? String else {
+    required init?(json: [String : AnyObject], identifier: String) {
+        guard let firstName = json[firstNameKey] as? String,
+            let lastName = json[lastNameKey] as? String,
+            let eventIds = json[eventIdsKey] as? [String],
+            let endpoint = json[endpointKey] as? String else {
                 
                 return nil
                 
