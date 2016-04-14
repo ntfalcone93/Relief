@@ -99,11 +99,6 @@
                                 <action selector="eventsButtonTapped:" destination="BYZ-38-t0r" id="MD7-PQ-bEV"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="i5n-GK-sRU">
-                            <connections>
-                                <action selector="createEventButtonTapped:" destination="BYZ-38-t0r" id="ygY-Q3-JFq"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="longGestureRecognizer" destination="kWG-0U-MOO" id="JTc-aS-hsf"/>
@@ -125,7 +120,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2005" y="444"/>
+            <point key="canvasLocation" x="2001" y="429"/>
         </scene>
         <!--Detail-->
         <scene sceneID="rnr-fu-oiT">

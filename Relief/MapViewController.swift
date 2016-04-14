@@ -84,6 +84,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeAnnotationFromCancel), name: "cancelEvent", object: nil)
     }
     
     // MARK: - MKMapViewDelegate
@@ -129,13 +131,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         self.mapView.removeOverlay(overlay)
     }
     
+    @objc func removeAnnotationFromCancel() {
+        guard let annotation = self.currentAnnotation, overlay = self.currentOverlay else { return }
+        self.mapView.removeAnnotation(annotation)
+        self.mapView.removeOverlay(overlay)
+    }
+    
     func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {
         let actionSheet = UIAlertController(title: controllerTitle, message: controllerMessage, preferredStyle: .ActionSheet)
         let cancelAlert = UIAlertAction(title: "Cancel", style: .Destructive) { (_) in
             self.removeAnnotation(annotation, overlay: overlay)
         }
         let createEventAlert = UIAlertAction(title: "Create Event", style: .Default) { (_) in
-            print(self.mapView.annotations.count)
+            self.performSegueWithIdentifier("showEventInformation", sender: nil)
         }
         actionSheet.addAction(createEventAlert)
         actionSheet.addAction(cancelAlert)
