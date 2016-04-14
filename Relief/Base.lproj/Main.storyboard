@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rgs-a0-n49">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rgs-a0-n49">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -48,7 +48,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yBH-Ba-Dua" id="ZFB-3U-9pW">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -64,10 +64,10 @@
             </objects>
             <point key="canvasLocation" x="1734" y="-388"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -81,6 +81,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="O7u-Cg-eCE" appends="YES" id="kuS-h3-prW"/>
+                                    <outletCollection property="gestureRecognizers" destination="kWG-0U-MOO" appends="YES" id="NaW-pr-oa4"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -95,17 +96,13 @@
                     <navigationItem key="navigationItem" id="YqU-nJ-1jw">
                         <barButtonItem key="leftBarButtonItem" title="Events" id="Riq-JJ-70E">
                             <connections>
-                                <action selector="eventsButtonTapped:" destination="BYZ-38-t0r" id="GL6-7Z-GGl"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="i5n-GK-sRU">
-                            <connections>
-                                <action selector="createEventButtonTapped:" destination="BYZ-38-t0r" id="ygY-Q3-JFq"/>
+                                <action selector="eventsButtonTapped:" destination="BYZ-38-t0r" id="MD7-PQ-bEV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="68p-aj-VWI" id="aaQ-z5-FnP"/>
+                        <outlet property="longGestureRecognizer" destination="kWG-0U-MOO" id="JTc-aS-hsf"/>
+                        <outlet property="mapView" destination="68p-aj-VWI" id="UId-C5-TYc"/>
                         <segue destination="Srk-8g-Sgz" kind="presentation" id="ia3-0t-N0N"/>
                         <segue destination="tVI-hu-8L1" kind="presentation" id="6ol-Gq-ZBZ"/>
                         <segue destination="KHL-fy-y6Z" kind="presentation" identifier="showEventInformation" id="MbA-da-Uuw"/>
@@ -114,11 +111,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="O7u-Cg-eCE">
                     <connections>
-                        <action selector="tapGestureFired:" destination="BYZ-38-t0r" id="73I-BS-hV2"/>
+                        <action selector="tapGestureFired:" destination="BYZ-38-t0r" id="22F-fL-At4"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="kWG-0U-MOO">
+                    <connections>
+                        <action selector="mapLongPressed:" destination="BYZ-38-t0r" id="9qR-Ls-Px1"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1929" y="429"/>
+            <point key="canvasLocation" x="2001" y="429"/>
         </scene>
         <!--Detail-->
         <scene sceneID="rnr-fu-oiT">
