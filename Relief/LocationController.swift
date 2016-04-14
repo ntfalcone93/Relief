@@ -7,7 +7,21 @@
 //
 
 import Foundation
+import CoreLocation
 
 class LocationController {
+    static let sharedInstance = LocationController()
+    var coreLocationManager = CLLocationManager()
+    
+    // MARK: - Core Location
+    func setUpCoreLocation() {
+        self.coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest // use the highest level of accuracy
+        self.coreLocationManager.requestWhenInUseAuthorization()
+        self.coreLocationManager.startUpdatingLocation()
+    }
+    
+    init() {
+        setUpCoreLocation()
+    }
     
 }
