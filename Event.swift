@@ -34,12 +34,12 @@ class Event {
     
     private let titleKey = "title"
     private let collectionPointKey = "collectionPoint"
-    private let membersKey = "memberCount"
-    private let needsKey = "memberCount"
+    private let membersKey = "member"
+    private let needsKey = "needs"
     private let identifierKey = "identifier"
     private let endpointKey = "endpoint"
     private let jsonValueKey = "jsonValue"
-    private let eventTypeKey = "eventTypeKey"
+    private let eventTypeKey = "eventType"
     
     var title: String
     var collectionPoint: String

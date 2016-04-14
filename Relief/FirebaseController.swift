@@ -12,7 +12,7 @@ import Firebase
 
 class FirebaseController {
     
-    static private let baseURL = "devmtnrelief.firebaseapp.com"
+    static private let baseURL = "devmtnrelief.firebaseIO.com"
     
     // Declare a static base variable for firebase communication
     static let firebase = Firebase(url: baseURL)

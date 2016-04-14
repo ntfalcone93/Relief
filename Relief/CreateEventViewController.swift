@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     // MARK: - IBOutlets
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var typePickerView: UIPickerView!
@@ -22,7 +22,8 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         guard let titleText = titleTextField.text where titleText.isEmpty == false else { return } // Fire alert
         guard let eventType = currentEventType else { return } // Fire alert
         guard let collectionPoint = addressTextField.text else { return } // Fire alert (do check for valid)
-        let location = CLLocation() // Added as placehold location - MUST CHANGE / FIX
+        
+        guard let location = LocationController.sharedInstance.coreLocationManager.location else { return } // Fire alert
         
         EventController.sharedInstance.createEvent(eventType, title: titleText, collectionPoint: collectionPoint, location: location) { (success) in
             if success {
@@ -80,5 +81,13 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         super.viewDidLoad()
         self.typePickerView.dataSource = self
         self.typePickerView.delegate = self
+        
+        titleTextField.delegate = self
+        addressTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

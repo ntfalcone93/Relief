@@ -162,6 +162,8 @@
 		740BF2DA1CBEED0600320A1A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E6DC4CF41CC0371B00768D4E /* LocationController.swift */,
+				E6DC4CF61CC0372800768D4E /* MapController.swift */,
 				74BF48C21CBEE83700273466 /* EventController.swift */,
 			);
 			name = Controllers;
@@ -209,8 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
-				E6DC4CF41CC0371B00768D4E /* LocationController.swift */,
-				E6DC4CF61CC0372800768D4E /* MapController.swift */,
 				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
 				E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */,
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,
@@ -251,7 +251,7 @@
 				TargetAttributes = {
 					021ADED01CBD7F0B00DCD798 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 22C3FKDR9Y;
+						DevelopmentTeam = CA4H3H7CZW;
 					};
 				};
 			};

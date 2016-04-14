@@ -25,7 +25,7 @@ class LocationController {
     }
     
     // Enter address to get Location for Event
-    static func getCoordinatesFromCity(address: String, completion: (longitude: CLLocationDegrees?, latitude: CLLocationDegrees?) -> Void ) {
+    func getCoordinatesFromCity(address: String, completion: (longitude: CLLocationDegrees?, latitude: CLLocationDegrees?) -> Void ) {
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
             if error != nil {
                 print(error?.localizedDescription)
