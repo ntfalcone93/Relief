@@ -40,14 +40,21 @@ class UserController {
     
     static func fetchUserWithId(identifier: String, completion: (user: User?) -> Void) {
         
-        FirebaseController.firebase
-        
+        FirebaseController.dataAtEndPoint("user") { (data) -> Void in
+            
+            if let json = data as? [String: AnyObject] {
+                let user = User(json: json, identifier: identifier)
+                completion(user: user)
+            } else {
+                completion(user: nil)
+            }
+        }
     }
     
     static func createUser(firstName: String, lastName: String?, email: String, password: String, completion: (success: Bool) -> Void) {
         
         FirebaseController.firebase.createUser(email, password: password) { (error, userDict) in
-
+            
             if let identifier = userDict["uid"] as? String {
                 var user = User(firstName: firstName, lastName: lastName, identifier: identifier)
                 user.save()
@@ -72,31 +79,31 @@ class UserController {
             } else {
                 print("User ID: \(authData.uid) authenticated successfully.")
                 self.fetchUserWithId(authData.uid, completion: { (user) in
-                   
+                    
                     if let user = user {
                         sharedInstance.currentUser = user
                     }
                     
-                completion(success: true)
-            })
+                    completion(success: true)
+                })
+            }
         }
     }
-}
     
     func logOutUser(completion: (success: Bool) -> Void) {
         
         FirebaseController.firebase.unauth()
     }
     
-    static func mockUsers() -> [User] {
-        
-        let user1 = User(firstName: "Nathan", identifier: "0001")
-        let user2 = User(firstName: "Jake", identifier: "0002")
-        let user3 = User(firstName: "Dylan", identifier: "0003")
-        let user4 = User(firstName: "Kaelin", identifier: "0004")
-        
-        return [user1, user2, user3, user4]
-    }
-    
+    //    static func mockUsers() -> [User] {
+    //
+    //        let user1 = User(firstName: "Nathan", identifier: "0001")
+    //        let user2 = User(firstName: "Jake", identifier: "0002")
+    //        let user3 = User(firstName: "Dylan", identifier: "0003")
+    //        let user4 = User(firstName: "Kaelin", identifier: "0004")
+    //
+    //        return [user1, user2, user3, user4]
+    //    }
+    //    
 }
     

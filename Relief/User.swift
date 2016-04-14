@@ -22,7 +22,7 @@ class User: FirebaseType {
     var lastName: String?
     var identifier: String?
     var eventIds: [String]
-    var endpoint = "events"
+    var endpoint = "users"
     
     var jsonValue: [String:AnyObject] {
         
