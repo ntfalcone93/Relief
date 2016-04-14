@@ -29,13 +29,14 @@
 		74BF48B91CBE9F3900273466 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48B81CBE9F3900273466 /* MessageController.swift */; };
 		74BF48BB1CBE9F4000273466 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48BA1CBE9F4000273466 /* FirebaseController.swift */; };
 		74BF48BD1CBE9F4600273466 /* GlobalKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48BC1CBE9F4600273466 /* GlobalKeys.swift */; };
+		74BF48C31CBEE83700273466 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48C21CBEE83700273466 /* EventController.swift */; };
 		74C457321CBDD18A00B363AA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C457311CBDD18A00B363AA /* SWRevealViewController.m */; };
 		E6E1ACBD1CBD9022005A5792 /* CreateEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6E1ACBC1CBD9022005A5792 /* CreateEvent.storyboard */; };
 		E6E1ACBF1CBD92A9005A5792 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */; };
 		E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */; };
 		E6E1ACC41CBD9C08005A5792 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */; };
 		E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */; };
-		E6E1ACC81CBD9C37005A5792 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC71CBD9C37005A5792 /* MainViewController.swift */; };
+		E6E1ACC81CBD9C37005A5792 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		74BF48B81CBE9F3900273466 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		74BF48BA1CBE9F4000273466 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		74BF48BC1CBE9F4600273466 /* GlobalKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalKeys.swift; sourceTree = "<group>"; };
+		74BF48C21CBEE83700273466 /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventController.swift; path = ../EventController.swift; sourceTree = "<group>"; };
 		74C4572F1CBDD18900B363AA /* Relief-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Relief-Bridging-Header.h"; sourceTree = "<group>"; };
 		74C457301CBDD18A00B363AA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		74C457311CBDD18A00B363AA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -71,7 +73,7 @@
 		E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		E6E1ACC71CBD9C37005A5792 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,14 +96,9 @@
 		021ADEC81CBD7F0B00DCD798 = {
 			isa = PBXGroup;
 			children = (
-				74BF48AE1CBE9EE900273466 /* libc++.tbd */,
-				74BF48AC1CBE9EE300273466 /* libicucore.tbd */,
-				74BF48AA1CBE9EDE00273466 /* SystemConfiguration.framework */,
-				74BF48A81CBE9ED800273466 /* Security.framework */,
-				74BF48A61CBE9ED200273466 /* CFNetwork.framework */,
-				74BF48A41CBE9EBF00273466 /* Firebase.framework */,
 				021ADED31CBD7F0B00DCD798 /* Relief */,
 				021ADED21CBD7F0B00DCD798 /* Products */,
+				E60E01201CBEA55A004C8656 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				74BF48BE1CBE9F5D00273466 /* FirebaseChat */,
+				740BF2DA1CBEED0600320A1A /* Controllers */,
 				021ADEE81CBD832600DCD798 /* Storyboards */,
 				E6E1ACC01CBD92AE005A5792 /* View Controllers */,
 				021ADEEA1CBD837D00DCD798 /* Model Objects */,
@@ -157,6 +155,14 @@
 			name = "Model Objects";
 			sourceTree = "<group>";
 		};
+		740BF2DA1CBEED0600320A1A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				74BF48C21CBEE83700273466 /* EventController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		74BF48BE1CBE9F5D00273466 /* FirebaseChat */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,10 +188,23 @@
 			name = "Reveal Controller";
 			sourceTree = "<group>";
 		};
+		E60E01201CBEA55A004C8656 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				74BF48AE1CBE9EE900273466 /* libc++.tbd */,
+				74BF48AC1CBE9EE300273466 /* libicucore.tbd */,
+				74BF48AA1CBE9EDE00273466 /* SystemConfiguration.framework */,
+				74BF48A81CBE9ED800273466 /* Security.framework */,
+				74BF48A61CBE9ED200273466 /* CFNetwork.framework */,
+				74BF48A41CBE9EBF00273466 /* Firebase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E6E1ACC01CBD92AE005A5792 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E6E1ACC71CBD9C37005A5792 /* MainViewController.swift */,
+				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
 				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
 				E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */,
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,
@@ -226,7 +245,7 @@
 				TargetAttributes = {
 					021ADED01CBD7F0B00DCD798 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = CA4H3H7CZW;
+						DevelopmentTeam = 22C3FKDR9Y;
 					};
 				};
 			};
@@ -269,7 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6E1ACC81CBD9C37005A5792 /* MainViewController.swift in Sources */,
+				E6E1ACC81CBD9C37005A5792 /* MapViewController.swift in Sources */,
 				E6E1ACC41CBD9C08005A5792 /* EventViewController.swift in Sources */,
 				74BF48BD1CBE9F4600273466 /* GlobalKeys.swift in Sources */,
 				74BF48B51CBE9F2C00273466 /* Thread.swift in Sources */,
@@ -286,6 +305,7 @@
 				E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */,
 				74BF48B91CBE9F3900273466 /* MessageController.swift in Sources */,
 				E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */,
+				74BF48C31CBEE83700273466 /* EventController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

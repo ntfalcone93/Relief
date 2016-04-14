@@ -19,7 +19,12 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    var pickerViewDataSource = ["Earchquake", "Tornado", "Charazard", "Other"]
+    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("cancelEvent", object: nil)
+    }
+    
+    var pickerViewDataSource = ["Earchquake", "Tornado", "Charazard Attack", "Other"]
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerViewDataSource.count
     }

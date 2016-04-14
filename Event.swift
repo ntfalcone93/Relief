@@ -34,7 +34,7 @@ class Event {
     
     private let titleKey = "title"
     private let collectionPointKey = "collectionPoint"
-    private let memberCountKey = "memberCount"
+    private let membersKey = "memberCount"
     private let needsKey = "memberCount"
     private let identifierKey = "identifier"
     private let endpointKey = "endpoint"
@@ -43,7 +43,7 @@ class Event {
     
     var title: String
     var collectionPoint: String
-    var memberCount: Int
+    var members = [String]()
     var needs: [String]
     var identifier: String?
     var endpoint = "events"
@@ -51,14 +51,14 @@ class Event {
     
     var jsonValue: [String:AnyObject] {
         
-        return [titleKey: title, eventTypeKey: type, collectionPointKey: collectionPoint, memberCountKey: memberCount, needsKey: needs.toDic()]
+        return [titleKey: title, eventTypeKey: type, collectionPointKey: collectionPoint, membersKey: members.toDic(), needsKey: needs.toDic()]
         
     }
     
-    init(title: String, collectionPoint: String, memberCount: Int, needs: [String], identifier: String?, endpoint: String, eventType: EventType) {
+    init(title: String, collectionPoint: String, members: [String], needs: [String], identifier: String?, endpoint: String, eventType: EventType) {
         self.title = title
         self.collectionPoint = collectionPoint
-        self.memberCount = memberCount
+        self.members = members
         self.needs = needs
         self.identifier = identifier
         self.endpoint = endpoint
@@ -69,7 +69,7 @@ class Event {
     init?(dictionary: Dictionary<String, AnyObject>) {
         guard let title = dictionary[titleKey] as? String,
             let collectionPoint = dictionary[collectionPointKey] as? String,
-            let memberCount = dictionary[memberCountKey] as? Int,
+            let members = dictionary[membersKey] as? [String],
             let needs = dictionary[needsKey] as? [String],
             let endpoint = dictionary[endpointKey] as? String,
             let eventType = dictionary[eventTypeKey] as? String else {
@@ -80,7 +80,7 @@ class Event {
         
         self.title = title
         self.collectionPoint = collectionPoint
-        self.memberCount = memberCount
+        self.members = members
         self.endpoint = endpoint
         self.needs = needs
         self.type = eventType
@@ -91,7 +91,6 @@ class Event {
         self.title = title
         self.type = type.rawValue
         self.collectionPoint = collectionPoint
-        self.memberCount = 1
         self.needs = []
         self.identifier = nil
     }
