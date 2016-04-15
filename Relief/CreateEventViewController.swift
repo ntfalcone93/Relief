@@ -16,14 +16,17 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var addressTextField: UITextField!
     
     var currentEventType: EventType?
+    var delegate: MapViewController?
+    
     
     // MARK: - IBActions
     @IBAction func confirmButtonTapped(sender: UIButton) {
         guard let titleText = titleTextField.text where titleText.isEmpty == false else { return } // Fire alert
         guard let eventType = currentEventType else { return } // Fire alert
         guard let collectionPoint = addressTextField.text else { return } // Fire alert (do check for valid)
+        guard let coordinate = delegate?.mapManager?.currentAnnotation?.coordinate else { return }
         
-        guard let location = LocationController.sharedInstance.coreLocationManager.location else { return } // Fire alert
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude) // Fire alert
         
         EventController.sharedInstance.createEvent(eventType, title: titleText, collectionPoint: collectionPoint, location: location) { (success, event) in
             if success {

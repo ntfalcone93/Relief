@@ -27,7 +27,11 @@ class EventController {
     
     var delegate: EventsUpdating?
     // events within a radius of distance from users current location
-    var localEvents = [Event]()
+    var localEvents = [Event]() {
+        didSet {
+            // MAP
+        }
+    }
     
     // MARK: - Fetch Event Functions
     // Grabs a particular event with identifier -> Completes with event
@@ -39,6 +43,20 @@ class EventController {
             guard let json = data as? [String : AnyObject] else { completion(event: nil) ; return }
             guard let event = Event(dictionary: json) else { completion(event: nil) ; return }
             self.events.append(event)
+            // Complete with initialized event
+            completion(event: event)
+        }
+    }
+    
+    // Grabs a particular event with identifier -> Completes with event
+    func fetchLocalEventWithEventID(eventID: String, completion: (event: Event?) -> Void) { ////////// Need to fix this
+        // Endpoint constructed from event endpoints and passed in event ID
+        let endpoint = "\(EVENT_ENDPOINT)/\(eventID)"
+        // grabs data at specified endpoint and initializes (attempts) an Event object
+        FirebaseController.dataAtEndPoint(endpoint) { (data) in
+            guard let json = data as? [String : AnyObject] else { completion(event: nil) ; return }
+            guard let event = Event(dictionary: json) else { completion(event: nil) ; return }
+            self.localEvents.append(event)
             // Complete with initialized event
             completion(event: event)
         }
@@ -86,7 +104,7 @@ class EventController {
         // POSSIBLY DO CHECK ON COLLECTION POINT STRING
         
         // Instantiate an event with passed in attributes
-        let event = Event(title: title, type: eventType, collectionPoint: collectionPoint)
+        let event = Event(title: title, type: eventType, collectionPoint: collectionPoint, latitude: location.coordinate.latitude, longitude:  location.coordinate.longitude)
         // Save event to firebase; if error return false or complete true
         FirebaseController.firebase.childByAppendingPath(EVENT_ENDPOINT).childByAutoId().setValue(event.jsonValue) { (error, firebase) in
             if let error = error {

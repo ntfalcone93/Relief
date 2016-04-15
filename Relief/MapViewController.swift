@@ -60,33 +60,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
-        
-        // Event Controller Tests begin here.
-        // How do we get the event locally?
-//        var event: Event? = nil
-//        EventController.sharedInstance.createEvent(EventType.Earthquakes, title: "Quake", collectionPoint: "Not where you wanna be", location: CLLocation(latitude: 40.7724692, longitude: -111.9095813)) { (success, eventFromSuccess) in
-//            print("create event complete")
-//            if let eventFromSuccess = eventFromSuccess {
-//                event = eventFromSuccess
-//                EventController.sharedInstance.fetchEventWithEventID((event?.identifier)!, completion: { (ayy) in
-//                    print(ayy?.title)
-//                    EventController.sharedInstance.addNeedToEvent(event!, need: "Bazookas", completion: { (success) in
-//                        print("yolo")
-//                        EventController.sharedInstance.deleteEvent(event!, completion: { (success) in
-//                            print("delete complete")
-//                        })
-//                    })
-//                })
-//            }
-//        }
+        self.displayEventsForCurrentUser()
     }
     
     // MARK: - Map View Delegate
     
-    
-    // functions toggles the current view mode and calls the review controller
-    // for movement of views. This function also sets the toggleMode to it's
-    // new and correct mode that reflects the changes made
     func toggleMap() {
         switch toggleMode {
         case .MapHidden:
@@ -98,9 +76,43 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         }
     }
     
+    func displayEventsForCurrentUser() {
+        var user = User(firstName: "Dylan", lastName: "Slade", identifier: "1234")
+        UserController.sharedInstance.currentUser = user
+        EventController.sharedInstance.createEvent(EventType.Drought, title: "HIS EVENT", collectionPoint: "no", location: LocationController.sharedInstance.coreLocationManager.location!) { (success, event) in
+            user.eventIds.append((event?.identifier!)!)
+            user.save()
+            if let user = UserController.sharedInstance.currentUser {
+                EventController.sharedInstance.fetchEventsForUser(user, completion: { (success) in
+                    if success {
+                        print("IT WORKED DYLAN")
+                        print(EventController.sharedInstance.localEvents.count)
+                        for event in EventController.sharedInstance.events {
+                            self.mapManager?.addEventToMap(event)
+                        }
+                        for event in EventController.sharedInstance.localEvents {
+                            self.mapManager?.addEventToMap(event)
+                        }
+                    }
+                })
+            }
+        }
+    }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showCreateEvent" {
+            print(segue.destinationViewController)
+            let destinationView = segue.destinationViewController as? UINavigationController
+            let lastView = destinationView?.childViewControllers[0] as? CreateEventViewController
+            lastView?.delegate = self
+        }
+    }
+}
+
+protocol MapViewControllerDelegate {
     
 }
+
 
 
 

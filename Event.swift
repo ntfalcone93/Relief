@@ -40,6 +40,8 @@ class Event {
     private let endpointKey = "endpoint"
     private let jsonValueKey = "jsonValue"
     private let eventTypeKey = "eventType"
+    private let latitudeKey = "latitude"
+    private let longitudeKey = "longitude"
     
     var title: String
     var collectionPoint: String
@@ -48,14 +50,16 @@ class Event {
     var identifier: String?
     var endpoint = "events"
     var type: EventType.RawValue
+    var latitude: Double
+    var longitude: Double
     
     var jsonValue: [String:AnyObject] {
         
-        return [titleKey: title, eventTypeKey: type, collectionPointKey: collectionPoint, membersKey: members.toDic(), needsKey: needs.toDic()]
+        return [titleKey: title, eventTypeKey: type, collectionPointKey: collectionPoint, membersKey: members.toDic(), needsKey: needs.toDic(), latitudeKey : latitude, longitudeKey : longitude]
         
     }
     
-    init(title: String, collectionPoint: String, members: [String], needs: [String], identifier: String?, endpoint: String, eventType: EventType) {
+    init(title: String, collectionPoint: String, members: [String], needs: [String], identifier: String?, endpoint: String, eventType: EventType, latitude: Double, longitude: Double) {
         self.title = title
         self.collectionPoint = collectionPoint
         self.members = members
@@ -63,13 +67,17 @@ class Event {
         self.identifier = identifier
         self.endpoint = endpoint
         self.type = eventType.rawValue
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     
     init?(dictionary: Dictionary<String, AnyObject>) {
         guard let title = dictionary[titleKey] as? String,
             let collectionPoint = dictionary[collectionPointKey] as? String,
-            let eventType = dictionary[eventTypeKey] as? String else {
+            let eventType = dictionary[eventTypeKey] as? String,
+            let longitude = dictionary[longitudeKey] as? Double,
+            let latitude = dictionary[latitudeKey] as? Double else {
                 return nil
         }
         self.members = (dictionary[membersKey] ?? []) as! [String]
@@ -77,13 +85,17 @@ class Event {
         self.title = title
         self.collectionPoint = collectionPoint
         self.type = eventType
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
-    init(title: String, type: EventType, collectionPoint: String) {
+    init(title: String, type: EventType, collectionPoint: String, latitude: Double, longitude: Double) {
         self.title = title
         self.type = type.rawValue
         self.collectionPoint = collectionPoint
         self.needs = []
+        self.longitude = longitude
+        self.latitude = latitude
         self.identifier = nil
     }
 }

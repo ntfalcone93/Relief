@@ -10,6 +10,8 @@ import Foundation
 import MapKit
 import UIKit
 
+
+
 class MapController: NSObject, MKMapViewDelegate {
     var mapView: MKMapView
     var annotationAdded = false
@@ -68,6 +70,21 @@ class MapController: NSObject, MKMapViewDelegate {
         self.mapView.setRegion(coordinateRegion, animated: true)
     }
     
+    func addEventToMap(event: Event) {
+        let latitude = event.latitude
+        let longitude = event.longitude
+        
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location.coordinate
+        annotation.title = event.title
+        annotation.subtitle = event.type
+        
+        let circle = MKCircle(centerCoordinate: location.coordinate, radius: 1000)
+        self.mapView.addOverlay(circle)
+        self.mapView.addAnnotation(annotation)
+    }
+    
     func removeOneAnnotation(annotation: MKAnnotation, overlay: MKOverlay) {
         // The first time remove annotation is checked in a cycle this will fail and annotationSecondCheck will be set to true
         if annotationAdded {
@@ -106,7 +123,7 @@ class MapController: NSObject, MKMapViewDelegate {
             self.removeAnnotation(annotation, overlay: overlay)
         }
         let createEventAlert = UIAlertAction(title: "Create Event", style: .Default) { (_) in
-            self.viewController.performSegueWithIdentifier("showEventInformation", sender: nil)
+            self.viewController.performSegueWithIdentifier("showCreateEvent", sender: nil)
         }
         actionSheet.addAction(createEventAlert)
         actionSheet.addAction(cancelAlert)
