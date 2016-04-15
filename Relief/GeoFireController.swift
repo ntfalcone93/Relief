@@ -8,10 +8,9 @@
 
 import Foundation
 
-let RADIUS_IN_METERS = Double(40000)
+let RADIUS_IN_METERS = Double(40)
 
 class GeoFireController {
-    
     
     static let geofire = GeoFire(firebaseRef: FirebaseController.firebase.childByAppendingPath(LOCATION_ENDPOINT))
     
@@ -27,7 +26,7 @@ class GeoFireController {
         }
     }
     
-    static func queryAroundMe(completion: (eventIDs: [String]) -> Void) {
+    static func queryAroundMe() {
         
         // initiate an array to hold all shedIDs which query will find
         var eventIDs = [String]()
@@ -42,12 +41,10 @@ class GeoFireController {
         circleQuery.observeEventType(.KeyEntered, withBlock: { (string, location) -> Void in
             if !eventIDs.contains(string) {
                 eventIDs.append(string)
+                EventController.sharedInstance.fetchEventWithEventID(string, completion: { (event) in
+                    print("Fired")
+                })
             }
-            dispatch_group_leave(group)
         })
-        
-        dispatch_group_notify(group, dispatch_get_main_queue()) { 
-            completion(eventIDs: eventIDs)
-        }
     }
 }

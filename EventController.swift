@@ -17,7 +17,15 @@ class EventController {
     // Instantiate Shared Instance to allow access to particular events more easily
     static let sharedInstance = EventController()
     // Total events a user subscribes to
-    var events = [Event]()
+    var events = [Event]() {
+        didSet {
+            delegate?.updateNewEvent()
+        }
+    }
+    
+    
+    
+    var delegate: EventsUpdating?
     // events within a radius of distance from users current location
     var localEvents = [Event]()
     
@@ -30,6 +38,7 @@ class EventController {
         FirebaseController.dataAtEndPoint(endpoint) { (data) in
             guard let json = data as? [String : AnyObject] else { completion(event: nil) ; return }
             guard let event = Event(dictionary: json) else { completion(event: nil) ; return }
+            self.events.append(event)
             // Complete with initialized event
             completion(event: event)
         }
@@ -68,11 +77,14 @@ class EventController {
     // Function will query a particular radius for disaster events -> completes with success
     func fetchEventsInArea(location: CLLocation, completion: (success : Bool) -> Void) {
         // TODO: Implement geoFire
+        GeoFireController.queryAroundMe()
+        completion(success: true)
     }
     
     // Function creates an event -> Completes with Bool
     func createEvent(eventType: EventType, title: String, collectionPoint: String, location: CLLocation, completion: (success: Bool, event: Event?) -> Void) {
         // POSSIBLY DO CHECK ON COLLECTION POINT STRING
+        
         // Instantiate an event with passed in attributes
         let event = Event(title: title, type: eventType, collectionPoint: collectionPoint)
         // Save event to firebase; if error return false or complete true
@@ -83,13 +95,15 @@ class EventController {
                 return
             }
             // We need to append the event to the array on the shared instance locally //// From EventController Test /////
-            event.identifier = firebase.key
-            self.events.append(event)
-            completion(success: true, event: event)
+            GeoFireController.setLocation(firebase.key, location: location, completion: { (success) in
+                if success {
+                    event.identifier = firebase.key
+                    completion(success: true, event: event)
+                } else {
+                    completion(success: false, event: nil)
+                }
+            })
         }
-        // REFACTOR COMPLETION ONCE GEOFIRE IS IMPLEMENTED
-        // Do stuff with geofire here
-        // AKA Set Location using event location
     }
     
     // Deletes an event from firebase, from all users, and its location -> Completes with success
@@ -164,12 +178,17 @@ class EventController {
         for userIdentifier in userIdentifiers {
             // Enter group for each async call
             dispatch_group_enter(group)
-            // UserController.fetchUserForIdentifier()
-            // let user = user
-            // user.events.remove event match eventID
-            // save users
-            // Leave group at conclusion of async call
-            dispatch_group_leave(group)
+            UserController.fetchUserWithId(userIdentifier, completion: { (user) in
+                if var user = user {
+                    for (index, event) in user.eventIds.enumerate() {
+                        if eventID == event {
+                            user.eventIds.removeAtIndex(index)
+                            user.save()
+                        }
+                    }
+                }
+                dispatch_group_leave(group)
+            })
         }
         // Once async calls have completed, notify main queue and complete true
         dispatch_group_notify(group, dispatch_get_main_queue()) {
@@ -224,4 +243,9 @@ class EventController {
         }
     }
     
+}
+
+
+protocol EventsUpdating {
+    func updateNewEvent()
 }

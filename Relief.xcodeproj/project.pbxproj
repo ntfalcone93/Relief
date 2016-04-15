@@ -25,6 +25,7 @@
 		74B58DBC1CC0567B00AD9B75 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DB11CC0567B00AD9B75 /* GFGeoHash.m */; };
 		74B58DBD1CC0567B00AD9B75 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DB31CC0567B00AD9B75 /* GFGeoHashQuery.m */; };
 		74B58DC61CC1596D00AD9B75 /* GeoFireController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DC51CC1596D00AD9B75 /* GeoFireController.swift */; };
+		74B58DC81CC17B1000AD9B75 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DC71CC17B1000AD9B75 /* EventTableViewController.swift */; };
 		74BF48A51CBE9EBF00273466 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48A41CBE9EBF00273466 /* Firebase.framework */; };
 		74BF48A71CBE9ED200273466 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48A61CBE9ED200273466 /* CFNetwork.framework */; };
 		74BF48A91CBE9ED800273466 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48A81CBE9ED800273466 /* Security.framework */; };
@@ -81,6 +82,7 @@
 		74B58DB71CC0567B00AD9B75 /* GFRegionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
 		74B58DB81CC0567B00AD9B75 /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
 		74B58DC51CC1596D00AD9B75 /* GeoFireController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFireController.swift; sourceTree = "<group>"; };
+		74B58DC71CC17B1000AD9B75 /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		74BF48A41CBE9EBF00273466 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		74BF48A61CBE9ED200273466 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		74BF48A81CBE9ED800273466 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -272,6 +274,7 @@
 				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
 				E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */,
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,
+				74B58DC71CC17B1000AD9B75 /* EventTableViewController.swift */,
 				E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */,
 			);
 			name = "View Controllers";
@@ -353,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6E1ACC81CBD9C37005A5792 /* MapViewController.swift in Sources */,
+				74B58DC81CC17B1000AD9B75 /* EventTableViewController.swift in Sources */,
 				E6E1ACC41CBD9C08005A5792 /* EventViewController.swift in Sources */,
 				74BF48BD1CBE9F4600273466 /* GlobalKeys.swift in Sources */,
 				74BF48B51CBE9F2C00273466 /* Thread.swift in Sources */,

@@ -11,7 +11,7 @@
                 <viewControllerPlaceholder storyboardName="Login" id="tVI-hu-8L1" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0l-1e-7Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2376.5" y="275"/>
+            <point key="canvasLocation" x="-165.5" y="891"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="VCZ-VV-UQw">
@@ -35,16 +35,16 @@
             </objects>
             <point key="canvasLocation" x="102" y="429"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Events-->
         <scene sceneID="aCf-43-gbX">
             <objects>
-                <tableViewController id="bTN-cH-N9v" sceneMemberID="viewController">
+                <tableViewController id="bTN-cH-N9v" customClass="EventTableViewController" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yUg-fh-met">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yBH-Ba-Dua">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" id="yBH-Ba-Dua">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yBH-Ba-Dua" id="ZFB-3U-9pW">
@@ -58,7 +58,7 @@
                             <outlet property="delegate" destination="bTN-cH-N9v" id="UEb-bd-1nY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="PRF-4J-2Qn"/>
+                    <navigationItem key="navigationItem" title="Events" id="PRF-4J-2Qn"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6se-OE-eAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
