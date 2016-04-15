@@ -61,11 +61,29 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         // updated and map is hidden for initial interaction
         toggleMap()
         
+        // Event Controller Tests begin here.
+        // How do we get the event locally?
+        var event: Event? = nil
+        EventController.sharedInstance.createEvent(EventType.Earthquakes, title: "Quake", collectionPoint: "Not where you wanna be", location: CLLocation(latitude: 40.7724692, longitude: -111.9095813)) { (success, eventFromSuccess) in
+            print("create event complete")
+            if let eventFromSuccess = eventFromSuccess {
+                event = eventFromSuccess
+                EventController.sharedInstance.fetchEventWithEventID((event?.identifier)!, completion: { (ayy) in
+                    print(ayy?.title)
+                    EventController.sharedInstance.addNeedToEvent(event!, need: "Bazookas", completion: { (success) in
+                        print("yolo")
+                        EventController.sharedInstance.deleteEvent(event!, completion: { (success) in
+                            print("delete complete")
+                        })
+                    })
+                })
+            }
+        }
     }
     
     // MARK: - Map View Delegate
-        
-        
+    
+    
     // functions toggles the current view mode and calls the review controller
     // for movement of views. This function also sets the toggleMode to it's
     // new and correct mode that reflects the changes made
@@ -80,7 +98,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         }
     }
     
-
+    
     
 }
 

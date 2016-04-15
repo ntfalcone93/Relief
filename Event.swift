@@ -69,22 +69,14 @@ class Event {
     init?(dictionary: Dictionary<String, AnyObject>) {
         guard let title = dictionary[titleKey] as? String,
             let collectionPoint = dictionary[collectionPointKey] as? String,
-            let members = dictionary[membersKey] as? [String],
-            let needs = dictionary[needsKey] as? [String],
-            let endpoint = dictionary[endpointKey] as? String,
             let eventType = dictionary[eventTypeKey] as? String else {
-                
                 return nil
-                
         }
-        
+        self.members = (dictionary[membersKey] ?? []) as! [String]
+        self.needs = (dictionary[needsKey] ?? []) as! [String]
         self.title = title
         self.collectionPoint = collectionPoint
-        self.members = members
-        self.endpoint = endpoint
-        self.needs = needs
         self.type = eventType
-        
     }
     
     init(title: String, type: EventType, collectionPoint: String) {
@@ -95,3 +87,9 @@ class Event {
         self.identifier = nil
     }
 }
+func == (lhs: Event, rhs: Event) -> Bool {
+    return lhs.identifier == rhs.identifier
+}
+
+
+

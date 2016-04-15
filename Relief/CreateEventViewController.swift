@@ -25,7 +25,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         
         guard let location = LocationController.sharedInstance.coreLocationManager.location else { return } // Fire alert
         
-        EventController.sharedInstance.createEvent(eventType, title: titleText, collectionPoint: collectionPoint, location: location) { (success) in
+        EventController.sharedInstance.createEvent(eventType, title: titleText, collectionPoint: collectionPoint, location: location) { (success, event) in
             if success {
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
