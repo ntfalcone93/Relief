@@ -12,7 +12,6 @@ let RADIUS_IN_METERS = Double(40000)
 
 class GeoFireController {
     
-    
     static let geofire = GeoFire(firebaseRef: FirebaseController.firebase.childByAppendingPath(LOCATION_ENDPOINT))
     
     static func setLocation(eventID: String, location: CLLocation, completion: (success : Bool) -> Void) {
@@ -38,8 +37,9 @@ class GeoFireController {
         let circleQuery = geofire.queryAtLocation(center, withRadius: RADIUS_IN_METERS)
         let group = dispatch_group_create()
         
-        dispatch_group_enter(group)
+        
         circleQuery.observeEventType(.KeyEntered, withBlock: { (string, location) -> Void in
+            dispatch_group_enter(group)
             if !eventIDs.contains(string) {
                 eventIDs.append(string)
             }
