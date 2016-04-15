@@ -40,7 +40,7 @@ class UserController {
     
     static func fetchUserWithId(identifier: String, completion: (user: User?) -> Void) {
         
-        FirebaseController.dataAtEndPoint("user") { (data) -> Void in
+        FirebaseController.dataAtEndPoint("user\(identifier)") { (data) -> Void in
             
             if let json = data as? [String: AnyObject] {
                 let user = User(json: json, identifier: identifier)
@@ -93,6 +93,7 @@ class UserController {
     func logOutUser(completion: (success: Bool) -> Void) {
         
         FirebaseController.firebase.unauth()
+        completion(success: true)
     }
     
     //    static func mockUsers() -> [User] {

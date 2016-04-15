@@ -24,6 +24,7 @@
 		74B58DBB1CC0567B00AD9B75 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DAF1CC0567B00AD9B75 /* GFBase32Utils.m */; };
 		74B58DBC1CC0567B00AD9B75 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DB11CC0567B00AD9B75 /* GFGeoHash.m */; };
 		74B58DBD1CC0567B00AD9B75 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DB31CC0567B00AD9B75 /* GFGeoHashQuery.m */; };
+		74B58DC61CC1596D00AD9B75 /* GeoFireController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B58DC51CC1596D00AD9B75 /* GeoFireController.swift */; };
 		74BF48A51CBE9EBF00273466 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48A41CBE9EBF00273466 /* Firebase.framework */; };
 		74BF48A71CBE9ED200273466 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48A61CBE9ED200273466 /* CFNetwork.framework */; };
 		74BF48A91CBE9ED800273466 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48A81CBE9ED800273466 /* Security.framework */; };
@@ -79,6 +80,7 @@
 		74B58DB61CC0567B00AD9B75 /* GFCircleQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
 		74B58DB71CC0567B00AD9B75 /* GFRegionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
 		74B58DB81CC0567B00AD9B75 /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
+		74B58DC51CC1596D00AD9B75 /* GeoFireController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFireController.swift; sourceTree = "<group>"; };
 		74BF48A41CBE9EBF00273466 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		74BF48A61CBE9ED200273466 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		74BF48A81CBE9ED800273466 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -192,6 +194,8 @@
 		740BF2DA1CBEED0600320A1A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				74B58DC51CC1596D00AD9B75 /* GeoFireController.swift */,
+				241620A61CBED891004883AE /* UserController.swift */,
 				E6DC4CF41CC0371B00768D4E /* LocationController.swift */,
 				E6DC4CF61CC0372800768D4E /* MapController.swift */,
 				74BF48C21CBEE83700273466 /* EventController.swift */,
@@ -226,7 +230,6 @@
 			children = (
 				74BF48BC1CBE9F4600273466 /* GlobalKeys.swift */,
 				74BF48BA1CBE9F4000273466 /* FirebaseController.swift */,
-				241620A61CBED891004883AE /* UserController.swift */,
 				74BF48B81CBE9F3900273466 /* MessageController.swift */,
 				74BF48B61CBE9F3300273466 /* ThreadController.swift */,
 				74BF48B01CBE9F1900273466 /* FirebaseChat.swift */,
@@ -368,6 +371,7 @@
 				74BF48B31CBE9F2600273466 /* Message.swift in Sources */,
 				E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */,
 				74BF48B91CBE9F3900273466 /* MessageController.swift in Sources */,
+				74B58DC61CC1596D00AD9B75 /* GeoFireController.swift in Sources */,
 				74B58DBB1CC0567B00AD9B75 /* GFBase32Utils.m in Sources */,
 				74B58DB91CC0567B00AD9B75 /* GeoFire.m in Sources */,
 				E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */,
