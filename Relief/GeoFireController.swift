@@ -8,7 +8,7 @@
 
 import Foundation
 
-let RADIUS_IN_METERS = Double(40000)
+let RADIUS_IN_METERS = Double(40)
 
 class GeoFireController {
     
@@ -26,7 +26,7 @@ class GeoFireController {
         }
     }
     
-    static func queryAroundMe(completion: (eventIDs: [String]) -> Void) {
+    static func queryAroundMe() {
         
         // initiate an array to hold all shedIDs which query will find
         var eventIDs = [String]()
@@ -37,17 +37,14 @@ class GeoFireController {
         let circleQuery = geofire.queryAtLocation(center, withRadius: RADIUS_IN_METERS)
         let group = dispatch_group_create()
         
-        
+        dispatch_group_enter(group)
         circleQuery.observeEventType(.KeyEntered, withBlock: { (string, location) -> Void in
-            dispatch_group_enter(group)
             if !eventIDs.contains(string) {
                 eventIDs.append(string)
+                EventController.sharedInstance.fetchEventWithEventID(string, completion: { (event) in
+                    print("Fired")
+                })
             }
-            dispatch_group_leave(group)
         })
-        
-        dispatch_group_notify(group, dispatch_get_main_queue()) { 
-            completion(eventIDs: eventIDs)
-        }
     }
 }

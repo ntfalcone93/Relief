@@ -17,7 +17,15 @@ class EventController {
     // Instantiate Shared Instance to allow access to particular events more easily
     static let sharedInstance = EventController()
     // Total events a user subscribes to
-    var events = [Event]()
+    var events = [Event]() {
+        didSet {
+            delegate?.updateNewEvent()
+        }
+    }
+    
+    
+    
+    var delegate: EventsUpdating?
     // events within a radius of distance from users current location
     var localEvents = [Event]()
     
@@ -30,6 +38,7 @@ class EventController {
         FirebaseController.dataAtEndPoint(endpoint) { (data) in
             guard let json = data as? [String : AnyObject] else { completion(event: nil) ; return }
             guard let event = Event(dictionary: json) else { completion(event: nil) ; return }
+            self.events.append(event)
             // Complete with initialized event
             completion(event: event)
         }
@@ -68,13 +77,13 @@ class EventController {
     // Function will query a particular radius for disaster events -> completes with success
     func fetchEventsInArea(location: CLLocation, completion: (success : Bool) -> Void) {
         // TODO: Implement geoFire
+        GeoFireController.queryAroundMe()
+        completion(success: true)
     }
     
     // Function creates an event -> Completes with Bool
     func createEvent(eventType: EventType, title: String, collectionPoint: String, location: CLLocation, completion: (success: Bool, event: Event?) -> Void) {
         // POSSIBLY DO CHECK ON COLLECTION POINT STRING
-        
-        
         
         // Instantiate an event with passed in attributes
         let event = Event(title: title, type: eventType, collectionPoint: collectionPoint)
@@ -89,7 +98,6 @@ class EventController {
             GeoFireController.setLocation(firebase.key, location: location, completion: { (success) in
                 if success {
                     event.identifier = firebase.key
-                    self.events.append(event)
                     completion(success: true, event: event)
                 } else {
                     completion(success: false, event: nil)
@@ -235,4 +243,9 @@ class EventController {
         }
     }
     
+}
+
+
+protocol EventsUpdating {
+    func updateNewEvent()
 }
