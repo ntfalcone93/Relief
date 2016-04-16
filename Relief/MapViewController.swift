@@ -62,6 +62,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         // updated and map is hidden for initial interaction
         toggleMap()
         self.displayEventsForCurrentUser()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateWithLastEvent), name: "NewLocalEvent", object: nil)
     }
     
     // MARK: - Map View Delegate
@@ -96,6 +98,24 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
                 }
             })
         }
+    }
+    
+    func updateWithLastEvent() {
+        guard let latestEvent = EventController.sharedInstance.events.last else { return }
+        self.mapManager?.addEventToMap(latestEvent)
+    }
+    
+    func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {
+        let actionSheet = UIAlertController(title: controllerTitle, message: controllerMessage, preferredStyle: .ActionSheet)
+        let cancelAlert = UIAlertAction(title: "Cancel", style: .Destructive) { (_) in
+            self.removeAnnotation(annotation, overlay: overlay)
+        }
+        let createEventAlert = UIAlertAction(title: "Create Event", style: .Default) { (_) in
+            self.performSegueWithIdentifier("showCreateEvent", sender: nil)
+        }
+        actionSheet.addAction(createEventAlert)
+        actionSheet.addAction(cancelAlert)
+        navigationController?.presentViewController(actionSheet, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -10,12 +10,6 @@ import Foundation
 import MapKit
 import UIKit
 
-protocol MapUpdating {
-    var mapView: MKMapView! { get }
-    var navigationController: UINavigationController? { get }
-}
-
-
 class MapController: NSObject, MKMapViewDelegate {
     
     var annotationAdded = false
@@ -56,9 +50,9 @@ class MapController: NSObject, MKMapViewDelegate {
         annotation.title = "title"
         annotation.subtitle = "subtitle"
         let circle = MKCircle(centerCoordinate: locCoord, radius: 1000)
-        delegate.mapView.addOverlay(circle)
-        delegate.mapView.addAnnotation(annotation)
-
+        
+        delegate.addEventOnMap(circle, annotation: annotation)
+        
         // Logic is a duct tape fix for double annotation firing
         // Remove one annotation checks if an annotation has been previously added, if it has it removes the last annotation added
         removeOneAnnotation(annotation, overlay: circle)
@@ -71,9 +65,7 @@ class MapController: NSObject, MKMapViewDelegate {
     
     // MARK: - Helper Methods
     func centerMapOnLocation(location: CLLocation) {
-        let regionRadius: CLLocationDistance = 1000
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 3.0, regionRadius * 3.0)
-        delegate.mapView.setRegion(coordinateRegion, animated: true)
+        delegate.centerMapOnLocation(location)
     }
     
     func addEventToMap(event: Event) {
@@ -87,19 +79,17 @@ class MapController: NSObject, MKMapViewDelegate {
         annotation.subtitle = event.type
         
         let circle = MKCircle(centerCoordinate: location.coordinate, radius: 1000)
-        delegate.mapView.addOverlay(circle)
-        delegate.mapView.addAnnotation(annotation)
+        delegate.addEventOnMap(circle, annotation: annotation)
     }
     
     func removeOneAnnotation(annotation: MKAnnotation, overlay: MKOverlay) {
         // The first time remove annotation is checked in a cycle this will fail and annotationSecondCheck will be set to true
         if annotationAdded {
-            delegate.mapView.removeAnnotation(annotation)
-            delegate.mapView.removeOverlay(overlay)
+            delegate.removeAnnotation(annotation, overlay: overlay)
             // During the second iteration annotation added is set to false and annotationsecond check is returned to ground state
             annotationAdded = false
             annotationSecondCheck = false
-            makeActionSheet("EVENT", controllerMessage: "Want to create a disaster event?", annotation: currentAnnotation!, overlay: currentOverlay!)
+            delegate.makeActionSheet("EVENT", controllerMessage: "Want to create a disaster event?", annotation: currentAnnotation!, overlay: currentOverlay!)
         } else {
             // In the event annotation added is false, annotation secondcheck must be true to check for second iteration of annotation adding
             currentOverlay = overlay
@@ -109,32 +99,58 @@ class MapController: NSObject, MKMapViewDelegate {
     }
     
     func setMapWithInitialLocation(location: CLLocation) {
-        self.centerMapOnLocation(location)
+        delegate.centerMapOnLocation(location)
     }
     
     func removeAnnotation(annotation:MKAnnotation, overlay: MKOverlay) {
-        delegate.mapView.removeAnnotation(annotation)
-        delegate.mapView.removeOverlay(overlay)
+        delegate.removeAnnotation(annotation, overlay: overlay)
     }
     
     @objc func removeAnnotationFromCancel() {
         guard let annotation = self.currentAnnotation, overlay = self.currentOverlay else { return }
-        delegate.mapView.removeAnnotation(annotation)
-        delegate.mapView.removeOverlay(overlay)
+        delegate.removeAnnotation(annotation, overlay: overlay)
+    }
+}
+
+protocol MapUpdating {
+    var mapView: MKMapView! { get }
+    var navigationController: UINavigationController? { get }
+    
+    func centerMapOnLocation(location: CLLocation)
+    func addEventOnMap(circle: MKCircle, annotation: MKPointAnnotation)
+    func removeOneAnnotation(currentAnnotation: MKAnnotation, currentOverlay: MKOverlay, annotation: MKAnnotation, overlay: MKOverlay)
+    func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay)
+    func removeAnnotation(annotation:MKAnnotation, overlay: MKOverlay)
+    
+}
+
+extension MapUpdating {
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 3.0, regionRadius * 3.0)
+        self.mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {
-        let actionSheet = UIAlertController(title: controllerTitle, message: controllerMessage, preferredStyle: .ActionSheet)
-        let cancelAlert = UIAlertAction(title: "Cancel", style: .Destructive) { (_) in
-            self.removeAnnotation(annotation, overlay: overlay)
-        }
-        let createEventAlert = UIAlertAction(title: "Create Event", style: .Default) { (_) in
-            self.delegate.navigationController?.performSegueWithIdentifier("showCreateEvent", sender: nil)
-        }
-        actionSheet.addAction(createEventAlert)
-        actionSheet.addAction(cancelAlert)
-        delegate.navigationController?.presentViewController(actionSheet, animated: true, completion: nil)
+    func addEventOnMap(circle: MKCircle, annotation: MKPointAnnotation) {
+        mapView.addOverlay(circle)
+        mapView.addAnnotation(annotation)
     }
+    
+    func removeOneAnnotation(currentAnnotation: MKAnnotation, currentOverlay: MKOverlay, annotation: MKAnnotation, overlay: MKOverlay) {
+        // The first time remove annotation is checked in a cycle this will fail and annotationSecondCheck will be set to true
+        mapView.removeAnnotation(annotation)
+        mapView.removeOverlay(overlay)
+        // During the second iteration annotation added is set to false and annotationsecond check is returned to ground state
+        
+        makeActionSheet("EVENT", controllerMessage: "Want to create a disaster event?", annotation: currentAnnotation, overlay: currentOverlay)
+    }
+    
+    func removeAnnotation(annotation:MKAnnotation, overlay: MKOverlay) {
+        mapView.removeAnnotation(annotation)
+        mapView.removeOverlay(overlay)
+    }
+    
     
 }
 
