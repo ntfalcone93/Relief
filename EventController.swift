@@ -16,6 +16,7 @@ let LOCATION_ENDPOINT = "location"
 class EventController {
     // Instantiate Shared Instance to allow access to particular events more easily
     static let sharedInstance = EventController()
+    var delegate: EventsUpdating?
     // Total events a user subscribes to
     var events = [Event]() {
         didSet {
@@ -23,13 +24,10 @@ class EventController {
         }
     }
     
-    
-    
-    var delegate: EventsUpdating?
     // events within a radius of distance from users current location
     var localEvents = [Event]() {
         didSet {
-            
+            NSNotificationCenter.defaultCenter().postNotificationName("NewLocalEvent", object: nil)
         }
     }
     
@@ -106,6 +104,9 @@ class EventController {
         // Instantiate an event with passed in attributes
         let event = Event(title: title, type: eventType, collectionPoint: collectionPoint, latitude: location.coordinate.latitude, longitude:  location.coordinate.longitude)
         event.members.append(UserController.sharedInstance.currentUser.identifier!)
+        
+        // If fetching events in area this could very well be redundant  
+        self.events.append(event)
         // Save event to firebase; if error return false or complete true
         FirebaseController.firebase.childByAppendingPath(EVENT_ENDPOINT).childByAutoId().setValue(event.jsonValue) { (error, firebase) in
             if let error = error {
@@ -268,5 +269,17 @@ class EventController {
 
 
 protocol EventsUpdating {
+    
+    weak var tableView: UITableView! { get }
+    
     func updateNewEvent()
 }
+
+extension EventsUpdating {
+    func updateNewEvent() {
+        tableView.reloadData()
+    }
+}
+
+
+

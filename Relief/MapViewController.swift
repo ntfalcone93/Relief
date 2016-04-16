@@ -10,14 +10,15 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate, MKMapViewDelegate, MapUpdating {
     // MARK: - IBOutlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var longGestureRecognizer: UILongPressGestureRecognizer!
     var mapManager: MapController?
     
     // MARK: - Logic Properties
-    var count = 0
+    
+    
     // toggle mode is initially set to Mapshown
     var toggleMode = ToggleMode.MapShown
     
@@ -56,11 +57,16 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     override func viewDidLoad() {
         super.viewDidLoad()
         self.longGestureRecognizer.delegate = self
-        mapManager = MapController(mapView: self.mapView, viewController: self)
+        mapManager = MapController(delegate: self)
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
         self.displayEventsForCurrentUser()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateWithLastEvent), name: "NewLocalEvent", object: nil)
     }
     
     // MARK: - Map View Delegate
@@ -74,6 +80,16 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
             self.revealViewController().revealToggle(self)
         }
     }
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let circle = MKCircleRenderer(overlay: overlay)
+        circle.strokeColor = UIColor.purpleColor()
+        circle.fillColor = UIColor.redColor()
+        circle.lineWidth = 1
+        circle.alpha = 0.6
+        return circle
+    }
+
     
     func displayEventsForCurrentUser() {
         
@@ -95,6 +111,26 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
                 }
             })
         }
+    }
+    
+    func updateWithLastEvent() {
+        guard let latestEvent = EventController.sharedInstance.events.last else { return }
+        self.mapManager?.addEventToMap(latestEvent)
+    }
+    
+    
+    
+    func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {
+        let actionSheet = UIAlertController(title: controllerTitle, message: controllerMessage, preferredStyle: .ActionSheet)
+        let cancelAlert = UIAlertAction(title: "Cancel", style: .Destructive) { (_) in
+            self.removeAnnotation(annotation, overlay: overlay)
+        }
+        let createEventAlert = UIAlertAction(title: "Create Event", style: .Default) { (_) in
+            self.performSegueWithIdentifier("showCreateEvent", sender: nil)
+        }
+        actionSheet.addAction(createEventAlert)
+        actionSheet.addAction(cancelAlert)
+        navigationController?.presentViewController(actionSheet, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

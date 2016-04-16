@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventTableViewController: UITableViewController {
+class EventTableViewController: UITableViewController, EventsUpdating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +47,6 @@ extension EventTableViewController {
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
-    }
-}
-
-extension EventTableViewController: EventsUpdating {
-    func updateNewEvent() {
-        tableView.reloadData()
     }
 }
 
