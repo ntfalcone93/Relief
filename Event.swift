@@ -80,7 +80,7 @@ class Event {
             let latitude = dictionary[latitudeKey] as? Double else {
                 return nil
         }
-        self.members = (dictionary[membersKey] ?? []) as! [String]
+        self.members = dictionary[membersKey] as? [String] ?? []
         self.needs = (dictionary[needsKey] ?? []) as! [String]
         self.title = title
         self.collectionPoint = collectionPoint

@@ -64,7 +64,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     // MARK: - Map View Delegate
-    
     func toggleMap() {
         switch toggleMode {
         case .MapHidden:
@@ -77,25 +76,24 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func displayEventsForCurrentUser() {
-        var user = User(firstName: "Dylan", lastName: "Slade", identifier: "1234")
-        UserController.sharedInstance.currentUser = user
-        EventController.sharedInstance.createEvent(EventType.Drought, title: "HIS EVENT", collectionPoint: "no", location: LocationController.sharedInstance.coreLocationManager.location!) { (success, event) in
-            user.eventIds.append((event?.identifier!)!)
-            user.save()
-            if let user = UserController.sharedInstance.currentUser {
-                EventController.sharedInstance.fetchEventsForUser(user, completion: { (success) in
-                    if success {
-                        print("IT WORKED DYLAN")
-                        print(EventController.sharedInstance.localEvents.count)
-                        for event in EventController.sharedInstance.events {
-                            self.mapManager?.addEventToMap(event)
-                        }
-                        for event in EventController.sharedInstance.localEvents {
-                            self.mapManager?.addEventToMap(event)
-                        }
+        
+        UserController.fetchUserWithId("1234") { (user) in
+            guard let user = user else { return  }
+            
+            UserController.sharedInstance.currentUser = user
+            EventController.sharedInstance.fetchEventsForUser(user, completion: { (success) in
+                if success {
+                    print("IT WORKED DYLAN")
+                    print(EventController.sharedInstance.localEvents.count)
+                    print(EventController.sharedInstance.events.count)
+                    for event in EventController.sharedInstance.events {
+                        self.mapManager?.addEventToMap(event)
                     }
-                })
-            }
+                    for event in EventController.sharedInstance.localEvents {
+                        self.mapManager?.addEventToMap(event)
+                    }
+                }
+            })
         }
     }
     
@@ -107,9 +105,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
             lastView?.delegate = self
         }
     }
-}
-
-protocol MapViewControllerDelegate {
     
 }
 

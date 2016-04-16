@@ -42,7 +42,7 @@ class UserController {
     
     static func fetchUserWithId(identifier: String, completion: (user: User?) -> Void) {
         
-        FirebaseController.dataAtEndPoint("user\(identifier)") { (data) -> Void in
+        FirebaseController.dataAtEndPoint("users/\(identifier)") { (data) -> Void in
             
             if let json = data as? [String: AnyObject] {
                 let user = User(json: json, identifier: identifier)

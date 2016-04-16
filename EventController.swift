@@ -29,7 +29,7 @@ class EventController {
     // events within a radius of distance from users current location
     var localEvents = [Event]() {
         didSet {
-            // MAP
+            
         }
     }
     
@@ -105,6 +105,7 @@ class EventController {
         
         // Instantiate an event with passed in attributes
         let event = Event(title: title, type: eventType, collectionPoint: collectionPoint, latitude: location.coordinate.latitude, longitude:  location.coordinate.longitude)
+        event.members.append(UserController.sharedInstance.currentUser.identifier!)
         // Save event to firebase; if error return false or complete true
         FirebaseController.firebase.childByAppendingPath(EVENT_ENDPOINT).childByAutoId().setValue(event.jsonValue) { (error, firebase) in
             if let error = error {
@@ -115,6 +116,8 @@ class EventController {
             // We need to append the event to the array on the shared instance locally //// From EventController Test /////
             GeoFireController.setLocation(firebase.key, location: location, completion: { (success) in
                 if success {
+                    UserController.sharedInstance.currentUser.eventIds.append(firebase.key)
+                    UserController.sharedInstance.currentUser.save()
                     event.identifier = firebase.key
                     completion(success: true, event: event)
                 } else {
