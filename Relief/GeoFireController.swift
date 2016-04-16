@@ -41,7 +41,7 @@ class GeoFireController {
         circleQuery.observeEventType(.KeyEntered, withBlock: { (string, location) -> Void in
             if !eventIDs.contains(string) {
                 eventIDs.append(string)
-                EventController.sharedInstance.fetchEventWithEventID(string, completion: { (event) in
+                EventController.sharedInstance.fetchLocalEventWithEventID(string, completion: { (event) in
                     print("Fired")
                 })
             }
