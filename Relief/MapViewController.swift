@@ -10,14 +10,15 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate, MapUpdating {
     // MARK: - IBOutlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var longGestureRecognizer: UILongPressGestureRecognizer!
     var mapManager: MapController?
     
     // MARK: - Logic Properties
-    var count = 0
+    
+    
     // toggle mode is initially set to Mapshown
     var toggleMode = ToggleMode.MapShown
     
@@ -56,7 +57,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     override func viewDidLoad() {
         super.viewDidLoad()
         self.longGestureRecognizer.delegate = self
-        mapManager = MapController(mapView: self.mapView, viewController: self)
+        mapManager = MapController(delegate: self)
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()

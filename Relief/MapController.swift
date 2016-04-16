@@ -10,24 +10,30 @@ import Foundation
 import MapKit
 import UIKit
 
+protocol MapUpdating {
+    var mapView: MKMapView! { get }
+    var navigationController: UINavigationController? { get }
+}
 
 
 class MapController: NSObject, MKMapViewDelegate {
-    var mapView: MKMapView
+    
     var annotationAdded = false
     var annotationSecondCheck = true
     var currentAnnotation: MKAnnotation?
     var currentOverlay: MKOverlay?
-    var viewController: MapViewController
     
-    init(mapView: MKMapView, viewController: MapViewController) {
-        self.mapView = mapView
-        self.viewController = viewController
+    var delegate: MapUpdating
+    
+    init(delegate: MapUpdating) {
+        self.delegate = delegate
         super.init()
-        self.mapView.delegate = self
-        self.mapView.showsUserLocation = true
-        self.mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
+        delegate.mapView.delegate = self
+        delegate.mapView.showsUserLocation = true
+        delegate.mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeAnnotationFromCancel), name: "cancelEvent", object: nil)
+        
         if let initialLocationCoordinate = LocationController.sharedInstance.coreLocationManager.location {
             self.setMapWithInitialLocation(initialLocationCoordinate)
         }
@@ -43,15 +49,15 @@ class MapController: NSObject, MKMapViewDelegate {
     }
     
     func mapPressed(sender: UILongPressGestureRecognizer) {
-        let location = sender.locationInView(self.mapView)
-        let locCoord = self.mapView.convertPoint(location, toCoordinateFromView: self.mapView)
+        let location = sender.locationInView(delegate.mapView)
+        let locCoord = delegate.mapView.convertPoint(location, toCoordinateFromView: delegate.mapView)
         let annotation = MKPointAnnotation()
         annotation.coordinate = locCoord
         annotation.title = "title"
         annotation.subtitle = "subtitle"
         let circle = MKCircle(centerCoordinate: locCoord, radius: 1000)
-        self.mapView.addOverlay(circle)
-        self.mapView.addAnnotation(annotation)
+        delegate.mapView.addOverlay(circle)
+        delegate.mapView.addAnnotation(annotation)
 
         // Logic is a duct tape fix for double annotation firing
         // Remove one annotation checks if an annotation has been previously added, if it has it removes the last annotation added
@@ -67,7 +73,7 @@ class MapController: NSObject, MKMapViewDelegate {
     func centerMapOnLocation(location: CLLocation) {
         let regionRadius: CLLocationDistance = 1000
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 3.0, regionRadius * 3.0)
-        self.mapView.setRegion(coordinateRegion, animated: true)
+        delegate.mapView.setRegion(coordinateRegion, animated: true)
     }
     
     func addEventToMap(event: Event) {
@@ -81,15 +87,15 @@ class MapController: NSObject, MKMapViewDelegate {
         annotation.subtitle = event.type
         
         let circle = MKCircle(centerCoordinate: location.coordinate, radius: 1000)
-        self.mapView.addOverlay(circle)
-        self.mapView.addAnnotation(annotation)
+        delegate.mapView.addOverlay(circle)
+        delegate.mapView.addAnnotation(annotation)
     }
     
     func removeOneAnnotation(annotation: MKAnnotation, overlay: MKOverlay) {
         // The first time remove annotation is checked in a cycle this will fail and annotationSecondCheck will be set to true
         if annotationAdded {
-            self.mapView.removeAnnotation(annotation)
-            self.mapView.removeOverlay(overlay)
+            delegate.mapView.removeAnnotation(annotation)
+            delegate.mapView.removeOverlay(overlay)
             // During the second iteration annotation added is set to false and annotationsecond check is returned to ground state
             annotationAdded = false
             annotationSecondCheck = false
@@ -107,14 +113,14 @@ class MapController: NSObject, MKMapViewDelegate {
     }
     
     func removeAnnotation(annotation:MKAnnotation, overlay: MKOverlay) {
-        self.mapView.removeAnnotation(annotation)
-        self.mapView.removeOverlay(overlay)
+        delegate.mapView.removeAnnotation(annotation)
+        delegate.mapView.removeOverlay(overlay)
     }
     
     @objc func removeAnnotationFromCancel() {
         guard let annotation = self.currentAnnotation, overlay = self.currentOverlay else { return }
-        self.mapView.removeAnnotation(annotation)
-        self.mapView.removeOverlay(overlay)
+        delegate.mapView.removeAnnotation(annotation)
+        delegate.mapView.removeOverlay(overlay)
     }
     
     func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {
@@ -123,11 +129,11 @@ class MapController: NSObject, MKMapViewDelegate {
             self.removeAnnotation(annotation, overlay: overlay)
         }
         let createEventAlert = UIAlertAction(title: "Create Event", style: .Default) { (_) in
-            self.viewController.performSegueWithIdentifier("showCreateEvent", sender: nil)
+            self.delegate.navigationController?.performSegueWithIdentifier("showCreateEvent", sender: nil)
         }
         actionSheet.addAction(createEventAlert)
         actionSheet.addAction(cancelAlert)
-        self.viewController.presentViewController(actionSheet, animated: true, completion: nil)
+        delegate.navigationController?.presentViewController(actionSheet, animated: true, completion: nil)
     }
     
 }
