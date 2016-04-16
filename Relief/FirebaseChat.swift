@@ -15,15 +15,12 @@ class FirebaseChat {
     
     var messages = [Message]()
     
-    var tableview: UITableView
-    var viewController: UIViewController
+    var delegate: FirebaseChatManager
     var threadID: String
     
-    init?(tableview: UITableView, viewController: FirebaseChatManager, threadIdentifier: String) {
-        guard let viewController = viewController as? UIViewController else { return nil }
+    init?(delegate: FirebaseChatManager, threadIdentifier: String) {
         
-        self.viewController = viewController
-        self.tableview = tableview
+        self.delegate = delegate
         self.threadID = threadIdentifier
         
         observeChat()
@@ -32,18 +29,9 @@ class FirebaseChat {
     func observeChat() {
         MessageController.observeMessagesForThread(threadID) { (message) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.insertMessageIntoTableview(message)
+                self.delegate.insertMessageIntoTableview(message)
             })
         }
-    }
-    
-    func insertMessageIntoTableview(message: Message) {
-        self.messages.append(message)
-        
-        tableview.beginUpdates()
-        let indexPath = NSIndexPath(forRow: messages.count - 1, inSection: 0)
-        tableview.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        tableview.endUpdates()
     }
     
     func messagePosted(textField: UITextField, username: String) {
@@ -63,5 +51,22 @@ protocol FirebaseChatManager {
     var chatManager: FirebaseChat? { get }
     weak var tableview: UITableView! { get }
     weak var messageTextField: UITextField! { get }
+    
+    func insertMessageIntoTableview(message: Message)
+    
+}
+
+extension FirebaseChatManager {
+    
+    func insertMessageIntoTableview(message: Message) {
+        guard let chatManager = self.chatManager else { return }
+        chatManager.messages.append(message)
+        
+        tableview.beginUpdates()
+        let indexPath = NSIndexPath(forRow: chatManager.messages.count - 1, inSection: 0)
+        tableview.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        tableview.endUpdates()
+    }
+    
     
 }

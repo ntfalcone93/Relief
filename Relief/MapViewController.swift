@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate, MapUpdating {
+class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate, MKMapViewDelegate, MapUpdating {
     // MARK: - IBOutlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var longGestureRecognizer: UILongPressGestureRecognizer!
@@ -58,6 +58,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         super.viewDidLoad()
         self.longGestureRecognizer.delegate = self
         mapManager = MapController(delegate: self)
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
@@ -77,6 +80,16 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
             self.revealViewController().revealToggle(self)
         }
     }
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let circle = MKCircleRenderer(overlay: overlay)
+        circle.strokeColor = UIColor.purpleColor()
+        circle.fillColor = UIColor.redColor()
+        circle.lineWidth = 1
+        circle.alpha = 0.6
+        return circle
+    }
+
     
     func displayEventsForCurrentUser() {
         

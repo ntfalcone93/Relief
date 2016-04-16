@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 import UIKit
 
-class MapController: NSObject, MKMapViewDelegate {
+class MapController: NSObject {
     
     var annotationAdded = false
     var annotationSecondCheck = true
@@ -22,24 +22,12 @@ class MapController: NSObject, MKMapViewDelegate {
     init(delegate: MapUpdating) {
         self.delegate = delegate
         super.init()
-        delegate.mapView.delegate = self
-        delegate.mapView.showsUserLocation = true
-        delegate.mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeAnnotationFromCancel), name: "cancelEvent", object: nil)
         
         if let initialLocationCoordinate = LocationController.sharedInstance.coreLocationManager.location {
             delegate.centerMapOnLocation(initialLocationCoordinate)
         }
-    }
-    
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        let circle = MKCircleRenderer(overlay: overlay)
-        circle.strokeColor = UIColor.purpleColor()
-        circle.fillColor = UIColor.redColor()
-        circle.lineWidth = 1
-        circle.alpha = 0.6
-        return circle
     }
     
     func mapPressed(sender: UILongPressGestureRecognizer) {
