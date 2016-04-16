@@ -36,8 +36,8 @@ class FirebaseChat {
     
     func messagePosted(textField: UITextField, username: String) {
         guard let bodyText = textField.text where bodyText.isEmpty == false else { return }
-        MessageController.createMessage("1", threadID: threadID, bodyText: bodyText, username: username) { (succes) in
-            if succes {
+        MessageController.createMessage("1", threadID: threadID, bodyText: bodyText, username: username) { (success) in
+            if success {
                 print("Oh snap Mr. Lewis")
                 // Change this function - complete with success bool param
             }
