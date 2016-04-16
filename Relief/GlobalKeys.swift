@@ -11,6 +11,7 @@ import Foundation
 // Message Model Object Keys
 let USERNAME_KEY = "username"
 let MESSAGE_TEXT_KEY = "messageText"
+let SENDER_ID_KEY = "senderID"
 
 // Thread Model Object Keys
 let THREAD_KEY = "thread"

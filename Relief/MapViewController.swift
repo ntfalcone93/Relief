@@ -105,6 +105,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         self.mapManager?.addEventToMap(latestEvent)
     }
     
+    
+    
     func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {
         let actionSheet = UIAlertController(title: controllerTitle, message: controllerMessage, preferredStyle: .ActionSheet)
         let cancelAlert = UIAlertAction(title: "Cancel", style: .Destructive) { (_) in

@@ -10,10 +10,10 @@ import Foundation
 
 class MessageController {
     
-    static func createMessage(threadID: String, bodyText: String, username: String, completion: (success: Bool) -> Void) {
+    static func createMessage(senderID: String,threadID: String, bodyText: String, username: String, completion: (success: Bool) -> Void) {
         
-//        var message = Message(senderName: username, senderId: <#T##String#>, text: <#T##String#>, identifier: <#T##String?#>, endpoint: <#T##String#>)
-//        message.save()
+        var message = Message(senderID: senderID, threadID: threadID, username: username, messageBodyText: bodyText, identifier: nil)
+        message.save()
         
         completion(success: true)
     }
@@ -24,9 +24,9 @@ class MessageController {
             print(data)
             
             guard let identifier = data[IDENTIFIER_KEY] as? String else { return  }
-//            guard let message = Message(json: data, identifier: identifier) else { return }
+            guard let message = Message(json: data, identifier: identifier) else { return }
             
-//            completion(message: message)
+            completion(message: message)
             
         })
     }

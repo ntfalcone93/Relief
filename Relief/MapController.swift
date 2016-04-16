@@ -29,7 +29,7 @@ class MapController: NSObject, MKMapViewDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeAnnotationFromCancel), name: "cancelEvent", object: nil)
         
         if let initialLocationCoordinate = LocationController.sharedInstance.coreLocationManager.location {
-            self.setMapWithInitialLocation(initialLocationCoordinate)
+            delegate.centerMapOnLocation(initialLocationCoordinate)
         }
     }
     
@@ -96,10 +96,6 @@ class MapController: NSObject, MKMapViewDelegate {
             currentAnnotation = annotation
             annotationSecondCheck = true
         }
-    }
-    
-    func setMapWithInitialLocation(location: CLLocation) {
-        delegate.centerMapOnLocation(location)
     }
     
     func removeAnnotation(annotation:MKAnnotation, overlay: MKOverlay) {
