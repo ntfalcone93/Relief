@@ -38,15 +38,24 @@ extension EventTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath)
         let event = EventController.sharedInstance.events[indexPath.row]
-        
         cell.textLabel?.text = event.title
-    
         return cell
         
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toDetailFromCell" {
+            let navController = segue.destinationViewController as! UINavigationController
+            let evc = navController.childViewControllers[0] as! EventViewController
+            let cell = sender as! UITableViewCell
+            let indexPath = self.tableView.indexPathForCell(cell)
+            let event = EventController.sharedInstance.events[indexPath!.row]
+            evc.event = event
+        }
     }
 }
 
