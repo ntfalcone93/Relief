@@ -53,9 +53,23 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if UserController.sharedInstance.currentUser == nil {
+            performSegueWithIdentifier("toLogin", sender: nil)
+        } else {
+            self.displayEventsForCurrentUser()
+        }
+    }
+    
     // MARK: - View Controller Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayEvents), name: "NewLocalEvent", object: nil)
+
+        
         self.longGestureRecognizer.delegate = self
         mapManager = MapController(delegate: self)
         mapView.delegate = self
@@ -64,9 +78,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
-        self.displayEventsForCurrentUser()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateWithLastEvent), name: "NewLocalEvent", object: nil)
+        
     }
     
     // MARK: - Map View Delegate
@@ -87,38 +100,44 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         circle.fillColor = UIColor.redColor()
         circle.lineWidth = 1
         circle.alpha = 0.6
+        print("FIRED IN MAPVIEW OVERLAY")
         return circle
     }
-
+    
     
     func displayEventsForCurrentUser() {
         
-        UserController.fetchUserWithId("1234") { (user) in
-            guard let user = user else { return  }
-            
-            UserController.sharedInstance.currentUser = user
-            EventController.sharedInstance.fetchEventsForUser(user, completion: { (success) in
-                if success {
-                    print("IT WORKED DYLAN")
-                    print(EventController.sharedInstance.localEvents.count)
-                    print(EventController.sharedInstance.events.count)
-                    for event in EventController.sharedInstance.events {
-                        self.mapManager?.addEventToMap(event)
-                    }
+        let user = UserController.sharedInstance.currentUser
+        EventController.sharedInstance.events = []
+        EventController.sharedInstance.localEvents = []
+        EventController.sharedInstance.fetchEventsForUser(user, completion: { (success) in
+            if success {
+                GeoFireController.queryAroundMe({
+                    self.mapView.removeAnnotations(self.mapView.annotations)
+                    self.mapView.removeOverlays(self.mapView.overlays)
                     for event in EventController.sharedInstance.localEvents {
                         self.mapManager?.addEventToMap(event)
                     }
-                }
-            })
+                    for event in EventController.sharedInstance.events {
+                        self.mapManager?.addEventToMap(event)
+                    }
+                })
+            }
+        })
+        //        }
+    }
+    
+    func displayEvents() {
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.removeOverlays(mapView.overlays)
+        for event in EventController.sharedInstance.localEvents {
+            self.mapManager?.addEventToMap(event)
         }
+        for event in EventController.sharedInstance.events {
+            self.mapManager?.addEventToMap(event)
+        }
+
     }
-    
-    func updateWithLastEvent() {
-        guard let latestEvent = EventController.sharedInstance.events.last else { return }
-        self.mapManager?.addEventToMap(latestEvent)
-    }
-    
-    
     
     func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {
         let actionSheet = UIAlertController(title: controllerTitle, message: controllerMessage, preferredStyle: .ActionSheet)

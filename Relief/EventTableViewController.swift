@@ -11,14 +11,8 @@ import UIKit
 class EventTableViewController: UITableViewController, EventsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         EventController.sharedInstance.delegate = self
-        guard let location = LocationController.sharedInstance.coreLocationManager.location else { return }
-        EventController.sharedInstance.fetchEventsInArea(location) { (success) in
-            if success {
-                print("success")
-            }
-        }
+        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {

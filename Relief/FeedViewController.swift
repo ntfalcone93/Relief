@@ -24,7 +24,6 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.chatManager = threadManager
                 })
-                
             })
         }
     }

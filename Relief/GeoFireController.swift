@@ -21,30 +21,27 @@ class GeoFireController {
                 completion(success: false)
                 return
             }
-            
             completion(success: true)
         }
     }
     
-    static func queryAroundMe() {
-        
+    static func queryAroundMe(completion: () -> Void) {
         // initiate an array to hold all shedIDs which query will find
-        var eventIDs = [String]()
+        var eventIDs = EventController.sharedInstance.events.flatMap({$0.identifier})
         guard let center = LocationController.sharedInstance.coreLocationManager.location else { return }
-        
         // Create circle query based on current position and meter radius
         // Append shedIDs returned to shedIDs array
         let circleQuery = geofire.queryAtLocation(center, withRadius: RADIUS_IN_METERS)
-        let group = dispatch_group_create()
-        
-        dispatch_group_enter(group)
         circleQuery.observeEventType(.KeyEntered, withBlock: { (string, location) -> Void in
+            print("CirclQueryFiredWithoutString")
             if !eventIDs.contains(string) {
+                // initialize a new event and append it to the eventController
                 eventIDs.append(string)
-                EventController.sharedInstance.fetchLocalEventWithEventID(string, completion: { (event) in
-                    print("Fired")
+                print("CirclQueryFiredWithString")
+                EventController.sharedInstance.fetchLocalEventWithEventID(string, completion: { (success) in
                 })
             }
         })
+        print("I'm Finished!")
     }
 }
