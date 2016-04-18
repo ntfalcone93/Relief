@@ -33,21 +33,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
-
-
-// What am I working on today?
-
-////////////////////////// I AM HERE NOW ////////////////////////////
-// We are doing something with the view controllers. We are making it so users can click on one of their events in the table view and can present the respective event detail
-
-// After that I am creating a way for users to tap on a pin and if it is thier own they can view details about it. If it is not their own they can join that group.
-
-
-
-
-
-
-
-
-
-

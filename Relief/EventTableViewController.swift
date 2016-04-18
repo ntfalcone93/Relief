@@ -9,18 +9,21 @@
 import UIKit
 
 class EventTableViewController: UITableViewController, EventsUpdating {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         EventController.sharedInstance.delegate = self
-        
         guard let location = LocationController.sharedInstance.coreLocationManager.location else { return }
         EventController.sharedInstance.fetchEventsInArea(location) { (success) in
             if success {
                 print("success")
             }
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,7 +33,6 @@ class EventTableViewController: UITableViewController, EventsUpdating {
 }
 
 extension EventTableViewController {
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return EventController.sharedInstance.events.count
     }
@@ -39,8 +41,8 @@ extension EventTableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath)
         let event = EventController.sharedInstance.events[indexPath.row]
         cell.textLabel?.text = event.title
+        cell.detailTextLabel?.text = "\(event.needs.count) Needs"
         return cell
-        
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

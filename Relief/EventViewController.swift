@@ -11,8 +11,9 @@ import UIKit
 class EventViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var typeLabel: UILabel!
     @IBOutlet var memberCountLabel: UILabel!
-    @IBOutlet var collectionPointTextField: UITextField!
+    @IBOutlet var collectionPointLabel: UILabel!
     @IBOutlet var needsLabel: UILabel!
     @IBOutlet var tableView: UITableView!
     var event: Event?
@@ -22,18 +23,44 @@ class EventViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: - View Controller Methods
+    @IBAction func addNeedButtonTapped(sender: UIButton) {
+        // Present an alert
+        let alertController = UIAlertController(title: "Add a Need", message: "Enter your need and a specified quantity.", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addTextFieldWithConfigurationHandler { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Need"
+        }
+        let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertActionStyle.Default) { (UIAlertAction) in
+            if let needText = alertController.textFields?[0].text {
+                EventController.sharedInstance.addNeedToEvent(self.event!, need: needText, completion: { (success) in
+                    if success {
+                        self.needsLabel.text = "\(self.event!.needs.count) Needs"
+                        self.tableView.reloadData()
+                    } else {
+                        return
+                    }
+                })
+            }
+        }
+        let cancelAcion = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive, handler: nil)
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAcion)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
     
+    // MARK: - View Controller Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         self.updateWithEvent(self.event)
     }
     
     func updateWithEvent(event: Event?) {
         if let event = event {
             self.titleLabel.text = event.title
+            self.typeLabel.text = event.type
             self.memberCountLabel.text = "\(event.members.count) Members"
-            self.collectionPointTextField.text = event.collectionPoint
+            self.collectionPointLabel.text = event.collectionPoint
             self.needsLabel.text = "\(event.needs.count) Needs"
         }
     }
@@ -57,6 +84,7 @@ extension EventViewController: UITableViewDataSource, UITableViewDelegate {
         }
         return cell
     }
+    
 }
 
 
