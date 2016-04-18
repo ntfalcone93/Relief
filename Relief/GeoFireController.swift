@@ -38,11 +38,12 @@ class GeoFireController {
         let group = dispatch_group_create()
         
         dispatch_group_enter(group)
+        
         circleQuery.observeEventType(.KeyEntered, withBlock: { (string, location) -> Void in
             if !eventIDs.contains(string) {
                 eventIDs.append(string)
                 EventController.sharedInstance.fetchLocalEventWithEventID(string, completion: { (event) in
-                    print("Fired")
+                    
                 })
             }
         })

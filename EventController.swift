@@ -16,6 +16,7 @@ let LOCATION_ENDPOINT = "location"
 class EventController {
     // Instantiate Shared Instance to allow access to particular events more easily
     static let sharedInstance = EventController()
+    
     var delegate: EventsUpdating?
     // Total events a user subscribes to
     var events = [Event]() {

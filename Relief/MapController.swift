@@ -22,9 +22,7 @@ class MapController: NSObject {
     init(delegate: MapUpdating) {
         self.delegate = delegate
         super.init()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeAnnotationFromCancel), name: "cancelEvent", object: nil)
-        
         if let initialLocationCoordinate = LocationController.sharedInstance.coreLocationManager.location {
             delegate.centerMapOnLocation(initialLocationCoordinate)
         }
@@ -38,9 +36,7 @@ class MapController: NSObject {
         annotation.title = "title"
         annotation.subtitle = "subtitle"
         let circle = MKCircle(centerCoordinate: locCoord, radius: 1000)
-        
         delegate.addEventOnMap(circle, annotation: annotation)
-        
         // Logic is a duct tape fix for double annotation firing
         // Remove one annotation checks if an annotation has been previously added, if it has it removes the last annotation added
         removeOneAnnotation(annotation, overlay: circle)

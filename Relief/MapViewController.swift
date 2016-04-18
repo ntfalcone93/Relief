@@ -87,6 +87,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         circle.fillColor = UIColor.redColor()
         circle.lineWidth = 1
         circle.alpha = 0.6
+        print("FIRED IN MAPVIEW OVERLAY")
         return circle
     }
 
@@ -99,7 +100,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
             UserController.sharedInstance.currentUser = user
             EventController.sharedInstance.fetchEventsForUser(user, completion: { (success) in
                 if success {
-                    print("IT WORKED DYLAN")
                     print(EventController.sharedInstance.localEvents.count)
                     print(EventController.sharedInstance.events.count)
                     for event in EventController.sharedInstance.events {
