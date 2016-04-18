@@ -62,6 +62,16 @@
                                     <constraint firstAttribute="height" constant="30" id="9bD-Qz-2Y1"/>
                                 </constraints>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtobTapped:" destination="H8P-LG-q2B" eventType="touchUpInside" id="rFO-3w-F1W"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6Z-Dd-GSh">
+                                <rect key="frame" x="473" y="397" width="107" height="30"/>
+                                <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="createAccountButtonTapped:" destination="H8P-LG-q2B" eventType="touchUpInside" id="KA4-jy-e5x"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-k6-Sfs">
                                 <rect key="frame" x="20" y="397" width="115" height="30"/>
@@ -69,13 +79,13 @@
                                     <constraint firstAttribute="height" constant="30" id="ATA-hB-ZI7"/>
                                 </constraints>
                                 <state key="normal" title="Forgot Password"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6Z-Dd-GSh">
-                                <rect key="frame" x="473" y="397" width="107" height="30"/>
-                                <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="forgotButtonTapped:" destination="H8P-LG-q2B" eventType="touchUpInside" id="aSc-F4-y2J"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="v6Y-Xw-Qxl" firstAttribute="top" secondItem="wz4-sL-Lsi" secondAttribute="bottom" constant="20" id="5AB-LN-Q1L"/>
                             <constraint firstItem="v6Y-Xw-Qxl" firstAttribute="leading" secondItem="VlN-KV-awu" secondAttribute="leading" id="5Zq-di-V8F"/>
@@ -101,15 +111,22 @@
                             <constraint firstItem="GyG-ks-uVD" firstAttribute="leading" secondItem="8bw-fr-Ejv" secondAttribute="leadingMargin" id="z0H-ke-Xts"/>
                             <constraint firstItem="KGm-Nu-K8c" firstAttribute="trailing" secondItem="wz4-sL-Lsi" secondAttribute="trailing" id="zDp-h8-WJz"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3ED-0N-4EL" appends="YES" id="2la-oG-pjI"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="createAccountButton" destination="B6Z-Dd-GSh" id="32R-Y6-XSx"/>
                         <outlet property="emailTextField" destination="wz4-sL-Lsi" id="Phi-Zn-Rzj"/>
                         <outlet property="firstNameTextField" destination="gy2-8a-iL2" id="1at-eI-bAP"/>
                         <outlet property="lastNameTextField" destination="KGm-Nu-K8c" id="aiR-LU-oZ7"/>
+                        <outlet property="logInButton" destination="VlN-KV-awu" id="Hcd-BR-r9y"/>
                         <outlet property="passwordTextField" destination="v6Y-Xw-Qxl" id="kyb-H1-iX0"/>
+                        <outlet property="tapGetureRecognizer" destination="3ED-0N-4EL" id="Nc6-pL-uS8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gfe-xg-D4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3ED-0N-4EL"/>
             </objects>
             <point key="canvasLocation" x="526" y="410"/>
         </scene>

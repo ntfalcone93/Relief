@@ -11,6 +11,7 @@ import UIKit
 class EventTableViewController: UITableViewController, EventsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
+        EventController.sharedInstance.delegate = self
         // Do any additional setup after loading the view.
     }
     

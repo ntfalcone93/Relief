@@ -16,28 +16,28 @@ class UserController {
     private let kUser = "userKey"
     
     var currentUser: User!
-//        {
-//        get {
-//            return 
-//            guard let uid = FirebaseController.firebase.authData?.uid,
-//                let userDictionary = NSUserDefaults.standardUserDefaults().valueForKey(kUser) as? [String: AnyObject] else {
-//                    
-//                    return nil
-//            }
-//            
-//            return User(json: userDictionary, identifier: uid)
-//        }
-//        set {
-//            
-//            if let newValue = newValue {
-//                NSUserDefaults.standardUserDefaults().setValue(newValue.jsonValue, forKey: kUser)
-//                NSUserDefaults.standardUserDefaults().synchronize()
-//            } else {
-//                NSUserDefaults.standardUserDefaults().removeObjectForKey(kUser)
-//                NSUserDefaults.standardUserDefaults().synchronize()
-//            }
-//        }
-//    }
+    //        {
+    //        get {
+    //            return
+    //            guard let uid = FirebaseController.firebase.authData?.uid,
+    //                let userDictionary = NSUserDefaults.standardUserDefaults().valueForKey(kUser) as? [String: AnyObject] else {
+    //
+    //                    return nil
+    //            }
+    //
+    //            return User(json: userDictionary, identifier: uid)
+    //        }
+    //        set {
+    //
+    //            if let newValue = newValue {
+    //                NSUserDefaults.standardUserDefaults().setValue(newValue.jsonValue, forKey: kUser)
+    //                NSUserDefaults.standardUserDefaults().synchronize()
+    //            } else {
+    //                NSUserDefaults.standardUserDefaults().removeObjectForKey(kUser)
+    //                NSUserDefaults.standardUserDefaults().synchronize()
+    //            }
+    //        }
+    //    }
     
     
     static func fetchUserWithId(identifier: String, completion: (user: User?) -> Void) {
@@ -53,19 +53,26 @@ class UserController {
         }
     }
     
-    static func createUser(firstName: String, lastName: String?, email: String, password: String, completion: (success: Bool) -> Void) {
+    static func createUser(firstName: String, lastName: String?, email: String, password: String, completion: (success: Bool, user: User?) -> Void) {
         
         FirebaseController.firebase.createUser(email, password: password) { (error, userDict) in
-            
+            if let error = error {
+                print(error)
+                completion(success: false, user: nil)
+                return
+            }
             if let identifier = userDict["uid"] as? String {
                 var user = User(firstName: firstName, lastName: lastName, identifier: identifier)
                 user.save()
-                
                 self.authenticateUser(email, password: password, completion: { (success) -> Void in
-                    completion(success: success)
+                    if success {
+                        completion(success: success, user: user)
+                    } else {
+                        completion(success: false, user: nil)
+                    }
                 })
             } else {
-                completion(success: false)
+                completion(success: false, user: nil)
             }
         }
     }

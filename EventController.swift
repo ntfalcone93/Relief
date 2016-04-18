@@ -24,7 +24,7 @@ class EventController {
             delegate?.updateNewEvent()
         }
     }
-    
+
     // events within a radius of distance from users current location
     var localEvents = [Event]() {
         didSet {
@@ -34,7 +34,7 @@ class EventController {
     
     // MARK: - Fetch Event Functions
     // Grabs a particular event with identifier -> Completes with event
-    func fetchEventWithEventID(eventID: String, completion: (event: Event?) -> Void) { ////////// Need to fix this
+    func fetchEventWithEventID(eventID: String, completion: (event: Event?) -> Void) {
         // Endpoint constructed from event endpoints and passed in event ID
         let endpoint = "\(EVENT_ENDPOINT)/\(eventID)"
         // grabs data at specified endpoint and initializes (attempts) an Event object
@@ -48,16 +48,16 @@ class EventController {
     }
     
     // Grabs a particular event with identifier -> Completes with event
-    func fetchLocalEventWithEventID(eventID: String, completion: (event: Event?) -> Void) { ////////// Need to fix this
+    func fetchLocalEventWithEventID(eventID: String, completion: (success: Bool) -> Void) { 
         // Endpoint constructed from event endpoints and passed in event ID
         let endpoint = "\(EVENT_ENDPOINT)/\(eventID)"
         // grabs data at specified endpoint and initializes (attempts) an Event object
         FirebaseController.dataAtEndPoint(endpoint) { (data) in
-            guard let json = data as? [String : AnyObject] else { completion(event: nil) ; return }
-            guard let event = Event(dictionary: json, identifier: eventID) else { completion(event: nil) ; return }
+            guard let json = data as? [String : AnyObject] else { completion(success: false) ; return }
+            guard let event = Event(dictionary: json, identifier: eventID) else { completion(success: false) ; return }
             self.localEvents.append(event)
             // Complete with initialized event
-            completion(event: event)
+            completion(success: false)
         }
     }
     
@@ -94,8 +94,9 @@ class EventController {
     // Function will query a particular radius for disaster events -> completes with success
     func fetchEventsInArea(location: CLLocation, completion: (success : Bool) -> Void) {
         // TODO: Implement geoFire
-        GeoFireController.queryAroundMe()
-        completion(success: true)
+        GeoFireController.queryAroundMe { 
+            completion(success: true)
+        }
     }
     
     // Function creates an event -> Completes with Bool
