@@ -23,6 +23,11 @@ class EventViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func feedButtonTapped(sender: UIButton) {
+        
+    }
+    
+    
     @IBAction func addNeedButtonTapped(sender: UIButton) {
         // Present an alert
         let alertController = UIAlertController(title: "Add a Need", message: "Enter your need and a specified quantity.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -62,6 +67,15 @@ class EventViewController: UIViewController {
             self.memberCountLabel.text = "\(event.members.count) Members"
             self.collectionPointLabel.text = event.collectionPoint
             self.needsLabel.text = "\(event.needs.count) Needs"
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toFeed" {
+            guard let destinationView = segue.destinationViewController as? FeedViewController else { return }
+            destinationView.event = event
+            
+            
         }
     }
     

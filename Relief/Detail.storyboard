@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EoX-Cr-H78">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EoX-Cr-H78">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -43,7 +43,8 @@
                                 </constraints>
                                 <state key="normal" title="Feed"/>
                                 <connections>
-                                    <segue destination="lpY-oo-7hj" kind="show" id="RIT-Wx-dge"/>
+                                    <action selector="feedButtonTapped:" destination="6nY-tz-ewp" eventType="touchUpInside" id="jQG-pW-0lf"/>
+                                    <segue destination="lpY-oo-7hj" kind="show" identifier="toFeed" id="RIT-Wx-dge"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N2y-Yl-zbH">
@@ -180,19 +181,45 @@
                                     <constraint firstAttribute="width" constant="54" id="jRd-lr-evA"/>
                                 </constraints>
                                 <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendButtonTapped:" destination="lpY-oo-7hj" eventType="touchUpInside" id="CPW-MR-gWZ"/>
+                                </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EeK-rg-KVf">
+                                <rect key="frame" x="9" y="72" width="571" height="469"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" id="4s4-mp-Ra6">
+                                        <rect key="frame" x="0.0" y="28" width="571" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4s4-mp-Ra6" id="8n2-gx-biP">
+                                            <rect key="frame" x="0.0" y="0.0" width="571" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lpY-oo-7hj" id="BZw-rl-TzA"/>
+                                    <outlet property="delegate" destination="lpY-oo-7hj" id="nJ6-ne-mLS"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="EeK-rg-KVf" firstAttribute="leading" secondItem="K9n-SZ-LOa" secondAttribute="leading" constant="9" id="8NA-zv-JVw"/>
                             <constraint firstItem="vSv-vj-fiJ" firstAttribute="baseline" secondItem="UHT-9m-6Qc" secondAttribute="baseline" id="CW1-xs-5Ib"/>
                             <constraint firstItem="UHT-9m-6Qc" firstAttribute="trailing" secondItem="K9n-SZ-LOa" secondAttribute="trailingMargin" id="HK4-BL-rGK"/>
+                            <constraint firstAttribute="trailing" secondItem="EeK-rg-KVf" secondAttribute="trailing" constant="20" id="I0R-8k-65K"/>
                             <constraint firstAttribute="bottom" secondItem="vSv-vj-fiJ" secondAttribute="bottom" constant="20" symbolic="YES" id="IX6-f5-AlK"/>
+                            <constraint firstItem="EeK-rg-KVf" firstAttribute="top" secondItem="lQg-PP-w0E" secondAttribute="bottom" constant="8" id="JTO-yx-dvq"/>
                             <constraint firstItem="vSv-vj-fiJ" firstAttribute="leading" secondItem="K9n-SZ-LOa" secondAttribute="leadingMargin" constant="-11" id="ShI-TZ-tCa"/>
                             <constraint firstItem="UHT-9m-6Qc" firstAttribute="leading" secondItem="vSv-vj-fiJ" secondAttribute="trailing" constant="8" symbolic="YES" id="eSA-ga-bbk"/>
+                            <constraint firstItem="UHT-9m-6Qc" firstAttribute="top" secondItem="EeK-rg-KVf" secondAttribute="bottom" constant="8" id="nFx-bT-y7w"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="messageTextField" destination="vSv-vj-fiJ" id="u4w-af-Teb"/>
+                        <outlet property="tableview" destination="EeK-rg-KVf" id="xxf-4p-f0o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJZ-fh-LFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
