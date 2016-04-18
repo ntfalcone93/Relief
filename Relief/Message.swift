@@ -27,7 +27,6 @@ class Message: FirebaseType {
                 MESSAGE_TEXT_KEY : messageBodyText,
                 THREAD_KEY : threadID,
                 IDENTIFIER_KEY : identifier ?? ""
-                
             ]
         }
     }

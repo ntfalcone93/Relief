@@ -25,9 +25,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         guard let eventType = currentEventType else { return } // Fire alert
         guard let collectionPoint = addressTextField.text else { return } // Fire alert (do check for valid)
         guard let coordinate = delegate?.mapManager?.currentAnnotation?.coordinate else { return }
-        
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude) // Fire alert
-        
         EventController.sharedInstance.createEvent(eventType, title: titleText, collectionPoint: collectionPoint, location: location) { (success, event) in
             if success {
                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -35,8 +33,6 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
                 // Fire alert
             }
         }
-        
-        
     }
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
@@ -44,25 +40,26 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         NSNotificationCenter.defaultCenter().postNotificationName("cancelEvent", object: nil)
     }
     
-    var pickerViewDataSource =
-        [EventType.AnimalAndInsectInfestation,
-         EventType.ComplexEmergencies,
-         EventType.DisplacedPopulations,
-         EventType.Drought,
-         EventType.DryMassMovement,
-         EventType.Earthquakes,
-         EventType.Epidemic,
-         EventType.ExtremeTemperatues,
-         EventType.FamineOrFoodInsecurity,
-         EventType.Floods,
-         EventType.IndustrialAccidents,
-         EventType.StormsAndTidalWaves,
-         EventType.TransportAccidents,
-         EventType.TropicalStormsHurricanesTyphoonsAndCyclones,
-         EventType.Tsunamis,
-         EventType.VolcanicEruptions,
-         EventType.WetMassMovement,
-         EventType.WildfiresAndUrbanFires]
+    var pickerViewDataSource = [
+        EventType.AnimalAndInsectInfestation,
+        EventType.ComplexEmergencies,
+        EventType.DisplacedPopulations,
+        EventType.Drought,
+        EventType.DryMassMovement,
+        EventType.Earthquakes,
+        EventType.Epidemic,
+        EventType.ExtremeTemperatues,
+        EventType.FamineOrFoodInsecurity,
+        EventType.Floods,
+        EventType.IndustrialAccidents,
+        EventType.StormsAndTidalWaves,
+        EventType.TransportAccidents,
+        EventType.TropicalStormsHurricanesTyphoonsAndCyclones,
+        EventType.Tsunamis,
+        EventType.VolcanicEruptions,
+        EventType.WetMassMovement,
+        EventType.WildfiresAndUrbanFires
+    ]
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerViewDataSource.count
@@ -84,7 +81,6 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         super.viewDidLoad()
         self.typePickerView.dataSource = self
         self.typePickerView.delegate = self
-        
         titleTextField.delegate = self
         addressTextField.delegate = self
     }
@@ -93,4 +89,5 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         textField.resignFirstResponder()
         return true
     }
+    
 }

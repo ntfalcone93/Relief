@@ -29,7 +29,7 @@ class User: FirebaseType {
         return [firstNameKey: firstName, lastNameKey: lastName ?? "", identifierKey: identifier ?? "", eventIdsKey: eventIds.toDic()]
     }
 
-    init(firstName: String, lastName: String?, identifier: String) {
+    init(firstName: String, lastName: String?, identifier: String?) {
         self.firstName = firstName
         self.lastName = lastName
         self.identifier = identifier
