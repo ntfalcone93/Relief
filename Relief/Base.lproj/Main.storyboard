@@ -123,7 +123,7 @@
                         <outlet property="longGestureRecognizer" destination="kWG-0U-MOO" id="JTc-aS-hsf"/>
                         <outlet property="mapView" destination="68p-aj-VWI" id="UId-C5-TYc"/>
                         <segue destination="Srk-8g-Sgz" kind="presentation" identifier="toDetailfromMap" id="ia3-0t-N0N"/>
-                        <segue destination="tVI-hu-8L1" kind="presentation" id="6ol-Gq-ZBZ"/>
+                        <segue destination="tVI-hu-8L1" kind="presentation" identifier="toLogin" id="6ol-Gq-ZBZ"/>
                         <segue destination="KHL-fy-y6Z" kind="presentation" identifier="showCreateEvent" id="MbA-da-Uuw"/>
                     </connections>
                 </viewController>
@@ -195,6 +195,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8ec-Xp-D0r"/>
+        <segue reference="ia3-0t-N0N"/>
     </inferredMetricsTieBreakers>
 </document>

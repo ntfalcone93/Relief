@@ -25,11 +25,7 @@ class EventTableViewController: UITableViewController, EventsUpdating {
         super.viewWillAppear(true)
         self.tableView.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
 }
 
 extension EventTableViewController {
@@ -57,6 +53,7 @@ extension EventTableViewController {
             let indexPath = self.tableView.indexPathForCell(cell)
             let event = EventController.sharedInstance.events[indexPath!.row]
             evc.event = event
+            evc.navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
         }
     }
 }
