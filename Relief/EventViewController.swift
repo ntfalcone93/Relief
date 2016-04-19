@@ -81,7 +81,7 @@ class EventViewController: UIViewController {
             textField.placeholder = "Enter Need"
         }
         let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertActionStyle.Default) { (UIAlertAction) in
-            if let needText = alertController.textFields?[0].text {
+            if let needText = alertController.textFields?[0].text where needText.isEmpty == false {
                 EventController.sharedInstance.addNeedToEvent(self.event!, need: needText, completion: { (success) in
                     if success {
                         self.needsLabel.text = "\(self.event!.needs.count) Needs"
@@ -93,8 +93,8 @@ class EventViewController: UIViewController {
             }
         }
         let cancelAcion = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive, handler: nil)
-        alertController.addAction(confirmAction)
         alertController.addAction(cancelAcion)
+        alertController.addAction(confirmAction)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
