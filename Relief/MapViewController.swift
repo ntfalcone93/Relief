@@ -48,6 +48,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         // consider putting all annotation configuration here
+        guard annotation.isKindOfClass(DisasterAnnotation) else {
+            return nil
+        }
         let identifier = "disasterIdentifier"
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         annotationView.enabled = true
@@ -78,9 +81,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
                 }
             }
         }
-        
         // sublcass annotation. Give each annotation an optional identifier that mathces the event ID.
-        // When the user creates an event the annotation is assigned an identifier. The annotation will be the current annotation so you can identify it that way.
+        // When the user creates an event the annotation is assigned an identifier. The annotation will be the current annotation so you can identify it inside class scope.
     }
     
     @IBAction func eventsButtonTapped(sender: UIBarButtonItem) {
