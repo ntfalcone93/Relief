@@ -11,16 +11,19 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate, MKMapViewDelegate, MapUpdating {
+    private let CIRCLE_RADIUS = 1000.0
+    private let CIRCLE_ALPHA: CGFloat = 0.7
+    private let CIRCLE_COLOR = UIColor.redColor()
+    private let CIRCLE_STROKE_COLOR = UIColor.blackColor()
+    private let CIRCLE_LINE_WIDTH: CGFloat = 1.0
+    
     // MARK: - IBOutlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var longGestureRecognizer: UILongPressGestureRecognizer!
+    
     var mapManager: MapController?
-    
-    // MARK: - Logic Properties
-    
-    
-    // toggle mode is initially set to Mapshown
     var toggleMode = ToggleMode.MapShown
+    var currentEvent: Event?
     
     enum ToggleMode {
         case MapShown
@@ -29,10 +32,57 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     
     // MARK: - IBActions
     @IBAction func mapLongPressed(sender: UILongPressGestureRecognizer) {
-        mapManager?.mapPressed(sender)
-        // toggles gesture recognizer (hack)
-        sender.enabled = false
-        sender.enabled = true
+        if sender.state == UIGestureRecognizerState.Began {
+            let location = sender.locationInView(mapView)
+            let locCoord = mapView.convertPoint(location, toCoordinateFromView: mapView)
+            let annotation = DisasterAnnotation()
+            annotation.coordinate = locCoord
+            let circle = MKCircle(centerCoordinate: locCoord, radius: CIRCLE_RADIUS)
+            mapView.addOverlay(circle)
+            mapView.addAnnotation(annotation)
+            mapManager?.currentOverlay = circle
+            mapManager?.currentAnnotation = annotation
+            makeActionSheet("New Event?", controllerMessage: "Declare a disaster event here?", annotation: annotation, overlay: circle)
+        }
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        // consider putting all annotation configuration here
+        guard annotation.isKindOfClass(DisasterAnnotation) else {
+            return nil
+        }
+        let identifier = "disasterIdentifier"
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        annotationView.enabled = true
+        annotationView.canShowCallout = true
+        let button = UIButton(type: UIButtonType.DetailDisclosure)
+        annotationView.rightCalloutAccessoryView = button
+        return annotationView
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        // When the user taps on the callout button
+        print("calloutbuttontapped")
+        // identify the event and segue to the event detail screen
+        // We could add an annotation to our event model.
+        if let annotation = view.annotation as? DisasterAnnotation {
+            for event in EventController.sharedInstance.localEvents {
+                if event.identifier == annotation.disasterEventID {
+                    self.currentEvent = event
+                    self.performSegueWithIdentifier("toDetailfromMap", sender: nil)
+                    return
+                }
+            }
+            for event in EventController.sharedInstance.events {
+                if event.identifier == annotation.disasterEventID {
+                    self.currentEvent = event
+                    self.performSegueWithIdentifier("toDetailfromMap", sender: nil)
+                    return
+                }
+            }
+        }
+        // sublcass annotation. Give each annotation an optional identifier that mathces the event ID.
+        // When the user creates an event the annotation is assigned an identifier. The annotation will be the current annotation so you can identify it inside class scope.
     }
     
     @IBAction func eventsButtonTapped(sender: UIBarButtonItem) {
@@ -46,7 +96,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         // implementing the tap gesture when the map is hidden allows for quick and easy
         // navigation back to the map from the event table view
         if toggleMode == .MapHidden {
-            
             // if map is hidden, a tap in the map area will toggle the map and
             // animate the movement of the views
             toggleMap()
@@ -55,7 +104,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         if UserController.sharedInstance.currentUser == nil {
             performSegueWithIdentifier("toLogin", sender: nil)
         } else {
@@ -66,10 +114,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     // MARK: - View Controller Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayEvents), name: "NewLocalEvent", object: nil)
-
-        
         self.longGestureRecognizer.delegate = self
         mapManager = MapController(delegate: self)
         mapView.delegate = self
@@ -78,8 +123,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
-        
-        
     }
     
     // MARK: - Map View Delegate
@@ -96,17 +139,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         let circle = MKCircleRenderer(overlay: overlay)
-        circle.strokeColor = UIColor.purpleColor()
-        circle.fillColor = UIColor.redColor()
-        circle.lineWidth = 1
-        circle.alpha = 0.6
-        print("FIRED IN MAPVIEW OVERLAY")
+        circle.strokeColor = CIRCLE_STROKE_COLOR
+        circle.fillColor = CIRCLE_COLOR
+        circle.lineWidth = CIRCLE_LINE_WIDTH
+        circle.alpha = CIRCLE_ALPHA
         return circle
     }
     
-    
     func displayEventsForCurrentUser() {
-        
         let user = UserController.sharedInstance.currentUser
         EventController.sharedInstance.events = []
         EventController.sharedInstance.localEvents = []
@@ -124,7 +164,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
                 })
             }
         })
-        //        }
     }
     
     func displayEvents() {
@@ -136,7 +175,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         for event in EventController.sharedInstance.events {
             self.mapManager?.addEventToMap(event)
         }
-
     }
     
     func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {
@@ -158,6 +196,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
             let destinationView = segue.destinationViewController as? UINavigationController
             let lastView = destinationView?.childViewControllers[0] as? CreateEventViewController
             lastView?.delegate = self
+        } else if segue.identifier == "toDetailfromMap" {
+            let destinationViewController = segue.destinationViewController as! UINavigationController
+            let lastView = destinationViewController.childViewControllers[0] as! EventViewController
+            lastView.event = self.currentEvent!
         }
     }
     

@@ -104,16 +104,5 @@ class UserController {
         FirebaseController.firebase.unauth()
         completion(success: true)
     }
-    
-    //    static func mockUsers() -> [User] {
-    //
-    //        let user1 = User(firstName: "Nathan", identifier: "0001")
-    //        let user2 = User(firstName: "Jake", identifier: "0002")
-    //        let user3 = User(firstName: "Dylan", identifier: "0003")
-    //        let user4 = User(firstName: "Kaelin", identifier: "0004")
-    //
-    //        return [user1, user2, user3, user4]
-    //    }
-    //    
 }
     

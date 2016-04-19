@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EoX-Cr-H78">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EoX-Cr-H78">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -144,9 +144,15 @@
                                 <action selector="cancelButtonTapped:" destination="6nY-tz-ewp" id="oGw-m9-Z3C"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Join" id="Wsn-TP-rRX">
+                            <connections>
+                                <action selector="joinButtonTapped:" destination="6nY-tz-ewp" id="KAp-f3-P69"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionPointLabel" destination="AmQ-U1-8gW" id="jxL-PS-3nC"/>
+                        <outlet property="joinButton" destination="Wsn-TP-rRX" id="Ioh-S3-c6K"/>
                         <outlet property="memberCountLabel" destination="Lu4-cG-6iw" id="ODh-Pr-Tx6"/>
                         <outlet property="needsLabel" destination="Ril-Kh-Z2q" id="Rnb-RE-RXb"/>
                         <outlet property="tableView" destination="N2y-Yl-zbH" id="bHC-sA-ABe"/>
@@ -193,7 +199,7 @@
                                         <rect key="frame" x="0.0" y="28" width="571" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4s4-mp-Ra6" id="8n2-gx-biP">
-                                            <rect key="frame" x="0.0" y="0.0" width="571" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="571" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

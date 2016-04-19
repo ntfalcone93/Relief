@@ -28,7 +28,6 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
         }
     }
     
-    
     // MARK: - IBActions
     
     @IBAction func sendButtonTapped(sender: UIButton) {
@@ -41,8 +40,6 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
         textField.resignFirstResponder()
         return true
     }
-    
-    
 }
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {

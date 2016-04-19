@@ -8,9 +8,14 @@
 
 import UIKit
 
-class EventTableViewController: UITableViewController, EventsUpdating {
+class EventTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EventsUpdating {
+    
+    @IBOutlet var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         EventController.sharedInstance.delegate = self
         // Do any additional setup after loading the view.
     }
@@ -20,14 +25,25 @@ class EventTableViewController: UITableViewController, EventsUpdating {
         self.tableView.reloadData()
     }
     
+    // MARK: - IBAction Functions
+    
+    @IBAction func logoutButtonTapped(sender: UIButton) {
+        UserController.sharedInstance.logOutUser { (success) in
+            if success {
+                self.performSegueWithIdentifier("toLoginFromEventTableView", sender: nil)
+            }
+        }
+    }
+    
+    
 }
 
 extension EventTableViewController {
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return EventController.sharedInstance.events.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath)
         let event = EventController.sharedInstance.events[indexPath.row]
         cell.textLabel?.text = event.title
@@ -35,7 +51,7 @@ extension EventTableViewController {
         return cell
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
