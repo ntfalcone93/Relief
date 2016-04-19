@@ -8,8 +8,15 @@
 
 import UIKit
 
+enum MemberStatus {
+    case Member
+    case NonMember
+}
+
 class EventViewController: UIViewController {
+    
     // MARK: - IBOutlets
+    @IBOutlet weak var joinButton: UIBarButtonItem!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
     @IBOutlet var memberCountLabel: UILabel!
@@ -17,15 +24,55 @@ class EventViewController: UIViewController {
     @IBOutlet var needsLabel: UILabel!
     @IBOutlet var tableView: UITableView!
     var event: Event?
+    var memberMode = MemberStatus.Member
     
     // MARK: - IBActions
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
+    @IBAction func joinButtonTapped(sender: UIBarButtonItem) {
+        guard let event = event else { return }
+        switchOnMember(event)
+        
+    }
     @IBAction func feedButtonTapped(sender: UIButton) {
         
     }
+    
+    func switchOnMember(event: Event) {
+        switch memberMode {
+        case .Member:
+            self.joinButton.title = "Join"
+            EventController.sharedInstance.leaveEvent(event, completion: { (success) in
+                if !success {
+                    // Make Alert
+                    self.joinButton.title = "Leave"
+                    return
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.memberMode = .NonMember
+                })
+            })
+            
+            
+        case .NonMember:
+            self.joinButton.title = "Leave"
+            EventController.sharedInstance.joinEvent(event, completion: { (success) in
+                if !success {
+                    // Make Alert
+                    self.joinButton.title = "Join"
+                    return
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.memberMode = .Member
+                })
+            })
+        }
+    }
+    
     
     @IBAction func addNeedButtonTapped(sender: UIButton) {
         // Present an alert
@@ -34,7 +81,7 @@ class EventViewController: UIViewController {
             textField.placeholder = "Enter Need"
         }
         let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertActionStyle.Default) { (UIAlertAction) in
-            if let needText = alertController.textFields?[0].text {
+            if let needText = alertController.textFields?[0].text where needText.isEmpty == false {
                 EventController.sharedInstance.addNeedToEvent(self.event!, need: needText, completion: { (success) in
                     if success {
                         self.needsLabel.text = "\(self.event!.needs.count) Needs"
@@ -46,8 +93,8 @@ class EventViewController: UIViewController {
             }
         }
         let cancelAcion = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive, handler: nil)
-        alertController.addAction(confirmAction)
         alertController.addAction(cancelAcion)
+        alertController.addAction(confirmAction)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
@@ -66,6 +113,14 @@ class EventViewController: UIViewController {
             self.memberCountLabel.text = "\(event.members.count) Members"
             self.collectionPointLabel.text = event.collectionPoint
             self.needsLabel.text = "\(event.needs.count) Needs"
+            guard let identifier = UserController.sharedInstance.currentUser.identifier else { return }
+            if event.members.contains(identifier) {
+                memberMode = .Member
+                joinButton.title = "Leave"
+            } else {
+                memberMode = .NonMember
+                joinButton.title = "Join"
+            }
         }
     }
     
@@ -73,6 +128,8 @@ class EventViewController: UIViewController {
         if segue.identifier == "toFeed" {
             guard let destinationView = segue.destinationViewController as? FeedViewController else { return }
             destinationView.event = event
+            
+            
         }
     }
     

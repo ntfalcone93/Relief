@@ -24,7 +24,7 @@ class EventController {
             delegate?.updateNewEvent()
         }
     }
-
+    
     // events within a radius of distance from users current location
     var localEvents = [Event]() {
         didSet {
@@ -48,7 +48,7 @@ class EventController {
     }
     
     // Grabs a particular event with identifier -> Completes with event
-    func fetchLocalEventWithEventID(eventID: String, completion: (success: Bool) -> Void) { 
+    func fetchLocalEventWithEventID(eventID: String, completion: (success: Bool) -> Void) {
         // Endpoint constructed from event endpoints and passed in event ID
         let endpoint = "\(EVENT_ENDPOINT)/\(eventID)"
         // grabs data at specified endpoint and initializes (attempts) an Event object
@@ -94,7 +94,7 @@ class EventController {
     // Function will query a particular radius for disaster events -> completes with success
     func fetchEventsInArea(location: CLLocation, completion: (success : Bool) -> Void) {
         // TODO: Implement geoFire
-        GeoFireController.queryAroundMe { 
+        GeoFireController.queryAroundMe {
             completion(success: true)
         }
     }
@@ -106,7 +106,7 @@ class EventController {
         // Instantiate an event with passed in attributes
         let event = Event(title: title, type: eventType, collectionPoint: collectionPoint, latitude: location.coordinate.latitude, longitude:  location.coordinate.longitude)
         event.members.append(UserController.sharedInstance.currentUser.identifier!)
-        // If fetching events in area this could very well be redundant  
+        // If fetching events in area this could very well be redundant
         self.events.append(event)
         // Save event to firebase; if error return false or complete true
         FirebaseController.firebase.childByAppendingPath(EVENT_ENDPOINT).childByAutoId().setValue(event.jsonValue) { (error, firebase) in
@@ -127,6 +127,49 @@ class EventController {
                 }
             })
         }
+    }
+    
+    func joinEvent(event: Event, completion: (success: Bool) -> Void) {
+        guard let identifier = UserController.sharedInstance.currentUser.identifier else { return }
+        event.members.append(identifier)
+        FirebaseController.firebase.childByAppendingPath("\(EVENT_ENDPOINT)/\(event.identifier!)").setValue(event.jsonValue) { (error, firebase) in
+            if let error = error {
+                print(error)
+                completion(success: false)
+                return
+            }
+            UserController.sharedInstance.currentUser.eventIds.append(event.identifier!)
+            UserController.sharedInstance.currentUser.save()
+            completion(success: true)
+        }
+    }
+    
+    func leaveEvent(event: Event, completion: (success: Bool) -> Void) {
+        guard let eventID = event.identifier else { completion(success: false) ; return }
+        guard let userID = UserController.sharedInstance.currentUser.identifier else { completion(success: false) ; return }
+        
+        for (index, member) in event.members.enumerate() {
+            if member == userID {
+                event.members.removeAtIndex(index)
+            }
+        }
+        
+        FirebaseController.firebase.childByAppendingPath("\(EVENT_ENDPOINT)/\(event.identifier!)").setValue(event.jsonValue) { (error, firebase) in
+            if let error = error {
+                print(error)
+                completion(success: false)
+                return
+            }
+            for (index, event) in UserController.sharedInstance.currentUser.eventIds.enumerate() {
+                if event == eventID {
+                    UserController.sharedInstance.currentUser.eventIds.removeAtIndex(index)
+                }
+            }
+            
+            UserController.sharedInstance.currentUser.save()
+            completion(success: true)
+        }
+        
     }
     
     // Deletes an event from firebase, from all users, and its location -> Completes with success
