@@ -29,14 +29,12 @@ class EventViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
-        
     }
     
     @IBAction func joinButtonTapped(sender: UIBarButtonItem) {
-        guard let event = event else { return }
-        switchOnMember(event)
-        
+        makeAlert()
     }
+    
     @IBAction func feedButtonTapped(sender: UIButton) {
         
     }
@@ -51,13 +49,22 @@ class EventViewController: UIViewController {
                     self.joinButton.title = "Leave"
                     return
                 }
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.memberMode = .NonMember
-                })
+                if event.members.count <= 0 {
+                    EventController.sharedInstance.deleteEvent(event, completion: { (success) in
+                        if success {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.memberMode = .NonMember
+                            })
+                        }
+                    })
+                } else {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.memberMode = .NonMember
+                    })
+                }
             })
-            
-            
         case .NonMember:
             self.joinButton.title = "Leave"
             EventController.sharedInstance.joinEvent(event, completion: { (success) in
@@ -73,6 +80,27 @@ class EventViewController: UIViewController {
         }
     }
     
+    func makeAlert() {
+        var title: String
+        var message: String
+        switch memberMode {
+        case .Member:
+            title = "Leaving Disaster Group"
+            message = "Are you sure you'd like to leave the group?"
+        case .NonMember:
+            title = "Join Disaster Group"
+            message = "Are you sure you'd like to joing the group?"
+        }
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Yes", style: .Default) { (_) in
+            guard let event = self.event else { return }
+            self.switchOnMember(event)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Destructive, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
     
     @IBAction func addNeedButtonTapped(sender: UIButton) {
         // Present an alert
@@ -128,8 +156,6 @@ class EventViewController: UIViewController {
         if segue.identifier == "toFeed" {
             guard let destinationView = segue.destinationViewController as? FeedViewController else { return }
             destinationView.event = event
-            
-            
         }
     }
     
