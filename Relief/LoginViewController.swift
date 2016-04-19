@@ -50,7 +50,6 @@ class LoginViewController: UIViewController {
     }
     
     func login() {
-        
         // Log in logic
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
@@ -94,7 +93,6 @@ class LoginViewController: UIViewController {
     func viewForLogin() {
         firstNameTextField.hidden = true
         lastNameTextField.hidden = true
-        
         logInButton.setTitle("Login", forState: .Normal)
         createAccountButton.setTitle("Create Account", forState: .Normal)
         
@@ -103,7 +101,6 @@ class LoginViewController: UIViewController {
     func viewForSignUp() {
         firstNameTextField.hidden = false
         lastNameTextField.hidden = false
-        
         logInButton.setTitle("Sign Up", forState: .Normal)
         createAccountButton.setTitle("Log In", forState: .Normal)
         
@@ -120,11 +117,8 @@ class LoginViewController: UIViewController {
     func makeAlert(warningMessage: String) {
         let alertViewController = UIAlertController(title: "Error!", message: warningMessage, preferredStyle: .Alert)
         let alert = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        
         alertViewController.addAction(alert)
-        
         presentViewController(alertViewController, animated: true, completion: nil)
-        
     }
     
     override func viewWillAppear(animated: Bool) {

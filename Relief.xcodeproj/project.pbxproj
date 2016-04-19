@@ -50,6 +50,7 @@
 		E6E1ACC41CBD9C08005A5792 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */; };
 		E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */; };
 		E6E1ACC81CBD9C37005A5792 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */; };
+		E6F7068D1CC69BC50096C89F /* DisasterAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F7068C1CC69BC50096C89F /* DisasterAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E6F7068C1CC69BC50096C89F /* DisasterAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisasterAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			children = (
 				021ADEE61CBD814700DCD798 /* Event.swift */,
 				241620A41CBEC03F004883AE /* User.swift */,
+				E6F7068C1CC69BC50096C89F /* DisasterAnnotation.swift */,
 			);
 			name = "Model Objects";
 			sourceTree = "<group>";
@@ -315,7 +318,7 @@
 				TargetAttributes = {
 					021ADED01CBD7F0B00DCD798 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 84RFPT2YUF;
+						DevelopmentTeam = 22C3FKDR9Y;
 					};
 				};
 			};
@@ -380,6 +383,7 @@
 				74B58DBB1CC0567B00AD9B75 /* GFBase32Utils.m in Sources */,
 				74B58DB91CC0567B00AD9B75 /* GeoFire.m in Sources */,
 				E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */,
+				E6F7068D1CC69BC50096C89F /* DisasterAnnotation.swift in Sources */,
 				E6DC4CF51CC0371B00768D4E /* LocationController.swift in Sources */,
 				74BF48C31CBEE83700273466 /* EventController.swift in Sources */,
 				74B58DD61CC20E7300AD9B75 /* FirebaseChat.swift in Sources */,
