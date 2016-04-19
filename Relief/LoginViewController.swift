@@ -39,7 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     print("Could not create User due to error\(error.localizedDescription)")
                 } else {
                     if let identifier = result["identifier"] {
-                        UIAlertControllerStyle.
+                        print("Account \(identifier) successfully created")
                     }
                 }
             })
@@ -47,13 +47,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func logInButtonTapped(sender: AnyObject) {
+    
+    if let email = emailTextField.text,
+    password = passwordTextField.text
+    where email.characters.contains("@") && password.characters.count > 5 {
+        
+        base.authUser(email, password: password, withCompletionBlock: {  (error, authData) -> Void in
+            if let error = error {
+                print("Could not authenticate User, please try again\(error.localizedDescription)")
+            } else {
+                if let uid = authData["uid"] {
+                    print("User \(uid) successfully logged in")
+                }
+            }
+        })
     }
-}
+    }
 
-    func dismissModalViewControllerAnimated(animated: Bool) {
+    override func dismissModalViewControllerAnimated(animated: Bool) {
         if UserController.sharedInstance.currentUser != nil{
             dismissModalViewControllerAnimated(true)
         }
 
     }
-}
