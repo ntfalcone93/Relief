@@ -29,7 +29,7 @@ class User: FirebaseType {
         return [firstNameKey: firstName, lastNameKey: lastName ?? "", identifierKey: identifier ?? "", eventIdsKey: eventIds.toDic()]
     }
 
-    init(firstName: String, lastName: String?, identifier: String) {
+    init(firstName: String, lastName: String?, identifier: String?) {
         self.firstName = firstName
         self.lastName = lastName
         self.identifier = identifier
@@ -38,9 +38,7 @@ class User: FirebaseType {
     
     required init?(json: [String : AnyObject], identifier: String) {
         guard let firstName = json[firstNameKey] as? String,
-            let lastName = json[lastNameKey] as? String,
-            let eventIds = json[eventIdsKey] as? [String],
-            let endpoint = json[endpointKey] as? String else {
+            let lastName = json[lastNameKey] as? String else {
                 
                 return nil
                 
@@ -49,8 +47,14 @@ class User: FirebaseType {
         self.firstName = firstName
         self.lastName = lastName
         self.identifier = identifier
-        self.eventIds = eventIds
-        self.endpoint = endpoint
+        print(json[eventIdsKey])
+        if let eventDic = json[eventIdsKey] as? [String : AnyObject]  {
+            let eventKeys = Array(eventDic.keys)
+            self.eventIds = eventKeys
+            
+        } else {
+            self.eventIds = []
+        }
     }
 }
 

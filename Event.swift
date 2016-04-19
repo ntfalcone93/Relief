@@ -31,7 +31,6 @@ enum EventType: String {
 }
 
 class Event {
-    
     private let titleKey = "title"
     private let collectionPointKey = "collectionPoint"
     private let membersKey = "member"
@@ -40,6 +39,8 @@ class Event {
     private let endpointKey = "endpoint"
     private let jsonValueKey = "jsonValue"
     private let eventTypeKey = "eventType"
+    private let latitudeKey = "latitude"
+    private let longitudeKey = "longitude"
     
     var title: String
     var collectionPoint: String
@@ -48,14 +49,14 @@ class Event {
     var identifier: String?
     var endpoint = "events"
     var type: EventType.RawValue
+    var latitude: Double
+    var longitude: Double
     
     var jsonValue: [String:AnyObject] {
-        
-        return [titleKey: title, eventTypeKey: type, collectionPointKey: collectionPoint, membersKey: members.toDic(), needsKey: needs.toDic()]
-        
+        return [titleKey: title, eventTypeKey: type, collectionPointKey: collectionPoint, membersKey: members.toDic(), needsKey: needs.toDic(), latitudeKey : latitude, longitudeKey : longitude]
     }
     
-    init(title: String, collectionPoint: String, members: [String], needs: [String], identifier: String?, endpoint: String, eventType: EventType) {
+    init(title: String, collectionPoint: String, members: [String], needs: [String], identifier: String?, endpoint: String, eventType: EventType, latitude: Double, longitude: Double) {
         self.title = title
         self.collectionPoint = collectionPoint
         self.members = members
@@ -63,30 +64,54 @@ class Event {
         self.identifier = identifier
         self.endpoint = endpoint
         self.type = eventType.rawValue
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     
-    init?(dictionary: Dictionary<String, AnyObject>) {
+    init?(dictionary: Dictionary<String, AnyObject>, identifier: String) {
         guard let title = dictionary[titleKey] as? String,
             let collectionPoint = dictionary[collectionPointKey] as? String,
-            let eventType = dictionary[eventTypeKey] as? String else {
+            let eventType = dictionary[eventTypeKey] as? String,
+            let longitude = dictionary[longitudeKey] as? Double,
+            let latitude = dictionary[latitudeKey] as? Double else {
                 return nil
         }
-        self.members = (dictionary[membersKey] ?? []) as! [String]
-        self.needs = (dictionary[needsKey] ?? []) as! [String]
+        if let members = dictionary[membersKey] as? [String: Bool] {
+            self.members = []
+            for member in members {
+                self.members.append(member.0)
+            }
+        } else {
+            self.members = []
+        }
+        if let needs = dictionary[needsKey] as? [String: Bool] {
+            self.needs = []
+            for need in needs {
+                self.needs.append(need.0)
+            }
+        } else {
+            self.needs = []
+        }
         self.title = title
         self.collectionPoint = collectionPoint
         self.type = eventType
+        self.latitude = latitude
+        self.longitude = longitude
+        self.identifier = identifier
     }
     
-    init(title: String, type: EventType, collectionPoint: String) {
+    init(title: String, type: EventType, collectionPoint: String, latitude: Double, longitude: Double) {
         self.title = title
         self.type = type.rawValue
         self.collectionPoint = collectionPoint
         self.needs = []
+        self.longitude = longitude
+        self.latitude = latitude
         self.identifier = nil
     }
 }
+
 func == (lhs: Event, rhs: Event) -> Bool {
     return lhs.identifier == rhs.identifier
 }

@@ -10,14 +10,15 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate, MKMapViewDelegate, MapUpdating {
     // MARK: - IBOutlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var longGestureRecognizer: UILongPressGestureRecognizer!
     var mapManager: MapController?
     
     // MARK: - Logic Properties
-    var count = 0
+    
+    
     // toggle mode is initially set to Mapshown
     var toggleMode = ToggleMode.MapShown
     
@@ -52,41 +53,36 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if UserController.sharedInstance.currentUser == nil {
+            performSegueWithIdentifier("toLogin", sender: nil)
+        } else {
+            self.displayEventsForCurrentUser()
+        }
+    }
+    
     // MARK: - View Controller Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayEvents), name: "NewLocalEvent", object: nil)
+
+        
         self.longGestureRecognizer.delegate = self
-        mapManager = MapController(mapView: self.mapView, viewController: self)
+        mapManager = MapController(delegate: self)
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
         
-        // Event Controller Tests begin here.
-        // How do we get the event locally?
-//        var event: Event? = nil
-//        EventController.sharedInstance.createEvent(EventType.Earthquakes, title: "Quake", collectionPoint: "Not where you wanna be", location: CLLocation(latitude: 40.7724692, longitude: -111.9095813)) { (success, eventFromSuccess) in
-//            print("create event complete")
-//            if let eventFromSuccess = eventFromSuccess {
-//                event = eventFromSuccess
-//                EventController.sharedInstance.fetchEventWithEventID((event?.identifier)!, completion: { (ayy) in
-//                    print(ayy?.title)
-//                    EventController.sharedInstance.addNeedToEvent(event!, need: "Bazookas", completion: { (success) in
-//                        print("yolo")
-//                        EventController.sharedInstance.deleteEvent(event!, completion: { (success) in
-//                            print("delete complete")
-//                        })
-//                    })
-//                })
-//            }
-//        }
+        
     }
     
     // MARK: - Map View Delegate
-    
-    
-    // functions toggles the current view mode and calls the review controller
-    // for movement of views. This function also sets the toggleMode to it's
-    // new and correct mode that reflects the changes made
     func toggleMap() {
         switch toggleMode {
         case .MapHidden:
@@ -98,9 +94,75 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         }
     }
     
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let circle = MKCircleRenderer(overlay: overlay)
+        circle.strokeColor = UIColor.purpleColor()
+        circle.fillColor = UIColor.redColor()
+        circle.lineWidth = 1
+        circle.alpha = 0.6
+        print("FIRED IN MAPVIEW OVERLAY")
+        return circle
+    }
     
+    
+    func displayEventsForCurrentUser() {
+        
+        let user = UserController.sharedInstance.currentUser
+        EventController.sharedInstance.events = []
+        EventController.sharedInstance.localEvents = []
+        EventController.sharedInstance.fetchEventsForUser(user, completion: { (success) in
+            if success {
+                GeoFireController.queryAroundMe({
+                    self.mapView.removeAnnotations(self.mapView.annotations)
+                    self.mapView.removeOverlays(self.mapView.overlays)
+                    for event in EventController.sharedInstance.localEvents {
+                        self.mapManager?.addEventToMap(event)
+                    }
+                    for event in EventController.sharedInstance.events {
+                        self.mapManager?.addEventToMap(event)
+                    }
+                })
+            }
+        })
+        //        }
+    }
+    
+    func displayEvents() {
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.removeOverlays(mapView.overlays)
+        for event in EventController.sharedInstance.localEvents {
+            self.mapManager?.addEventToMap(event)
+        }
+        for event in EventController.sharedInstance.events {
+            self.mapManager?.addEventToMap(event)
+        }
+
+    }
+    
+    func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {
+        let actionSheet = UIAlertController(title: controllerTitle, message: controllerMessage, preferredStyle: .ActionSheet)
+        let cancelAlert = UIAlertAction(title: "Cancel", style: .Destructive) { (_) in
+            self.removeAnnotation(annotation, overlay: overlay)
+        }
+        let createEventAlert = UIAlertAction(title: "Create Event", style: .Default) { (_) in
+            self.performSegueWithIdentifier("showCreateEvent", sender: nil)
+        }
+        actionSheet.addAction(createEventAlert)
+        actionSheet.addAction(cancelAlert)
+        navigationController?.presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showCreateEvent" {
+            print(segue.destinationViewController)
+            let destinationView = segue.destinationViewController as? UINavigationController
+            let lastView = destinationView?.childViewControllers[0] as? CreateEventViewController
+            lastView?.delegate = self
+        }
+    }
     
 }
+
 
 
 

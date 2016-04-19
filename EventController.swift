@@ -16,31 +16,48 @@ let LOCATION_ENDPOINT = "location"
 class EventController {
     // Instantiate Shared Instance to allow access to particular events more easily
     static let sharedInstance = EventController()
+    
+    var delegate: EventsUpdating?
     // Total events a user subscribes to
     var events = [Event]() {
         didSet {
             delegate?.updateNewEvent()
         }
     }
-    
-    
-    
-    var delegate: EventsUpdating?
+
     // events within a radius of distance from users current location
-    var localEvents = [Event]()
+    var localEvents = [Event]() {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("NewLocalEvent", object: nil)
+        }
+    }
     
     // MARK: - Fetch Event Functions
     // Grabs a particular event with identifier -> Completes with event
-    func fetchEventWithEventID(eventID: String, completion: (event: Event?) -> Void) { ////////// Need to fix this
+    func fetchEventWithEventID(eventID: String, completion: (event: Event?) -> Void) {
         // Endpoint constructed from event endpoints and passed in event ID
         let endpoint = "\(EVENT_ENDPOINT)/\(eventID)"
         // grabs data at specified endpoint and initializes (attempts) an Event object
         FirebaseController.dataAtEndPoint(endpoint) { (data) in
             guard let json = data as? [String : AnyObject] else { completion(event: nil) ; return }
-            guard let event = Event(dictionary: json) else { completion(event: nil) ; return }
+            guard let event = Event(dictionary: json, identifier: eventID) else { completion(event: nil) ; return }
             self.events.append(event)
             // Complete with initialized event
             completion(event: event)
+        }
+    }
+    
+    // Grabs a particular event with identifier -> Completes with event
+    func fetchLocalEventWithEventID(eventID: String, completion: (success: Bool) -> Void) { 
+        // Endpoint constructed from event endpoints and passed in event ID
+        let endpoint = "\(EVENT_ENDPOINT)/\(eventID)"
+        // grabs data at specified endpoint and initializes (attempts) an Event object
+        FirebaseController.dataAtEndPoint(endpoint) { (data) in
+            guard let json = data as? [String : AnyObject] else { completion(success: false) ; return }
+            guard let event = Event(dictionary: json, identifier: eventID) else { completion(success: false) ; return }
+            self.localEvents.append(event)
+            // Complete with initialized event
+            completion(success: false)
         }
     }
     
@@ -77,8 +94,9 @@ class EventController {
     // Function will query a particular radius for disaster events -> completes with success
     func fetchEventsInArea(location: CLLocation, completion: (success : Bool) -> Void) {
         // TODO: Implement geoFire
-        GeoFireController.queryAroundMe()
-        completion(success: true)
+        GeoFireController.queryAroundMe { 
+            completion(success: true)
+        }
     }
     
     // Function creates an event -> Completes with Bool
@@ -86,7 +104,10 @@ class EventController {
         // POSSIBLY DO CHECK ON COLLECTION POINT STRING
         
         // Instantiate an event with passed in attributes
-        let event = Event(title: title, type: eventType, collectionPoint: collectionPoint)
+        let event = Event(title: title, type: eventType, collectionPoint: collectionPoint, latitude: location.coordinate.latitude, longitude:  location.coordinate.longitude)
+        event.members.append(UserController.sharedInstance.currentUser.identifier!)
+        // If fetching events in area this could very well be redundant  
+        self.events.append(event)
         // Save event to firebase; if error return false or complete true
         FirebaseController.firebase.childByAppendingPath(EVENT_ENDPOINT).childByAutoId().setValue(event.jsonValue) { (error, firebase) in
             if let error = error {
@@ -97,6 +118,8 @@ class EventController {
             // We need to append the event to the array on the shared instance locally //// From EventController Test /////
             GeoFireController.setLocation(firebase.key, location: location, completion: { (success) in
                 if success {
+                    UserController.sharedInstance.currentUser.eventIds.append(firebase.key)
+                    UserController.sharedInstance.currentUser.save()
                     event.identifier = firebase.key
                     completion(success: true, event: event)
                 } else {
@@ -237,7 +260,6 @@ class EventController {
             if let error = error {
                 print(error)
                 completion(success: false)
-                return
             }
             completion(success: true)
         }
@@ -247,5 +269,15 @@ class EventController {
 
 
 protocol EventsUpdating {
+    weak var tableView: UITableView! { get }
     func updateNewEvent()
 }
+
+extension EventsUpdating {
+    func updateNewEvent() {
+        tableView.reloadData()
+    }
+}
+
+
+

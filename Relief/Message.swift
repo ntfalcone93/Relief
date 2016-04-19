@@ -1,61 +1,58 @@
 //
 //  Message.swift
-//  Relief
+//  SimpleChatFirebaseTest
 //
-//  Created by Kaelin Osmun on 4/12/16.
-//  Copyright © 2016 Relief Group. All rights reserved.
+//  Created by Jake Hardy on 4/11/16.
+//  Copyright © 2016 NSDesert. All rights reserved.
 //
 
 import Foundation
-import UIKit
 
-class Message {
+class Message: FirebaseType {
     
-    private let senderNameKey = "senderName"
-    private let senderIdKey = "senderId"
-    private let textKey = "text"
-    private let identifierKey = "identifier"
-    private let endpointKey = "endpoint"
-    private let jsonValueKey = "jsonValue"
+    var username: String
+    var messageBodyText: String
+    var senderID: String
     
-    var senderName: String
-    var senderId: String
-    var text: String
     var identifier: String?
-    var endpoint = "message"
+    var threadID: String
     
-    var jsonValue: [String: AnyObject] {
-
-        return [senderNameKey: senderName, senderIdKey: senderId, textKey: text, identifierKey: identifier ?? ""]
-        
-    }
+    var endpoint = messageEndPoint
     
-    init?(dictionary: Dictionary<String, AnyObject>) {
-        guard let senderName = dictionary[senderNameKey] as? String,
-            let senderId = dictionary[senderIdKey] as? String,
-            let text = dictionary[textKey] as? String,
-            let identifier = dictionary[identifierKey] as? String,
-            let endpoint = dictionary[endpointKey] as? String else {
-                
-                return nil
+    var jsonValue: [String : AnyObject] {
+        get {
+            return [
+                SENDER_ID_KEY : senderID,
+                USERNAME_KEY : username,
+                MESSAGE_TEXT_KEY : messageBodyText,
+                THREAD_KEY : threadID,
+                IDENTIFIER_KEY : identifier ?? ""
+            ]
         }
-        
-        self.senderName = senderName
-        self.senderId = senderId
-        self.text = text
+    }
+    
+    init(senderID: String, threadID: String, username: String, messageBodyText: String, identifier: String?) {
+        self.username = username
+        self.messageBodyText = messageBodyText
         self.identifier = identifier
-        self.endpoint = endpoint
+        self.threadID = threadID
+        self.endpoint = "\(messageEndPoint)/\(threadID)"
+        self.senderID = senderID
+    }
+    
+    required init?(json: [String : AnyObject], identifier: String) {
+        guard let messageBodyText = json[MESSAGE_TEXT_KEY] as? String else { return nil }
+        guard let username = json[USERNAME_KEY] as? String else { return nil }
+        guard let threadID = json[THREAD_KEY] as? String else { return nil }
+        guard let senderID = json[SENDER_ID_KEY] as? String else { return nil }
+        
+        self.senderID = senderID
+        self.threadID = threadID
+        self.endpoint = "\(messageEndPoint)/\(threadID)"
+        self.messageBodyText = messageBodyText
+        self.username = username
+        self.identifier = identifier
         
     }
     
-    init(senderName: String, senderId: String, text: String, identifier: String?, endpoint: String) {
-        
-        self.senderName = senderName
-        self.senderId = senderId
-        self.text = text
-        self.identifier = identifier
-        self.endpoint = endpoint
-        
-    }
-        
 }
