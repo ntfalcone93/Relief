@@ -29,10 +29,21 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     
     // MARK: - IBActions
     @IBAction func mapLongPressed(sender: UILongPressGestureRecognizer) {
-        mapManager?.mapPressed(sender)
-        // toggles gesture recognizer (hack)
-        sender.enabled = false
-        sender.enabled = true
+        if sender.state == UIGestureRecognizerState.Began {
+            let location = sender.locationInView(mapView)
+            let locCoord = mapView.convertPoint(location, toCoordinateFromView: mapView)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = locCoord
+            annotation.title = "title"
+            annotation.subtitle = "subtitle"
+            let circle = MKCircle(centerCoordinate: locCoord, radius: 1000)
+            mapView.addOverlay(circle)
+            mapView.addAnnotation(annotation)
+            mapManager?.currentOverlay = circle
+            mapManager?.currentAnnotation = annotation
+            
+            makeActionSheet("New Event?", controllerMessage: "Declare a disaster event here?", annotation: annotation, overlay: circle)
+        }
     }
     
     @IBAction func eventsButtonTapped(sender: UIBarButtonItem) {
@@ -68,7 +79,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayEvents), name: "NewLocalEvent", object: nil)
-
+        
         
         self.longGestureRecognizer.delegate = self
         mapManager = MapController(delegate: self)
@@ -124,7 +135,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
                 })
             }
         })
-        //        }
     }
     
     func displayEvents() {
@@ -136,7 +146,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         for event in EventController.sharedInstance.events {
             self.mapManager?.addEventToMap(event)
         }
-
     }
     
     func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {

@@ -12,8 +12,6 @@ import UIKit
 
 class MapController: NSObject {
     
-    var annotationAdded = false
-    var annotationSecondCheck = true
     var currentAnnotation: MKAnnotation?
     var currentOverlay: MKOverlay?
     
@@ -22,35 +20,13 @@ class MapController: NSObject {
     init(delegate: MapUpdating) {
         self.delegate = delegate
         super.init()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeAnnotationFromCancel), name: "cancelEvent", object: nil)
+        
         if let initialLocationCoordinate = LocationController.sharedInstance.coreLocationManager.location {
             delegate.centerMapOnLocation(initialLocationCoordinate)
         }
     }
     
-    func mapPressed(sender: UILongPressGestureRecognizer) {
-        let location = sender.locationInView(delegate.mapView)
-        let locCoord = delegate.mapView.convertPoint(location, toCoordinateFromView: delegate.mapView)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = locCoord
-        annotation.title = "title"
-        annotation.subtitle = "subtitle"
-        let circle = MKCircle(centerCoordinate: locCoord, radius: 1000)
-        delegate.addEventOnMap(circle, annotation: annotation)
-        // Logic is a duct tape fix for double annotation firing
-        // Remove one annotation checks if an annotation has been previously added, if it has it removes the last annotation added
-        removeOneAnnotation(annotation, overlay: circle)
-        // Checks annotation second check: Default value of false
-        if annotationSecondCheck {
-            // sets annotationadded to true to remove the second annotation added
-            self.annotationAdded = true
-        }
-    }
-    
     // MARK: - Helper Methods
-    func centerMapOnLocation(location: CLLocation) {
-        delegate.centerMapOnLocation(location)
-    }
     
     func addEventToMap(event: Event) {
         let latitude = event.latitude
@@ -65,31 +41,6 @@ class MapController: NSObject {
         let circle = MKCircle(centerCoordinate: location.coordinate, radius: 1000)
         delegate.addEventOnMap(circle, annotation: annotation)
     }
-    
-    func removeOneAnnotation(annotation: MKAnnotation, overlay: MKOverlay) {
-        // The first time remove annotation is checked in a cycle this will fail and annotationSecondCheck will be set to true
-        if annotationAdded {
-            delegate.removeAnnotation(annotation, overlay: overlay)
-            // During the second iteration annotation added is set to false and annotationsecond check is returned to ground state
-            annotationAdded = false
-            annotationSecondCheck = false
-            delegate.makeActionSheet("EVENT", controllerMessage: "Want to create a disaster event?", annotation: currentAnnotation!, overlay: currentOverlay!)
-        } else {
-            // In the event annotation added is false, annotation secondcheck must be true to check for second iteration of annotation adding
-            currentOverlay = overlay
-            currentAnnotation = annotation
-            annotationSecondCheck = true
-        }
-    }
-    
-    func removeAnnotation(annotation:MKAnnotation, overlay: MKOverlay) {
-        delegate.removeAnnotation(annotation, overlay: overlay)
-    }
-    
-    @objc func removeAnnotationFromCancel() {
-        guard let annotation = self.currentAnnotation, overlay = self.currentOverlay else { return }
-        delegate.removeAnnotation(annotation, overlay: overlay)
-    }
 }
 
 protocol MapUpdating {
@@ -98,8 +49,7 @@ protocol MapUpdating {
     
     func centerMapOnLocation(location: CLLocation)
     func addEventOnMap(circle: MKCircle, annotation: MKPointAnnotation)
-    func removeOneAnnotation(currentAnnotation: MKAnnotation, currentOverlay: MKOverlay, annotation: MKAnnotation, overlay: MKOverlay)
-    func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay)
+    
     func removeAnnotation(annotation:MKAnnotation, overlay: MKOverlay)
     
 }
@@ -115,15 +65,6 @@ extension MapUpdating {
     func addEventOnMap(circle: MKCircle, annotation: MKPointAnnotation) {
         mapView.addOverlay(circle)
         mapView.addAnnotation(annotation)
-    }
-    
-    func removeOneAnnotation(currentAnnotation: MKAnnotation, currentOverlay: MKOverlay, annotation: MKAnnotation, overlay: MKOverlay) {
-        // The first time remove annotation is checked in a cycle this will fail and annotationSecondCheck will be set to true
-        mapView.removeAnnotation(annotation)
-        mapView.removeOverlay(overlay)
-        // During the second iteration annotation added is set to false and annotationsecond check is returned to ground state
-        
-        makeActionSheet("EVENT", controllerMessage: "Want to create a disaster event?", annotation: currentAnnotation, overlay: currentOverlay)
     }
     
     func removeAnnotation(annotation:MKAnnotation, overlay: MKOverlay) {
