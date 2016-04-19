@@ -147,6 +147,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func displayEventsForCurrentUser() {
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.removeOverlays(self.mapView.overlays)
         let user = UserController.sharedInstance.currentUser
         EventController.sharedInstance.events = []
         EventController.sharedInstance.localEvents = []
@@ -161,6 +163,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
                     for event in EventController.sharedInstance.events {
                         self.mapManager?.addEventToMap(event)
                     }
+                })
+            } else {
+                GeoFireController.queryAroundMe({ 
+                    print("In Else Statement")
                 })
             }
         })
