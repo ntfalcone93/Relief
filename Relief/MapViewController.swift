@@ -147,8 +147,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func displayEventsForCurrentUser() {
-        self.mapView.removeAnnotations(self.mapView.annotations)
-        self.mapView.removeOverlays(self.mapView.overlays)
+        
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.removeOverlays(self.mapView.overlays)
+        
         let user = UserController.sharedInstance.currentUser
         EventController.sharedInstance.events = []
         EventController.sharedInstance.localEvents = []
@@ -173,8 +175,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func displayEvents() {
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.removeOverlays(mapView.overlays)
+        
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.removeOverlays(self.mapView.overlays)
+        
         for event in EventController.sharedInstance.localEvents {
             self.mapManager?.addEventToMap(event)
         }

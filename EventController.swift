@@ -22,6 +22,7 @@ class EventController {
     var events = [Event]() {
         didSet {
             delegate?.updateNewEvent()
+            NSNotificationCenter.defaultCenter().postNotificationName("NewLocalEvent", object: nil)
         }
     }
     
@@ -57,7 +58,7 @@ class EventController {
             guard let event = Event(dictionary: json, identifier: eventID) else { completion(success: false) ; return }
             self.localEvents.append(event)
             // Complete with initialized event
-            completion(success: false)
+            completion(success: true)
         }
     }
     
