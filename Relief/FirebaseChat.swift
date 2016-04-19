@@ -12,17 +12,13 @@ import UIKit
 
 
 class FirebaseChat {
-    
     var messages = [Message]()
-    
     var delegate: FirebaseChatManager
     var threadID: String
     
     init?(delegate: FirebaseChatManager, threadIdentifier: String) {
-        
         self.delegate = delegate
         self.threadID = threadIdentifier
-        
         observeChat()
     }
     
@@ -45,28 +41,21 @@ class FirebaseChat {
     }
 }
 
-
 protocol FirebaseChatManager {
-    
     var chatManager: FirebaseChat? { get }
     weak var tableview: UITableView! { get }
     weak var messageTextField: UITextField! { get }
-    
     func insertMessageIntoTableview(message: Message)
-    
 }
 
 extension FirebaseChatManager {
-    
     func insertMessageIntoTableview(message: Message) {
         guard let chatManager = self.chatManager else { return }
         chatManager.messages.append(message)
-        
         tableview.beginUpdates()
         let indexPath = NSIndexPath(forRow: chatManager.messages.count - 1, inSection: 0)
         tableview.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         tableview.endUpdates()
     }
-    
     
 }

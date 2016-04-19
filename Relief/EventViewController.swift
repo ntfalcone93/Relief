@@ -27,7 +27,6 @@ class EventViewController: UIViewController {
         
     }
     
-    
     @IBAction func addNeedButtonTapped(sender: UIButton) {
         // Present an alert
         let alertController = UIAlertController(title: "Add a Need", message: "Enter your need and a specified quantity.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -74,8 +73,6 @@ class EventViewController: UIViewController {
         if segue.identifier == "toFeed" {
             guard let destinationView = segue.destinationViewController as? FeedViewController else { return }
             destinationView.event = event
-            
-            
         }
     }
     
