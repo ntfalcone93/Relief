@@ -16,28 +16,27 @@ class UserController {
     private let kUser = "userKey"
     
     var currentUser: User!
-    //        {
-    //        get {
-    //            return
-    //            guard let uid = FirebaseController.firebase.authData?.uid,
-    //                let userDictionary = NSUserDefaults.standardUserDefaults().valueForKey(kUser) as? [String: AnyObject] else {
-    //
-    //                    return nil
-    //            }
-    //
-    //            return User(json: userDictionary, identifier: uid)
-    //        }
-    //        set {
-    //
-    //            if let newValue = newValue {
-    //                NSUserDefaults.standardUserDefaults().setValue(newValue.jsonValue, forKey: kUser)
-    //                NSUserDefaults.standardUserDefaults().synchronize()
-    //            } else {
-    //                NSUserDefaults.standardUserDefaults().removeObjectForKey(kUser)
-    //                NSUserDefaults.standardUserDefaults().synchronize()
-    //            }
-    //        }
-    //    }
+            {
+            get {
+                guard let uid = FirebaseController.firebase.authData?.uid,
+                    let userDictionary = NSUserDefaults.standardUserDefaults().valueForKey(kUser) as? [String: AnyObject] else {
+    
+                        return nil
+                }
+    
+                return User(json: userDictionary, identifier: uid)
+            }
+            set {
+    
+                if let newValue = newValue {
+                    NSUserDefaults.standardUserDefaults().setValue(newValue.jsonValue, forKey: kUser)
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                } else {
+                    NSUserDefaults.standardUserDefaults().removeObjectForKey(kUser)
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                }
+            }
+        }
     
     
     static func fetchUserWithId(identifier: String, completion: (user: User?) -> Void) {
