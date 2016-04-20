@@ -28,18 +28,21 @@ class ForgotPasswordViewController: UIViewController {
     @IBAction func recoverPasswordButtonTapped(sender: AnyObject) {
         let email = emailTextField.text ?? ""
         let ref = Firebase(url:"devmtnrelief.firebaseIO.com")
-        FirebaseController.firebase.authUser(email, password: nil, withCompletionBlock: { (error, fAuthData) -> Void in
+        ref.resetPasswordForUser(email, withCompletionBlock: { (error) in
             if error != nil {
                 let noEmailAlert = UIAlertController(title: "Email does not exist", message: "It seems there is no such Email in our database, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
                 noEmailAlert.addAction(UIAlertAction(title: "try Again", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(noEmailAlert, animated: true, completion: nil)
             } else {
-                ref.resetPasswordForUser(email, withCompletionBlock: { (error) in
-                    return
-            })
-        }
-    })
-}
+            let passwordResetAlert = UIAlertController(title: "Password Reset", message: "Please check your email", preferredStyle: UIAlertControllerStyle.Alert)
+                passwordResetAlert.addAction(UIAlertAction(title: "Go to Login", style:  UIAlertActionStyle.Cancel, handler: { action in self.dismissViewControllerAnimated(true, completion: nil)
+                    }))
+                    self.presentViewController(passwordResetAlert, animated: true, completion: nil)
+                return
+            }
+        })
+    }
+
     @IBAction func cancelForgotPasswordTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

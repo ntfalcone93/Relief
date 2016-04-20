@@ -59,7 +59,7 @@
                                 <connections>
                                     <action selector="forgotButtonTapped:" destination="H8P-LG-q2B" eventType="touchUpInside" id="aSc-F4-y2J"/>
                                     <action selector="forgotPasswordButtonTapped:" destination="H8P-LG-q2B" eventType="touchUpInside" id="zJv-DJ-eTh"/>
-                                    <segue destination="aN6-uT-rs2" kind="show" id="8le-k0-rGZ"/>
+                                    <segue destination="aN6-uT-rs2" kind="presentation" id="kHV-yB-H0f"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlN-KV-awu">
