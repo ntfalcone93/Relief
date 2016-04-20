@@ -23,6 +23,11 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func loginButtobTapped(sender: UIButton) {
+        // check fields
+        // authuser
+        // handle errors
+        // set Current User
+        // dismiss view in completion
         if logInModeActivate {
             login()
         } else {
@@ -90,6 +95,7 @@ class LoginViewController: UIViewController {
         lastNameTextField.hidden = true
         logInButton.setTitle("Login", forState: .Normal)
         createAccountButton.setTitle("Create Account", forState: .Normal)
+        
     }
     
     func viewForSignUp() {
@@ -97,6 +103,7 @@ class LoginViewController: UIViewController {
         lastNameTextField.hidden = false
         logInButton.setTitle("Sign Up", forState: .Normal)
         createAccountButton.setTitle("Log In", forState: .Normal)
+        
     }
     
     @IBAction func createAccountButtonTapped(sender: UIButton) {
@@ -116,6 +123,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         viewForLogin()
     }
     

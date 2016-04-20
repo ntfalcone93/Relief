@@ -78,7 +78,7 @@
                         <outlet property="longGestureRecognizer" destination="kWG-0U-MOO" id="JTc-aS-hsf"/>
                         <outlet property="mapView" destination="68p-aj-VWI" id="UId-C5-TYc"/>
                         <segue destination="Srk-8g-Sgz" kind="presentation" identifier="toDetailfromMap" id="ia3-0t-N0N"/>
-                        <segue destination="KHL-fy-y6Z" kind="presentation" identifier="showCreateEvent" modalPresentationStyle="fullScreen" id="MbA-da-Uuw"/>
+                        <segue destination="KHL-fy-y6Z" kind="presentation" identifier="showCreateEvent" id="MbA-da-Uuw"/>
                         <segue destination="tVI-hu-8L1" kind="presentation" identifier="toLogin" id="HL1-fS-lTZ"/>
                     </connections>
                 </viewController>
@@ -237,7 +237,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ia3-0t-N0N"/>
-        <segue reference="HL1-fS-lTZ"/>
+        <segue reference="f80-Mh-ZGW"/>
+        <segue reference="y1W-HI-OCE"/>
     </inferredMetricsTieBreakers>
 </document>
