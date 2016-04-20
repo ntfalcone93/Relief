@@ -26,7 +26,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     // MARK: - IBAction Functions
-    
     @IBAction func logoutButtonTapped(sender: UIButton) {
         UserController.sharedInstance.logOutUser { (success) in
             if success {
@@ -34,7 +33,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
-    
     
 }
 
