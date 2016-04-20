@@ -28,16 +28,21 @@ class GeoFireController {
     static func queryAroundMe(completion: () -> Void) {
         // initiate an array to hold all shedIDs which query will find
         var eventIDs = EventController.sharedInstance.events.flatMap({$0.identifier})
+        var localEventIDs = EventController.sharedInstance.localEvents.flatMap({$0.identifier})
         guard let center = LocationController.sharedInstance.coreLocationManager.location else { return }
         // Create circle query based on current position and meter radius
         
         let circleQuery = geofire.queryAtLocation(center, withRadius: RADIUS_IN_METERS)
         circleQuery.observeEventType(.KeyEntered, withBlock: { (string, location) -> Void in
-            if !eventIDs.contains(string) {
+            if !eventIDs.contains(string) && !localEventIDs.contains(string) {
                 // initialize a new event and append it to the eventController
                 eventIDs.append(string)
                 
                 EventController.sharedInstance.fetchLocalEventWithEventID(string, completion: { (success) in
+                    if success {
+                        print("\(EventController.sharedInstance.events.count) events count")
+                        print("\(EventController.sharedInstance.localEvents.count) local events count")
+                    }
                 })
             }
         })
