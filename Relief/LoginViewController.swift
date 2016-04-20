@@ -35,6 +35,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func forgotPasswordButtonTapped(sender: AnyObject) {
+        
+        
+    }
+    
+    
     func signUp() {
         // sign up logic
         let email = emailTextField.text ?? ""
