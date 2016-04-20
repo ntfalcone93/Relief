@@ -160,15 +160,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
                     for event in EventController.sharedInstance.localEvents {
                         self.mapManager?.addEventToMap(event)
                     }
-                    for event in EventController.sharedInstance.events {
-                        self.mapManager?.addEventToMap(event)
-                    }
                 })
-            } else {
-                GeoFireController.queryAroundMe({
-                    print("In Else Statement")
-                })
-            }
+            } 
         })
     }
     
@@ -176,9 +169,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         self.mapView.removeAnnotations(self.mapView.annotations)
         self.mapView.removeOverlays(self.mapView.overlays)
         for event in EventController.sharedInstance.localEvents {
-            self.mapManager?.addEventToMap(event)
-        }
-        for event in EventController.sharedInstance.events {
             self.mapManager?.addEventToMap(event)
         }
     }
