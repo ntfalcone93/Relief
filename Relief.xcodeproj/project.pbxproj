@@ -15,6 +15,7 @@
 		021ADEEC1CBD83F800DCD798 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021ADEEB1CBD83F800DCD798 /* Detail.storyboard */; };
 		021ADEEE1CBD840400DCD798 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021ADEED1CBD840400DCD798 /* Login.storyboard */; };
 		240E69D91CC18E8D0030AF4F /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E69D81CC18E8D0030AF4F /* RevealViewController.swift */; };
+		240E69DB1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E69DA1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift */; };
 		241620A51CBEC03F004883AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241620A41CBEC03F004883AE /* User.swift */; };
 		241620A71CBED891004883AE /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241620A61CBED891004883AE /* UserController.swift */; };
 		74B58DA51CC0543200AD9B75 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B58DA41CC0543200AD9B75 /* CoreLocation.framework */; };
@@ -64,6 +65,7 @@
 		021ADEEB1CBD83F800DCD798 /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		021ADEED1CBD840400DCD798 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		240E69D81CC18E8D0030AF4F /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RevealViewController.swift; path = ../RevealViewController.swift; sourceTree = "<group>"; };
+		240E69DA1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		241620A41CBEC03F004883AE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		241620A61CBED891004883AE /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		74B58DA41CC0543200AD9B75 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -279,6 +281,7 @@
 				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
 				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
 				E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */,
+				240E69DA1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift */,
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,
 				74B58DC71CC17B1000AD9B75 /* EventTableViewController.swift */,
 				E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */,
@@ -387,6 +390,7 @@
 				E6F7068D1CC69BC50096C89F /* DisasterAnnotation.swift in Sources */,
 				E6DC4CF51CC0371B00768D4E /* LocationController.swift in Sources */,
 				74BF48C31CBEE83700273466 /* EventController.swift in Sources */,
+				240E69DB1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift in Sources */,
 				74B58DD61CC20E7300AD9B75 /* FirebaseChat.swift in Sources */,
 				74B58DD11CC20E7300AD9B75 /* FirebaseController.swift in Sources */,
 				74B58DBA1CC0567B00AD9B75 /* GFQuery.m in Sources */,
