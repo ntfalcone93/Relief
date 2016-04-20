@@ -13,7 +13,6 @@ import UIKit
 class MapController: NSObject {
     var currentAnnotation: DisasterAnnotation?
     var currentOverlay: MKOverlay?
-    
     var delegate: MapUpdating
     
     init(delegate: MapUpdating) {

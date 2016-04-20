@@ -18,7 +18,6 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     var currentEventType: EventType?
     var delegate: MapViewController?
     
-    
     // MARK: - IBActions
     @IBAction func confirmButtonTapped(sender: UIButton) {
         guard let titleText = titleTextField.text where titleText.isEmpty == false else { return } // Fire alert
