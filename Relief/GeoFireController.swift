@@ -29,42 +29,29 @@ class GeoFireController {
         // initiate an array to hold all shedIDs which query will find
         guard let center = LocationController.sharedInstance.coreLocationManager.location else { return }
         // Create circle query based on current position and meter radius
-        GeoFireController.deleteAroundMe()
-        
-        
         
         let circleQuery = geofire.queryAtLocation(center, withRadius: RADIUS_IN_METERS)
         
-        circleQuery.observeEventType(.KeyEntered, withBlock: { (string, location) -> Void in
-            // initialize a new event and append it to the eventController
-            EventController.sharedInstance.fetchLocalEventWithEventID(string, completion: { (success) in
-                if success {
-                }
-            })
-            
-        })
+        circleQuery.observeEventOfTypeValue { (dictionary) in
+            EventController.sharedInstance.localEvents = []
+            for subDic in dictionary {
+                EventController.sharedInstance.fetchLocalEventWithEventID(subDic.0 as! String, completion: { (success) in
+                    if success {
+                        print("success!")
+                    }
+                })
+            }
+        }
+    
     }
     
-    static func deleteAroundMe() {
-        // initiate an array to hold all shedIDs which query will find
-        guard let center = LocationController.sharedInstance.coreLocationManager.location else { return }
-        // Create circle query based on current position and meter radius
-        
-        let circleQuery = geofire.queryAtLocation(center, withRadius: RADIUS_IN_METERS)
-        circleQuery.observeEventType(.KeyExited, withBlock: { (string, location) -> Void in
-            print(string)
-            // initialize a new event and append it to the eventController
-            for (index, event) in EventController.sharedInstance.events.flatMap({$0.identifier!}).enumerate() {
-                if event == string {
-                    EventController.sharedInstance.events.removeAtIndex(index)
-                }
-            }
-            
-            for (index, event) in EventController.sharedInstance.localEvents.flatMap({$0.identifier!}).enumerate() {
-                if event == string {
-                    EventController.sharedInstance.localEvents.removeAtIndex(index)
-                }
-            }
-        })
-    }
+//    static func deleteAroundMe() {
+//        // initiate an array to hold all shedIDs which query will find
+//        guard let center = LocationController.sharedInstance.coreLocationManager.location else { return }
+//        // Create circle query based on current position and meter radius
+//        
+//        let circleQuery = geofire.queryAtLocation(center, withRadius: RADIUS_IN_METERS)
+//        circleQuery.observeEventType(.KeyExited, withBlock: { (string, location) -> Void in
+//        })
+//    }
 }
