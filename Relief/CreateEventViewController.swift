@@ -28,6 +28,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude) // Fire alert
         EventController.sharedInstance.createEvent(eventType, title: titleText, collectionPoint: collectionPoint, location: location) { (success, event) in
             if success {
+                NSNotificationCenter.defaultCenter().postNotificationName("createEventFinished", object: nil)
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 // Fire alert
@@ -37,7 +38,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("cancelEvent", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("createEventFinished", object: nil)
     }
     
     var pickerViewDataSource = [

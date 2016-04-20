@@ -42,7 +42,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
             mapView.addAnnotation(annotation)
             mapManager?.currentOverlay = circle
             mapManager?.currentAnnotation = annotation
-            makeActionSheet("New Event?", controllerMessage: "Declare a disaster event here?", annotation: annotation, overlay: circle)
+            makeActionSheet("New Event?", controllerMessage: "Declare a disaster event here", annotation: annotation, overlay: circle)
         }
     }
     
@@ -51,6 +51,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         guard annotation.isKindOfClass(DisasterAnnotation) else {
             return nil
         }
+        
         let identifier = "disasterIdentifier"
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         annotationView.enabled = true
@@ -62,17 +63,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // When the user taps on the callout button
-        print("calloutbuttontapped")
+        
         // identify the event and segue to the event detail screen
         // We could add an annotation to our event model.
         if let annotation = view.annotation as? DisasterAnnotation {
-            for event in EventController.sharedInstance.localEvents {
-                if event.identifier == annotation.disasterEventID {
-                    self.currentEvent = event
-                    self.performSegueWithIdentifier("toDetailfromMap", sender: nil)
-                    return
-                }
-            }
             for event in EventController.sharedInstance.events {
                 if event.identifier == annotation.disasterEventID {
                     self.currentEvent = event
@@ -106,14 +100,19 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         super.viewWillAppear(animated)
         if UserController.sharedInstance.currentUser == nil {
             performSegueWithIdentifier("toLogin", sender: nil)
-        } else {
-            self.displayEventsForCurrentUser()
         }
     }
     
     // MARK: - View Controller Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GeoFireController.queryAroundMe()
+        
+        if let initialLocationCoordinate = LocationController.sharedInstance.coreLocationManager.location {
+            centerMapOnLocation(initialLocationCoordinate)
+        }
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayEvents), name: "NewLocalEvent", object: nil)
         self.longGestureRecognizer.delegate = self
         mapManager = MapController(delegate: self)
@@ -147,29 +146,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func displayEventsForCurrentUser() {
-        self.mapView.removeAnnotations(self.mapView.annotations)
-        self.mapView.removeOverlays(self.mapView.overlays)
-        let user = UserController.sharedInstance.currentUser
-        EventController.sharedInstance.events = []
-        EventController.sharedInstance.localEvents = []
-        EventController.sharedInstance.fetchEventsForUser(user, completion: { (success) in
-            if success {
-                GeoFireController.queryAroundMe({
-                    self.mapView.removeAnnotations(self.mapView.annotations)
-                    self.mapView.removeOverlays(self.mapView.overlays)
-                    for event in EventController.sharedInstance.localEvents {
-                        self.mapManager?.addEventToMap(event)
-                    }
-                })
-            } 
-        })
+    
     }
     
     func displayEvents() {
-        self.mapView.removeAnnotations(self.mapView.annotations)
-        self.mapView.removeOverlays(self.mapView.overlays)
-        for event in EventController.sharedInstance.localEvents {
-            self.mapManager?.addEventToMap(event)
+        mapView.removeOverlays(mapView.overlays)
+        mapView.removeAnnotations(mapView.annotations)
+        for event in EventController.sharedInstance.events {
+            mapManager?.addEventToMap(event)
         }
     }
     

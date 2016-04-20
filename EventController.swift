@@ -22,14 +22,6 @@ class EventController {
     var events = [Event]() {
         didSet {
             delegate?.updateNewEvent()
-            NSNotificationCenter.defaultCenter().postNotificationName("NewLocalEvent", object: nil)
-        }
-    }
-    
-    // events within a radius of distance from users current location
-    var localEvents = [Event]() {
-        didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName("NewLocalEvent", object: nil)
         }
     }
     
@@ -45,20 +37,6 @@ class EventController {
             self.events.append(event)
             // Complete with initialized event
             completion(event: event)
-        }
-    }
-    
-    // Grabs a particular event with identifier -> Completes with event
-    func fetchLocalEventWithEventID(eventID: String, completion: (success: Bool) -> Void) {
-        // Endpoint constructed from event endpoints and passed in event ID
-        let endpoint = "\(EVENT_ENDPOINT)/\(eventID)"
-        // grabs data at specified endpoint and initializes (attempts) an Event object
-        FirebaseController.dataAtEndPoint(endpoint) { (data) in
-            guard let json = data as? [String : AnyObject] else { completion(success: false) ; return }
-            guard let event = Event(dictionary: json, identifier: eventID) else { completion(success: false) ; return }
-            self.localEvents.append(event)
-            // Complete with initialized event
-            completion(success: true)
         }
     }
     
@@ -95,20 +73,17 @@ class EventController {
     // Function will query a particular radius for disaster events -> completes with success
     func fetchEventsInArea(location: CLLocation, completion: (success : Bool) -> Void) {
         // TODO: Implement geoFire
-        GeoFireController.queryAroundMe {
-            completion(success: true)
-        }
+        GeoFireController.queryAroundMe()
     }
     
     // Function creates an event -> Completes with Bool
     func createEvent(eventType: EventType, title: String, collectionPoint: String, location: CLLocation, completion: (success: Bool, event: Event?) -> Void) {
-        // POSSIBLY DO CHECK ON COLLECTION POINT STRING
         
         // Instantiate an event with passed in attributes
         let event = Event(title: title, type: eventType, collectionPoint: collectionPoint, latitude: location.coordinate.latitude, longitude:  location.coordinate.longitude)
         event.members.append(UserController.sharedInstance.currentUser.identifier!)
         // If fetching events in area this could very well be redundant
-        self.events.append(event)
+        
         // Save event to firebase; if error return false or complete true
         FirebaseController.firebase.childByAppendingPath(EVENT_ENDPOINT).childByAutoId().setValue(event.jsonValue) { (error, firebase) in
             if let error = error {
@@ -116,15 +91,12 @@ class EventController {
                 completion(success: false, event: nil)
                 return
             }
-            // We need to append the event to the array on the shared instance locally //// From EventController Test /////
             GeoFireController.setLocation(firebase.key, location: location, completion: { (success) in
                 if success {
-                    UserController.sharedInstance.currentUser.eventIds.append(firebase.key)
-                    UserController.sharedInstance.currentUser.save()
-                    event.identifier = firebase.key
                     completion(success: true, event: event)
+                    print("finished true")
                 } else {
-                    completion(success: false, event: nil)
+                    completion(success: false, event: event)
                 }
             })
         }
@@ -175,6 +147,13 @@ class EventController {
     
     // Deletes an event from firebase, from all users, and its location -> Completes with success
     func deleteEvent(event: Event, completion: (success: Bool) -> Void) {
+        
+        for (index, nextEvent) in self.events.enumerate() {
+            if nextEvent == event {
+                self.events.removeAtIndex(index)
+            }
+        }
+
         // Creates an array from an events members identifiers; if event does not have identifier complete false
         let userIDArray = event.members
         guard let eventID = event.identifier else { completion(success: false) ; return }
@@ -308,7 +287,6 @@ class EventController {
             completion(success: true)
         }
     }
-    
 }
 
 

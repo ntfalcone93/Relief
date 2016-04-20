@@ -19,9 +19,8 @@ class MapController: NSObject {
     init(delegate: MapUpdating) {
         self.delegate = delegate
         super.init()
-        if let initialLocationCoordinate = LocationController.sharedInstance.coreLocationManager.location {
-            delegate.centerMapOnLocation(initialLocationCoordinate)
-        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(removeAnnotation), name: "createEventFinished", object: nil)
     }
     
     // MARK: - Helper Methods
@@ -36,6 +35,11 @@ class MapController: NSObject {
         annotation.disasterEventID = event.identifier
         let circle = MKCircle(centerCoordinate: location.coordinate, radius: 1000)
         delegate.addEventOnMap(circle, annotation: annotation)
+    }
+    
+    func removeAnnotation() {
+        guard let currentAnnotation = currentAnnotation, currentOverlay = currentOverlay else { return }
+        delegate.removeAnnotation(currentAnnotation, overlay: currentOverlay)
     }
 }
 

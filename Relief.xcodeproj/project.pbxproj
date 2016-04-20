@@ -161,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				74BF48BE1CBE9F5D00273466 /* FirebaseChat */,
+				74286A4B1CC8447B005594E2 /* Broken */,
 				74B58D8B1CC050E400AD9B75 /* GeoFire */,
 				E6E1ACC01CBD92AE005A5792 /* View Controllers */,
 				740BF2DA1CBEED0600320A1A /* Controllers */,
@@ -209,14 +210,23 @@
 		740BF2DA1CBEED0600320A1A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				74B58DC51CC1596D00AD9B75 /* GeoFireController.swift */,
 				241620A61CBED891004883AE /* UserController.swift */,
 				240E69D81CC18E8D0030AF4F /* RevealViewController.swift */,
 				E6DC4CF41CC0371B00768D4E /* LocationController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		74286A4B1CC8447B005594E2 /* Broken */ = {
+			isa = PBXGroup;
+			children = (
+				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
+				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
+				74B58DC51CC1596D00AD9B75 /* GeoFireController.swift */,
 				E6DC4CF61CC0372800768D4E /* MapController.swift */,
 				74BF48C21CBEE83700273466 /* EventController.swift */,
 			);
-			name = Controllers;
+			name = Broken;
 			sourceTree = "<group>";
 		};
 		74B58D8B1CC050E400AD9B75 /* GeoFire */ = {
@@ -284,8 +294,6 @@
 		E6E1ACC01CBD92AE005A5792 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
-				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
 				E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */,
 				240E69DA1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift */,
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,

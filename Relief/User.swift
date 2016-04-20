@@ -47,7 +47,7 @@ class User: FirebaseType {
         self.firstName = firstName
         self.lastName = lastName
         self.identifier = identifier
-        print(json[eventIdsKey])
+        
         if let eventDic = json[eventIdsKey] as? [String : AnyObject]  {
             let eventKeys = Array(eventDic.keys)
             self.eventIds = eventKeys
