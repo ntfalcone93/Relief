@@ -31,6 +31,12 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     // MARK: - IBActions
+    @IBAction func toCurrentLocationTapped(sender: UIBarButtonItem) {
+        if let location = LocationController.sharedInstance.coreLocationManager.location {
+            self.centerMapOnLocation(location)
+        }
+    }
+    
     @IBAction func mapLongPressed(sender: UILongPressGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.Began {
             let location = sender.locationInView(mapView)

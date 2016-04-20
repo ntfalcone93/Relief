@@ -73,6 +73,11 @@
                                 <action selector="eventsButtonTapped:" destination="BYZ-38-t0r" id="MD7-PQ-bEV"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="LocationArrow" id="JOG-4P-Idr">
+                            <connections>
+                                <action selector="toCurrentLocationTapped:" destination="BYZ-38-t0r" id="TKy-md-nbd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="longGestureRecognizer" destination="kWG-0U-MOO" id="JTc-aS-hsf"/>
@@ -236,8 +241,11 @@
             <point key="canvasLocation" x="1633" y="-489"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LocationArrow" width="28" height="28"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HL1-fS-lTZ"/>
         <segue reference="ia3-0t-N0N"/>
+        <segue reference="y1W-HI-OCE"/>
     </inferredMetricsTieBreakers>
 </document>
