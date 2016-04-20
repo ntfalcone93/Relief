@@ -148,8 +148,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     
     func displayEventsForCurrentUser() {
         
-            self.mapView.removeAnnotations(self.mapView.annotations)
-            self.mapView.removeOverlays(self.mapView.overlays)
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.removeOverlays(self.mapView.overlays)
         
         let user = UserController.sharedInstance.currentUser
         EventController.sharedInstance.events = []
@@ -167,7 +167,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
                     }
                 })
             } else {
-                GeoFireController.queryAroundMe({ 
+                GeoFireController.queryAroundMe({
                     print("In Else Statement")
                 })
             }
@@ -175,10 +175,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func displayEvents() {
-        
-            self.mapView.removeAnnotations(self.mapView.annotations)
-            self.mapView.removeOverlays(self.mapView.overlays)
-        
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.removeOverlays(self.mapView.overlays)
         for event in EventController.sharedInstance.localEvents {
             self.mapManager?.addEventToMap(event)
         }
@@ -201,7 +199,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showCreateEvent" {
+            if segue.identifier == "showCreateEvent" {
             print(segue.destinationViewController)
             let destinationView = segue.destinationViewController as? UINavigationController
             let lastView = destinationView?.childViewControllers[0] as? CreateEventViewController

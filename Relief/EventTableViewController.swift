@@ -15,7 +15,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         EventController.sharedInstance.delegate = self
         // Do any additional setup after loading the view.
     }
@@ -26,7 +25,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     // MARK: - IBAction Functions
-    
     @IBAction func logoutButtonTapped(sender: UIButton) {
         UserController.sharedInstance.logOutUser { (success) in
             if success {
@@ -34,7 +32,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
-    
     
 }
 
@@ -57,6 +54,8 @@ extension EventTableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toDetailFromCell" {
+            // configure shit here
+            
             let navController = segue.destinationViewController as! UINavigationController
             let evc = navController.childViewControllers[0] as! EventViewController
             let cell = sender as! UITableViewCell

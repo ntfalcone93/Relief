@@ -14,7 +14,6 @@ enum MemberStatus {
 }
 
 class EventViewController: UIViewController {
-    
     // MARK: - IBOutlets
     @IBOutlet weak var joinButton: UIBarButtonItem!
     @IBOutlet var titleLabel: UILabel!

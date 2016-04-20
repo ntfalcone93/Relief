@@ -31,13 +31,11 @@ class GeoFireController {
         var localEventIDs = EventController.sharedInstance.localEvents.flatMap({$0.identifier})
         guard let center = LocationController.sharedInstance.coreLocationManager.location else { return }
         // Create circle query based on current position and meter radius
-        
         let circleQuery = geofire.queryAtLocation(center, withRadius: RADIUS_IN_METERS)
         circleQuery.observeEventType(.KeyEntered, withBlock: { (string, location) -> Void in
             if !eventIDs.contains(string) && !localEventIDs.contains(string) {
                 // initialize a new event and append it to the eventController
                 eventIDs.append(string)
-                
                 EventController.sharedInstance.fetchLocalEventWithEventID(string, completion: { (success) in
                     if success {
                         print("\(EventController.sharedInstance.events.count) events count")

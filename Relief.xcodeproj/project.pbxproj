@@ -50,6 +50,8 @@
 		E6E1ACC41CBD9C08005A5792 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */; };
 		E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */; };
 		E6E1ACC81CBD9C37005A5792 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */; };
+		E6F0F2771CC74A9600CCAA20 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F0F2761CC74A9600CCAA20 /* UIColor.swift */; };
+		E6F0F2791CC74AA000CCAA20 /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F0F2781CC74AA000CCAA20 /* AppearanceController.swift */; };
 		E6F7068D1CC69BC50096C89F /* DisasterAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F7068C1CC69BC50096C89F /* DisasterAnnotation.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +113,8 @@
 		E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E6F0F2761CC74A9600CCAA20 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		E6F0F2781CC74AA000CCAA20 /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		E6F7068C1CC69BC50096C89F /* DisasterAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisasterAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				021ADED41CBD7F0B00DCD798 /* AppDelegate.swift */,
+				E6F0F2761CC74A9600CCAA20 /* UIColor.swift */,
+				E6F0F2781CC74AA000CCAA20 /* AppearanceController.swift */,
 				021ADEDB1CBD7F0B00DCD798 /* Assets.xcassets */,
 				021ADEE01CBD7F0B00DCD798 /* Info.plist */,
 			);
@@ -374,12 +380,14 @@
 				74B58DBD1CC0567B00AD9B75 /* GFGeoHashQuery.m in Sources */,
 				E6DC4CF71CC0372800768D4E /* MapController.swift in Sources */,
 				74B58DD41CC20E7300AD9B75 /* Thread.swift in Sources */,
+				E6F0F2791CC74AA000CCAA20 /* AppearanceController.swift in Sources */,
 				74B58DBC1CC0567B00AD9B75 /* GFGeoHash.m in Sources */,
 				021ADEE71CBD814700DCD798 /* Event.swift in Sources */,
 				74B58DD01CC20E7300AD9B75 /* GlobalKeys.swift in Sources */,
 				021ADED51CBD7F0B00DCD798 /* AppDelegate.swift in Sources */,
 				E6E1ACC61CBD9C23005A5792 /* FeedViewController.swift in Sources */,
 				74B58DC61CC1596D00AD9B75 /* GeoFireController.swift in Sources */,
+				E6F0F2771CC74A9600CCAA20 /* UIColor.swift in Sources */,
 				74B58DBB1CC0567B00AD9B75 /* GFBase32Utils.m in Sources */,
 				74B58DB91CC0567B00AD9B75 /* GeoFire.m in Sources */,
 				E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */,
