@@ -761,14 +761,14 @@ const int FrontViewPositionNone = 0xff;
     _userInteractionStore = _contentView.userInteractionEnabled;
 }
 
-
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
 - (NSUInteger)supportedInterfaceOrientations
+#else
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+#endif
 {
-    // we could have simply not implemented this, but we choose to call super to make explicit that we
-    // want the default behavior.
-    return [super supportedInterfaceOrientations];
+    return UIInterfaceOrientationMaskPortrait;
 }
-
 
 #pragma mark - Public methods and property accessors
 

@@ -42,7 +42,6 @@
 		74BF48AF1CBE9EE900273466 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48AE1CBE9EE900273466 /* libc++.tbd */; };
 		74BF48C31CBEE83700273466 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48C21CBEE83700273466 /* EventController.swift */; };
 		74C457321CBDD18A00B363AA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C457311CBDD18A00B363AA /* SWRevealViewController.m */; };
-		E6D7144B1CC5608500B747FC /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D7144A1CC5608500B747FC /* RevealViewController.swift */; };
 		E6DC4CF51CC0371B00768D4E /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DC4CF41CC0371B00768D4E /* LocationController.swift */; };
 		E6DC4CF71CC0372800768D4E /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DC4CF61CC0372800768D4E /* MapController.swift */; };
 		E6E1ACBD1CBD9022005A5792 /* CreateEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6E1ACBC1CBD9022005A5792 /* CreateEvent.storyboard */; };
@@ -104,7 +103,6 @@
 		74C4572F1CBDD18900B363AA /* Relief-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Relief-Bridging-Header.h"; sourceTree = "<group>"; };
 		74C457301CBDD18A00B363AA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		74C457311CBDD18A00B363AA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		E6D7144A1CC5608500B747FC /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
 		E6DC4CF41CC0371B00768D4E /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		E6DC4CF61CC0372800768D4E /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		E6E1ACBC1CBD9022005A5792 /* CreateEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateEvent.storyboard; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 		E6E1ACC01CBD92AE005A5792 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E6D7144A1CC5608500B747FC /* RevealViewController.swift */,
 				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
 				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
 				E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */,
@@ -393,7 +390,6 @@
 				74B58DD61CC20E7300AD9B75 /* FirebaseChat.swift in Sources */,
 				74B58DD11CC20E7300AD9B75 /* FirebaseController.swift in Sources */,
 				74B58DBA1CC0567B00AD9B75 /* GFQuery.m in Sources */,
-				E6D7144B1CC5608500B747FC /* RevealViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
