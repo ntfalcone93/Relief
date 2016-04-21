@@ -11,7 +11,6 @@ import Foundation
 let RADIUS_IN_METERS = Double(40)
 
 class GeoFireController {
-    
     static let geofire = GeoFire(firebaseRef: FirebaseController.firebase.childByAppendingPath(LOCATION_ENDPOINT))
     
     static func setLocation(eventID: String, location: CLLocation, completion: (success : Bool) -> Void) {

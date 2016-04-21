@@ -138,7 +138,11 @@ class EventViewController: UIViewController {
         if let event = event {
             self.titleLabel.text = event.title
             self.typeLabel.text = event.type
-            self.memberCountLabel.text = "\(event.members.count) Members"
+            if self.event?.members.count < 2 {
+                self.memberCountLabel.text = "\(event.members.count) Member"
+            } else {
+                self.memberCountLabel.text = "\(event.members.count) Members"
+            }
             self.collectionPointLabel.text = event.collectionPoint
             self.needsLabel.text = "\(event.needs.count) Needs"
             guard let identifier = UserController.sharedInstance.currentUser.identifier else { return }
@@ -175,6 +179,11 @@ extension EventViewController: UITableViewDataSource, UITableViewDelegate {
         if let event = self.event {
             let need = event.needs[indexPath.row]
             cell.textLabel?.text = need
+            
+//            cell.backgroundColor = [UIColor clearColor];
+//            cell.backgroundView = [[UIView new] autorelease];
+//            cell.selectedBackgroundView = [[UIView new] autorelease];
+            
         }
         return cell
     }

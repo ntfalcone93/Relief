@@ -26,21 +26,26 @@
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-G5-4Cm">
                                 <rect key="frame" x="20" y="88" width="560" height="30"/>
+                                <color key="backgroundColor" red="0.15408213350785338" green="0.15408213350785338" blue="0.15408213350785338" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tf-7n-rC5">
-                                <rect key="frame" x="0.0" y="163" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="143" width="600" height="216"/>
+                                <color key="backgroundColor" red="0.2680587369109948" green="0.2680587369109948" blue="0.2680587369109948" alpha="0.0" colorSpace="calibratedRGB"/>
                             </pickerView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dWf-NJ-J06">
-                                <rect key="frame" x="20" y="389" width="560" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dWf-NJ-J06">
+                                <rect key="frame" x="20" y="379" width="560" height="30"/>
+                                <color key="backgroundColor" red="0.16455333769633507" green="0.16455333769633507" blue="0.16455333769633507" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Event type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDA-xi-d6a">
-                                <rect key="frame" x="20" y="140" width="560" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Event type" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDA-xi-d6a">
+                                <rect key="frame" x="20" y="128" width="560" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.34295238874345546" green="0.34295238874345546" blue="0.34295238874345546" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.9084587696335078" green="0.9084587696335078" blue="0.9084587696335078" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -51,20 +56,20 @@
                             <constraint firstItem="kCf-WH-GOV" firstAttribute="leading" secondItem="POT-3m-gpZ" secondAttribute="leading" constant="20" id="4yi-86-NEX"/>
                             <constraint firstItem="dWf-NJ-J06" firstAttribute="leading" secondItem="POT-3m-gpZ" secondAttribute="leading" constant="20" id="7fT-Dx-Kns"/>
                             <constraint firstItem="TSJ-G5-4Cm" firstAttribute="top" secondItem="i3k-9R-Gbo" secondAttribute="bottom" constant="24" id="Ctk-jZ-bDq"/>
-                            <constraint firstItem="sDA-xi-d6a" firstAttribute="top" secondItem="TSJ-G5-4Cm" secondAttribute="bottom" constant="22" id="Fqk-oG-Rml"/>
+                            <constraint firstItem="sDA-xi-d6a" firstAttribute="top" secondItem="TSJ-G5-4Cm" secondAttribute="bottom" constant="10" id="Fqk-oG-Rml"/>
                             <constraint firstItem="sDA-xi-d6a" firstAttribute="centerX" secondItem="POT-3m-gpZ" secondAttribute="centerX" id="JOp-8E-xN8"/>
                             <constraint firstAttribute="trailing" secondItem="kCf-WH-GOV" secondAttribute="trailing" constant="20" id="Lq8-Uk-RBW"/>
                             <constraint firstItem="TSJ-G5-4Cm" firstAttribute="leading" secondItem="POT-3m-gpZ" secondAttribute="leading" constant="20" id="PLe-n7-CJh"/>
                             <constraint firstAttribute="trailing" secondItem="0tf-7n-rC5" secondAttribute="trailing" id="U2S-dq-12s"/>
                             <constraint firstItem="dWf-NJ-J06" firstAttribute="centerX" secondItem="POT-3m-gpZ" secondAttribute="centerX" id="UeM-Cd-u5G"/>
-                            <constraint firstItem="kCf-WH-GOV" firstAttribute="top" secondItem="dWf-NJ-J06" secondAttribute="bottom" constant="74" id="bYL-CH-pKX"/>
+                            <constraint firstItem="kCf-WH-GOV" firstAttribute="top" secondItem="dWf-NJ-J06" secondAttribute="bottom" constant="84" id="bYL-CH-pKX"/>
                             <constraint firstItem="0tf-7n-rC5" firstAttribute="leading" secondItem="POT-3m-gpZ" secondAttribute="leading" id="cYZ-yk-X1G"/>
                             <constraint firstAttribute="trailing" secondItem="dWf-NJ-J06" secondAttribute="trailing" constant="20" id="d5c-Cs-qPa"/>
                             <constraint firstItem="sDA-xi-d6a" firstAttribute="leading" secondItem="POT-3m-gpZ" secondAttribute="leading" constant="20" id="ffx-QU-BOa"/>
-                            <constraint firstItem="dWf-NJ-J06" firstAttribute="top" secondItem="0tf-7n-rC5" secondAttribute="bottom" constant="10" id="gDE-Nw-uwE"/>
+                            <constraint firstItem="dWf-NJ-J06" firstAttribute="top" secondItem="0tf-7n-rC5" secondAttribute="bottom" constant="20" id="gDE-Nw-uwE"/>
                             <constraint firstItem="kCf-WH-GOV" firstAttribute="centerX" secondItem="POT-3m-gpZ" secondAttribute="centerX" id="hAU-GU-uBD"/>
                             <constraint firstAttribute="trailing" secondItem="sDA-xi-d6a" secondAttribute="trailing" constant="20" id="hjB-Hd-Por"/>
-                            <constraint firstItem="0tf-7n-rC5" firstAttribute="top" secondItem="sDA-xi-d6a" secondAttribute="bottom" constant="8" id="jMN-IO-NI7"/>
+                            <constraint firstItem="0tf-7n-rC5" firstAttribute="top" secondItem="sDA-xi-d6a" secondAttribute="bottom" id="jMN-IO-NI7"/>
                             <constraint firstItem="0tf-7n-rC5" firstAttribute="centerX" secondItem="POT-3m-gpZ" secondAttribute="centerX" id="o9M-Xw-xEt"/>
                         </constraints>
                     </view>
@@ -77,6 +82,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressTextField" destination="dWf-NJ-J06" id="nK0-R2-kXs"/>
+                        <outlet property="confirmButton" destination="kCf-WH-GOV" id="R9m-tu-55d"/>
                         <outlet property="titleTextField" destination="TSJ-G5-4Cm" id="igi-Ht-ovw"/>
                         <outlet property="typePickerView" destination="0tf-7n-rC5" id="Uqd-2F-JJA"/>
                     </connections>

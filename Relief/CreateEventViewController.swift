@@ -14,10 +14,10 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var typePickerView: UIPickerView!
     @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet var confirmButton: UIButton!
     
     var currentEventType: EventType?
     var delegate: MapViewController?
-    
     
     // MARK: - IBActions
     @IBAction func confirmButtonTapped(sender: UIButton) {
@@ -70,8 +70,9 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerViewDataSource[row].rawValue
+    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let string = pickerViewDataSource[row].rawValue
+        return NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -84,7 +85,15 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         self.typePickerView.delegate = self
         titleTextField.delegate = self
         addressTextField.delegate = self
+        self.configureView()
     }
+    
+    func configureView() {
+        self.titleTextField.attributedPlaceholder = NSAttributedString(string: "Title", attributes: [NSForegroundColorAttributeName: UIColor.reliefDarkYellow()])
+        self.confirmButton.setBackgroundImage(UIImage(named: "login"), forState: UIControlState.Normal)
+        self.confirmButton.tintColor = UIColor.reliefBlack()
+    }
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()

@@ -29,7 +29,6 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
     }
     
     // MARK: - IBActions
-    
     @IBAction func sendButtonTapped(sender: UIButton) {
         let firstName = UserController.sharedInstance.currentUser.firstName
         let lastName = UserController.sharedInstance.currentUser.lastName ?? ""
@@ -43,7 +42,6 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
 }
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatManager?.messages.count ?? 0
     }
@@ -51,9 +49,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)
         let message = chatManager?.messages[indexPath.row]
-        
         cell.textLabel?.text = message?.messageBodyText
-        
         return cell
     }
     

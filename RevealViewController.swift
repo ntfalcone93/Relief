@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 
 class RevealViewController: SWRevealViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         if UserController.sharedInstance.currentUser == nil {
             performSegueWithIdentifier("presentLoginViewController", sender: nil)
         }

@@ -68,8 +68,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+<<<<<<< HEAD
+=======
         // When the user taps on the callout button
         
+>>>>>>> develop
         // identify the event and segue to the event detail screen
 
         if let annotation = view.annotation as? DisasterAnnotation {
@@ -120,7 +123,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayEvents), name: "NewLocalEvent", object: nil)
-        
         self.longGestureRecognizer.delegate = self
         mapManager = MapController(delegate: self)
         mapView.delegate = self
@@ -143,7 +145,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         }
     }
     
-    
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         let circle = MKCircleRenderer(overlay: overlay)
         circle.strokeColor = CIRCLE_STROKE_COLOR
@@ -154,7 +155,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func displayEventsForCurrentUser() {
-        
+    
     }
     
     func displayEvents() {
@@ -163,22 +164,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         for event in EventController.sharedInstance.events {
             mapManager?.addEventToMap(event)
         }
-    }
-    
-    func removeEventGeoFire(eventID: String) {
-        EventController.sharedInstance.fetchEventWithEventID(eventID, completion: { (event) in
-            guard let event = event else { return }
-            objc_sync_enter(EventController.sharedInstance.events)
-            for (index, nextEvent) in EventController.sharedInstance.events.enumerate() {
-                if nextEvent == event {
-                    print(nextEvent.identifier)
-                    print(event.identifier)
-                    EventController.sharedInstance.events.removeAtIndex(index)
-                }
-            }
-            objc_sync_exit(EventController.sharedInstance.events)
-            NSNotificationCenter.defaultCenter().postNotificationName("NewLocalEvent", object: nil)
-        })
     }
     
     func makeActionSheet(controllerTitle: String, controllerMessage: String, annotation: MKAnnotation, overlay: MKOverlay) {

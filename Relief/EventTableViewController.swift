@@ -9,13 +9,10 @@
 import UIKit
 
 class EventTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EventsUpdating {
-    
     @IBOutlet var tableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         EventController.sharedInstance.delegate = self
         // Do any additional setup after loading the view.
     }
@@ -26,7 +23,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     // MARK: - IBAction Functions
-    
     @IBAction func logoutButtonTapped(sender: UIButton) {
         UserController.sharedInstance.logOutUser { (success) in
             if success {
@@ -34,7 +30,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
-    
     
 }
 

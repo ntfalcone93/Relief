@@ -30,7 +30,7 @@ extension UIColor {
     }
     
     static func reliefAlphaBlack() -> UIColor {
-        return UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        return UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.85)
     }
 
 }
