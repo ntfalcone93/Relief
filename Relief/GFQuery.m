@@ -505,6 +505,35 @@
     }
 }
 
+
+- (void)observeEventOfTypeValue: (GFQueryResultsBlock)block
+{
+    NSArray *geoHashQueries = (NSArray *)[self queriesForCurrentCriteria];
+    NSMutableDictionary *results = [[NSMutableDictionary alloc] init];
+    dispatch_group_t tunnel = dispatch_group_create();
+    [geoHashQueries enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        dispatch_group_enter(tunnel);
+        FQuery *firebaseQuery = [self firebaseForGeoHashQuery:obj];
+        [firebaseQuery observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            if (snapshot.value != [NSNull null]) {
+                NSDictionary *snapshotDictionary = snapshot.value;
+                [snapshotDictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                    CLLocation *location = [GeoFire locationFromValue:obj];
+                    if ([self locationIsInQuery:location]) {
+                        [results setValue:location forKey:key];
+                    }
+                }];
+            } else {
+                // TODO: Error handling
+            }
+            dispatch_group_leave(tunnel);
+        }];
+    }];
+    dispatch_group_notify(tunnel, dispatch_get_main_queue(), ^{
+        block(results);
+    });
+}
+
 - (FirebaseHandle)observeReadyWithBlock:(GFReadyBlock)block
 {
     @synchronized(self) {

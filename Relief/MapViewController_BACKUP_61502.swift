@@ -68,8 +68,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+<<<<<<< HEAD
+=======
         // When the user taps on the callout button
         
+>>>>>>> develop
         // identify the event and segue to the event detail screen
 
         if let annotation = view.annotation as? DisasterAnnotation {

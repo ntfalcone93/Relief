@@ -14,6 +14,8 @@
 		021ADEE71CBD814700DCD798 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021ADEE61CBD814700DCD798 /* Event.swift */; };
 		021ADEEC1CBD83F800DCD798 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021ADEEB1CBD83F800DCD798 /* Detail.storyboard */; };
 		021ADEEE1CBD840400DCD798 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021ADEED1CBD840400DCD798 /* Login.storyboard */; };
+		240E69D91CC18E8D0030AF4F /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E69D81CC18E8D0030AF4F /* RevealViewController.swift */; };
+		240E69DB1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E69DA1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift */; };
 		241620A51CBEC03F004883AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241620A41CBEC03F004883AE /* User.swift */; };
 		241620A71CBED891004883AE /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241620A61CBED891004883AE /* UserController.swift */; };
 		74B58DA51CC0543200AD9B75 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B58DA41CC0543200AD9B75 /* CoreLocation.framework */; };
@@ -41,7 +43,6 @@
 		74BF48AF1CBE9EE900273466 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BF48AE1CBE9EE900273466 /* libc++.tbd */; };
 		74BF48C31CBEE83700273466 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF48C21CBEE83700273466 /* EventController.swift */; };
 		74C457321CBDD18A00B363AA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C457311CBDD18A00B363AA /* SWRevealViewController.m */; };
-		E6D7144B1CC5608500B747FC /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D7144A1CC5608500B747FC /* RevealViewController.swift */; };
 		E6DC4CF51CC0371B00768D4E /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DC4CF41CC0371B00768D4E /* LocationController.swift */; };
 		E6DC4CF71CC0372800768D4E /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DC4CF61CC0372800768D4E /* MapController.swift */; };
 		E6E1ACBD1CBD9022005A5792 /* CreateEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6E1ACBC1CBD9022005A5792 /* CreateEvent.storyboard */; };
@@ -65,6 +66,8 @@
 		021ADEE61CBD814700DCD798 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = ../Event.swift; sourceTree = "<group>"; };
 		021ADEEB1CBD83F800DCD798 /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		021ADEED1CBD840400DCD798 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		240E69D81CC18E8D0030AF4F /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RevealViewController.swift; path = ../RevealViewController.swift; sourceTree = "<group>"; };
+		240E69DA1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		241620A41CBEC03F004883AE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		241620A61CBED891004883AE /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		74B58DA41CC0543200AD9B75 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -104,7 +107,6 @@
 		74C4572F1CBDD18900B363AA /* Relief-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Relief-Bridging-Header.h"; sourceTree = "<group>"; };
 		74C457301CBDD18A00B363AA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		74C457311CBDD18A00B363AA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		E6D7144A1CC5608500B747FC /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
 		E6DC4CF41CC0371B00768D4E /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		E6DC4CF61CC0372800768D4E /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		E6E1ACBC1CBD9022005A5792 /* CreateEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateEvent.storyboard; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				74BF48BE1CBE9F5D00273466 /* FirebaseChat */,
+				74286A4B1CC8447B005594E2 /* Broken */,
 				74B58D8B1CC050E400AD9B75 /* GeoFire */,
 				E6E1ACC01CBD92AE005A5792 /* View Controllers */,
 				740BF2DA1CBEED0600320A1A /* Controllers */,
@@ -207,13 +210,23 @@
 		740BF2DA1CBEED0600320A1A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				74B58DC51CC1596D00AD9B75 /* GeoFireController.swift */,
 				241620A61CBED891004883AE /* UserController.swift */,
+				240E69D81CC18E8D0030AF4F /* RevealViewController.swift */,
 				E6DC4CF41CC0371B00768D4E /* LocationController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		74286A4B1CC8447B005594E2 /* Broken */ = {
+			isa = PBXGroup;
+			children = (
+				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
+				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
+				74B58DC51CC1596D00AD9B75 /* GeoFireController.swift */,
 				E6DC4CF61CC0372800768D4E /* MapController.swift */,
 				74BF48C21CBEE83700273466 /* EventController.swift */,
 			);
-			name = Controllers;
+			name = Broken;
 			sourceTree = "<group>";
 		};
 		74B58D8B1CC050E400AD9B75 /* GeoFire */ = {
@@ -281,10 +294,8 @@
 		E6E1ACC01CBD92AE005A5792 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E6D7144A1CC5608500B747FC /* RevealViewController.swift */,
-				E6E1ACC71CBD9C37005A5792 /* MapViewController.swift */,
-				E6E1ACC11CBD97CB005A5792 /* CreateEventViewController.swift */,
 				E6E1ACBE1CBD92A9005A5792 /* LoginViewController.swift */,
+				240E69DA1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift */,
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,
 				74B58DC71CC17B1000AD9B75 /* EventTableViewController.swift */,
 				E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */,
@@ -324,7 +335,7 @@
 				TargetAttributes = {
 					021ADED01CBD7F0B00DCD798 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 22C3FKDR9Y;
+						DevelopmentTeam = 84RFPT2YUF;
 					};
 				};
 			};
@@ -382,6 +393,7 @@
 				74B58DD41CC20E7300AD9B75 /* Thread.swift in Sources */,
 				E6F0F27D1CC7F79A00CCAA20 /* AppearanceController.swift in Sources */,
 				74B58DBC1CC0567B00AD9B75 /* GFGeoHash.m in Sources */,
+				240E69D91CC18E8D0030AF4F /* RevealViewController.swift in Sources */,
 				021ADEE71CBD814700DCD798 /* Event.swift in Sources */,
 				74B58DD01CC20E7300AD9B75 /* GlobalKeys.swift in Sources */,
 				021ADED51CBD7F0B00DCD798 /* AppDelegate.swift in Sources */,
@@ -394,10 +406,10 @@
 				E6F7068D1CC69BC50096C89F /* DisasterAnnotation.swift in Sources */,
 				E6DC4CF51CC0371B00768D4E /* LocationController.swift in Sources */,
 				74BF48C31CBEE83700273466 /* EventController.swift in Sources */,
+				240E69DB1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift in Sources */,
 				74B58DD61CC20E7300AD9B75 /* FirebaseChat.swift in Sources */,
 				74B58DD11CC20E7300AD9B75 /* FirebaseController.swift in Sources */,
 				74B58DBA1CC0567B00AD9B75 /* GFQuery.m in Sources */,
-				E6D7144B1CC5608500B747FC /* RevealViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

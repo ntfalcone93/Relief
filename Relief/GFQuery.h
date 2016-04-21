@@ -40,6 +40,7 @@ typedef NS_ENUM(NSUInteger, GFEventType) {
 };
 
 typedef void (^GFQueryResultBlock) (NSString *key, CLLocation *location);
+typedef void (^GFQueryResultsBlock) (NSDictionary *values);
 typedef void (^GFReadyBlock) ();
 
 /**
@@ -86,6 +87,8 @@ typedef void (^GFReadyBlock) ();
  */
 - (FirebaseHandle)observeReadyWithBlock:(GFReadyBlock)block;
 
+
+- (void)observeEventOfTypeValue: (GFQueryResultsBlock)block;
 /**
  * Removes a callback with a given FirebaseHandle. After this no further updates are received for this handle.
  * @param handle The handle that was returned by observeEventType:withBlock:

@@ -31,12 +31,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     // MARK: - IBActions
-    @IBAction func toCurrentLocationTapped(sender: UIBarButtonItem) {
-        if let location = LocationController.sharedInstance.coreLocationManager.location {
-            self.centerMapOnLocation(location)
-        }
-    }
-    
     @IBAction func mapLongPressed(sender: UILongPressGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.Began {
             let location = sender.locationInView(mapView)
@@ -71,7 +65,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         // When the user taps on the callout button
         
         // identify the event and segue to the event detail screen
-
+        // We could add an annotation to our event model.
         if let annotation = view.annotation as? DisasterAnnotation {
             for event in EventController.sharedInstance.events {
                 if event.identifier == annotation.disasterEventID {
@@ -178,15 +172,15 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showCreateEvent" {
+            print(segue.destinationViewController)
             let destinationView = segue.destinationViewController as! UINavigationController
             let lastView = destinationView.childViewControllers[0] as! CreateEventViewController
             lastView.delegate = self
-            lastView.view.backgroundColor = UIColor.reliefAlphaBlack()
+            lastView.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
         } else if segue.identifier == "toDetailfromMap" {
             let destinationViewController = segue.destinationViewController as! UINavigationController
             let lastView = destinationViewController.childViewControllers[0] as! EventViewController
             lastView.event = self.currentEvent!
-            lastView.view.backgroundColor = UIColor.reliefAlphaBlack()
         }
     }
     
