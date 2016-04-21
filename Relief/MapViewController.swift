@@ -67,10 +67,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        // When the user taps on the callout button
-        print("calloutbuttontapped")
         // identify the event and segue to the event detail screen
-        // We could add an annotation to our event model.
+
         if let annotation = view.annotation as? DisasterAnnotation {
             for event in EventController.sharedInstance.localEvents {
                 if event.identifier == annotation.disasterEventID {
@@ -204,7 +202,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showCreateEvent" {
-            print(segue.destinationViewController)
             let destinationView = segue.destinationViewController as! UINavigationController
             let lastView = destinationView.childViewControllers[0] as! CreateEventViewController
             lastView.delegate = self

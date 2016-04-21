@@ -103,7 +103,6 @@ class LoginViewController: UIViewController {
         lastNameTextField.hidden = false
         logInButton.setTitle("Sign Up", forState: .Normal)
         createAccountButton.setTitle("Log In", forState: .Normal)
-        
     }
     
     @IBAction func createAccountButtonTapped(sender: UIButton) {
@@ -123,7 +122,6 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         viewForLogin()
     }
     
@@ -139,6 +137,13 @@ class LoginViewController: UIViewController {
         self.tapGetureRecognizer.cancelsTouchesInView = true
         self.tapGetureRecognizer.addTarget(self, action: #selector(self.dismissKeyboards))
         self.view.addGestureRecognizer(self.tapGetureRecognizer)
+        self.configureViewElements()
+    }
+    
+    func configureViewElements() {
+        self.logInButton.setBackgroundImage(UIImage.init(named: "login"), forState: UIControlState.Normal)
+        self.logInButton.tintColor = UIColor.reliefBlack()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
     }
     
 }
