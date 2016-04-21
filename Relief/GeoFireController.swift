@@ -36,7 +36,16 @@ class GeoFireController {
         }
         
         circleQuery.observeEventType(.KeyExited) { (eventID, location) in
-            NSNotificationCenter.defaultCenter().postNotificationName("NewLocalEvent", object: nil)
+            circleQuery.observeEventOfTypeValue({ (dictionary) in
+                EventController.sharedInstance.events = []
+                for event in dictionary {
+                    EventController.sharedInstance.fetchEventWithEventID(event.0 as! String, completion: { (event) in
+                        print(event)
+                        NSNotificationCenter.defaultCenter().postNotificationName("NewLocalEvent", object: nil)
+                    })
+                }
+            })
+            
         }
     }
 }
