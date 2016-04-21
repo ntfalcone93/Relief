@@ -145,15 +145,15 @@ class EventController {
         
     }
     
-    func deleteEventFromArray(event: Event) {
-        
-    }
-    
     // Deletes an event from firebase, from all users, and its location -> Completes with success
     func deleteEvent(event: Event, completion: (success: Bool) -> Void) {
         
-        deleteEventFromArray(event)
-        
+        for (index, nextEvent) in self.events.enumerate() {
+            if nextEvent == event {
+                self.events.removeAtIndex(index)
+            }
+        }
+
         // Creates an array from an events members identifiers; if event does not have identifier complete false
         let userIDArray = event.members
         guard let eventID = event.identifier else { completion(success: false) ; return }

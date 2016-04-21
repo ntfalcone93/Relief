@@ -514,7 +514,7 @@
     [geoHashQueries enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         dispatch_group_enter(tunnel);
         FQuery *firebaseQuery = [self firebaseForGeoHashQuery:obj];
-        [firebaseQuery observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        [firebaseQuery observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             if (snapshot.value != [NSNull null]) {
                 NSDictionary *snapshotDictionary = snapshot.value;
                 [snapshotDictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
