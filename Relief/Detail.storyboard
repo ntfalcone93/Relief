@@ -182,27 +182,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message Text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vSv-vj-fiJ">
-                                <rect key="frame" x="9" y="550" width="509" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHT-9m-6Qc">
-                                <rect key="frame" x="526" y="549" width="54" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="54" id="jRd-lr-evA"/>
-                                </constraints>
-                                <state key="normal" title="Send"/>
-                                <connections>
-                                    <action selector="sendButtonTapped:" destination="lpY-oo-7hj" eventType="touchUpInside" id="CPW-MR-gWZ"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EeK-rg-KVf">
                                 <rect key="frame" x="9" y="72" width="571" height="469"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" rowHeight="93" id="4s4-mp-Ra6" customClass="ChatTableViewCell" customModule="Relief" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="571" height="93"/>
+                                        <rect key="frame" x="0.0" y="92" width="571" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4s4-mp-Ra6" id="8n2-gx-biP">
                                             <rect key="frame" x="0.0" y="0.0" width="571" height="92.5"/>
@@ -245,26 +230,102 @@
                                     <outlet property="delegate" destination="lpY-oo-7hj" id="nJ6-ne-mLS"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chR-ML-oIe">
+                                <rect key="frame" x="0.0" y="549" width="600" height="51"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message Text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vSv-vj-fiJ">
+                                        <rect key="frame" x="8" y="11" width="509" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="509" id="gga-33-lZI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHT-9m-6Qc">
+                                        <rect key="frame" x="525" y="11" width="54" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="54" id="HoR-eq-Ukb"/>
+                                        </constraints>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendButtonTapped:" destination="lpY-oo-7hj" eventType="touchUpInside" id="CPW-MR-gWZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="vSv-vj-fiJ" secondAttribute="bottom" constant="2" id="2Ta-vy-vPi"/>
+                                    <constraint firstAttribute="height" constant="51" id="97r-yX-aTI"/>
+                                    <constraint firstAttribute="trailing" secondItem="UHT-9m-6Qc" secondAttribute="trailing" constant="21" id="EoC-OU-6lx"/>
+                                    <constraint firstItem="UHT-9m-6Qc" firstAttribute="top" secondItem="chR-ML-oIe" secondAttribute="top" constant="11" id="IJE-zg-FwH"/>
+                                    <constraint firstItem="vSv-vj-fiJ" firstAttribute="top" secondItem="chR-ML-oIe" secondAttribute="topMargin" constant="3" id="hgD-Aq-UsQ"/>
+                                    <constraint firstItem="vSv-vj-fiJ" firstAttribute="leading" secondItem="chR-ML-oIe" secondAttribute="leadingMargin" id="kQc-yP-D5a"/>
+                                    <constraint firstAttribute="bottom" secondItem="UHT-9m-6Qc" secondAttribute="bottom" constant="10" id="mRV-mS-drV"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="EeK-rg-KVf" firstAttribute="bottom" secondItem="rXa-uo-d43" secondAttribute="top" constant="-59" id="1ar-KF-gWd"/>
+                            <constraint firstAttribute="trailing" secondItem="chR-ML-oIe" secondAttribute="trailing" id="5Xq-ud-E0i"/>
+                            <constraint firstItem="chR-ML-oIe" firstAttribute="top" secondItem="EeK-rg-KVf" secondAttribute="bottom" constant="8" id="6jQ-Ms-8Pe"/>
                             <constraint firstItem="EeK-rg-KVf" firstAttribute="leading" secondItem="K9n-SZ-LOa" secondAttribute="leading" constant="9" id="8NA-zv-JVw"/>
-                            <constraint firstItem="vSv-vj-fiJ" firstAttribute="baseline" secondItem="UHT-9m-6Qc" secondAttribute="baseline" id="CW1-xs-5Ib"/>
-                            <constraint firstItem="UHT-9m-6Qc" firstAttribute="trailing" secondItem="K9n-SZ-LOa" secondAttribute="trailingMargin" id="HK4-BL-rGK"/>
                             <constraint firstAttribute="trailing" secondItem="EeK-rg-KVf" secondAttribute="trailing" constant="20" id="I0R-8k-65K"/>
-                            <constraint firstAttribute="bottom" secondItem="vSv-vj-fiJ" secondAttribute="bottom" constant="20" symbolic="YES" id="IX6-f5-AlK"/>
                             <constraint firstItem="EeK-rg-KVf" firstAttribute="top" secondItem="lQg-PP-w0E" secondAttribute="bottom" constant="8" id="JTO-yx-dvq"/>
-                            <constraint firstItem="vSv-vj-fiJ" firstAttribute="leading" secondItem="K9n-SZ-LOa" secondAttribute="leadingMargin" constant="-11" id="ShI-TZ-tCa"/>
-                            <constraint firstItem="UHT-9m-6Qc" firstAttribute="leading" secondItem="vSv-vj-fiJ" secondAttribute="trailing" constant="8" symbolic="YES" id="eSA-ga-bbk"/>
-                            <constraint firstItem="UHT-9m-6Qc" firstAttribute="top" secondItem="EeK-rg-KVf" secondAttribute="bottom" constant="8" id="nFx-bT-y7w"/>
+                            <constraint firstItem="rXa-uo-d43" firstAttribute="top" secondItem="chR-ML-oIe" secondAttribute="bottom" id="U5t-EY-CVS"/>
+                            <constraint firstItem="chR-ML-oIe" firstAttribute="leading" secondItem="K9n-SZ-LOa" secondAttribute="leading" id="vFg-Q1-LpP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6jQ-Ms-8Pe"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="messageTextField" destination="vSv-vj-fiJ" id="u4w-af-Teb"/>
+                        <outlet property="fakeMessageTextField" destination="vSv-vj-fiJ" id="9ci-d1-nXo"/>
+                        <outlet property="fakeSendButton" destination="UHT-9m-6Qc" id="VYN-xt-OEp"/>
+                        <outlet property="fakeView" destination="chR-ML-oIe" id="dw4-KY-fF1"/>
+                        <outlet property="messageTextField" destination="2T8-T9-64i" id="6mU-fX-V6G"/>
+                        <outlet property="realSendButton" destination="n7o-zU-2kG" id="Zdp-vd-dYv"/>
+                        <outlet property="realView" destination="fHm-Jx-UZW" id="3zI-Y7-bUh"/>
+                        <outlet property="tableViewConstraint" destination="1ar-KF-gWd" id="e71-rH-3I5"/>
                         <outlet property="tableview" destination="EeK-rg-KVf" id="xxf-4p-f0o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJZ-fh-LFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHm-Jx-UZW">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message Text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2T8-T9-64i">
+                            <rect key="frame" x="8" y="11" width="509" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="509" id="67C-AT-2Wq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7o-zU-2kG">
+                            <rect key="frame" x="525" y="11" width="54" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="54" id="1Um-qz-TLa"/>
+                            </constraints>
+                            <state key="normal" title="Send"/>
+                            <connections>
+                                <action selector="sendButtonTapped:" destination="lpY-oo-7hj" eventType="touchUpInside" id="aQW-GG-LnO"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="2T8-T9-64i" firstAttribute="top" secondItem="fHm-Jx-UZW" secondAttribute="topMargin" constant="3" id="KzC-k6-CR0"/>
+                        <constraint firstAttribute="height" constant="51" id="eIc-CC-oEb"/>
+                        <constraint firstAttribute="trailing" secondItem="n7o-zU-2kG" secondAttribute="trailing" constant="21" id="gJA-rX-98w"/>
+                        <constraint firstItem="n7o-zU-2kG" firstAttribute="top" secondItem="fHm-Jx-UZW" secondAttribute="top" constant="11" id="mpS-XB-wKG"/>
+                        <constraint firstAttribute="bottom" secondItem="n7o-zU-2kG" secondAttribute="bottom" constant="10" id="r7N-0w-p0I"/>
+                        <constraint firstAttribute="bottomMargin" secondItem="2T8-T9-64i" secondAttribute="bottom" constant="2" id="rZC-vW-yel"/>
+                        <constraint firstItem="2T8-T9-64i" firstAttribute="leading" secondItem="fHm-Jx-UZW" secondAttribute="leadingMargin" id="yQ9-Wa-qAg"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="2055" y="391"/>
         </scene>
