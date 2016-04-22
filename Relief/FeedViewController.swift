@@ -27,15 +27,13 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
     var chatManager: FirebaseChat?
     
     override func viewDidLoad() {
-        
         fakeMessageTextField.inputAccessoryView = realView
-        
         messageTextField.delegate = self
         fakeMessageTextField.delegate = self
-        
+        configureViewElements()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FeedViewController.keyboardShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FeedViewController.keyboardHidden(_:)), name: UIKeyboardDidHideNotification, object: nil)
-    
+        
         if let event = event {
             guard let identifier = event.identifier else { return }
             ThreadController.createThreadWithIdentifier(identifier, delegate: self, completion: { (threadManager) in
@@ -44,6 +42,15 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
                 })
             })
         }
+    }
+    
+    func configureViewElements() {
+        self.fakeSendButton.tintColor = UIColor.reliefYellow()
+        self.realSendButton.tintColor = UIColor.reliefYellow()
+        self.messageTextField.tintColor = UIColor.reliefPlaceHolderYellow()
+        self.messageTextField.tintColor = UIColor.reliefPlaceHolderYellow()
+        messageTextField.attributedPlaceholder = NSAttributedString(string: "Message Text", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        fakeMessageTextField.attributedPlaceholder = NSAttributedString(string: "Message Text", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
     }
     
     // MARK: - IBActions
@@ -58,12 +65,18 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
         textField.resignFirstResponder()
         fakeMessageTextField.resignFirstResponder()
         tableViewScrollToBottom()
+        fakeMessageTextField.attributedPlaceholder = NSAttributedString(string: "Message Text", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         return true
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
         self.messageTextField.becomeFirstResponder()
         realView.hidden = false
+        textField.placeholder = nil
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        textField.attributedPlaceholder = NSAttributedString(string: "Message Text", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
     }
     
     func keyboardShown(notification: NSNotification) {

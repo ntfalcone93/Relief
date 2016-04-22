@@ -83,7 +83,7 @@
                                 </state>
                                 <connections>
                                     <action selector="forgotButtonTapped:" destination="H8P-LG-q2B" eventType="touchUpInside" id="aSc-F4-y2J"/>
-                                    <segue destination="iYZ-3Q-Qq7" kind="presentation" id="ofR-qW-Gr3"/>
+                                    <segue destination="iYZ-3Q-Qq7" kind="presentation" identifier="toForgotPassword" modalPresentationStyle="overCurrentContext" id="ofR-qW-Gr3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlN-KV-awu">
@@ -158,8 +158,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email Address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dJ6-Jl-fsM">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dJ6-Jl-fsM">
                                 <rect key="frame" x="20" y="78" width="280" height="30"/>
+                                <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.60488696808510634" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="eYd-8D-Ngk"/>
                                 </constraints>
@@ -198,7 +199,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="GMU-wg-zlu" id="SD1-0E-Lwd"/>
                         <outlet property="emailTextField" destination="dJ6-Jl-fsM" id="oXp-Vm-mco"/>
+                        <outlet property="resetPasswordButton" destination="Vhy-rO-zpr" id="7x7-gz-Rrh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaQ-gX-n1j" userLabel="First Responder" sceneMemberID="firstResponder"/>

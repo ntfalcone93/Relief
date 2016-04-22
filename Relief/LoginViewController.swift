@@ -23,11 +23,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBActions
     @IBAction func loginButtobTapped(sender: UIButton) {
-        // check fields
-        // authuser
-        // handle errors
-        // set Current User
-        // dismiss view in completion
         if logInModeActivate {
             login()
         } else {
@@ -166,6 +161,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toForgotPassword" {
+            let destinationViewController = segue.destinationViewController
+            destinationViewController.view.backgroundColor = UIColor.reliefAlphaBlack()
+        }
     }
     
 }
