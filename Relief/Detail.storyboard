@@ -197,17 +197,47 @@
                                     <action selector="sendButtonTapped:" destination="lpY-oo-7hj" eventType="touchUpInside" id="CPW-MR-gWZ"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EeK-rg-KVf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EeK-rg-KVf">
                                 <rect key="frame" x="9" y="72" width="571" height="469"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" id="4s4-mp-Ra6">
-                                        <rect key="frame" x="0.0" y="28" width="571" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" rowHeight="93" id="4s4-mp-Ra6" customClass="ChatTableViewCell" customModule="Relief" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="571" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4s4-mp-Ra6" id="8n2-gx-biP">
-                                            <rect key="frame" x="0.0" y="0.0" width="571" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="571" height="92.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYt-RE-ciO">
+                                                    <rect key="frame" x="8" y="11" width="563" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="A0W-xf-c9x"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="21"/>
+                                                    <color key="textColor" red="0.15727929459746612" green="0.41757606760390265" blue="0.70727666884816753" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Message" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa3-hI-Mll">
+                                                    <rect key="frame" x="8" y="40" width="555" height="44.5"/>
+                                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gYt-RE-ciO" secondAttribute="trailing" id="EqR-8E-d39"/>
+                                                <constraint firstItem="gYt-RE-ciO" firstAttribute="top" secondItem="8n2-gx-biP" secondAttribute="top" constant="11" id="JjX-GA-HMh"/>
+                                                <constraint firstItem="Pa3-hI-Mll" firstAttribute="leading" secondItem="8n2-gx-biP" secondAttribute="leading" constant="8" id="ROC-iv-mqS"/>
+                                                <constraint firstItem="gYt-RE-ciO" firstAttribute="leading" secondItem="8n2-gx-biP" secondAttribute="leading" constant="8" id="aLC-GY-xJp"/>
+                                                <constraint firstAttribute="trailing" secondItem="Pa3-hI-Mll" secondAttribute="trailing" constant="8" id="bDs-gp-3M4"/>
+                                                <constraint firstAttribute="bottom" secondItem="Pa3-hI-Mll" secondAttribute="bottom" constant="8" id="e86-Xs-vZY"/>
+                                                <constraint firstItem="Pa3-hI-Mll" firstAttribute="top" secondItem="gYt-RE-ciO" secondAttribute="bottom" constant="8" id="v6i-1T-VyI"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="userMessageTextLabel" destination="Pa3-hI-Mll" id="f1B-we-ilG"/>
+                                            <outlet property="usernameTextLabel" destination="gYt-RE-ciO" id="ltr-qk-OWs"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

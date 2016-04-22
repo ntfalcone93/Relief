@@ -18,6 +18,7 @@
 		240E69DB1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E69DA1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift */; };
 		241620A51CBEC03F004883AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241620A41CBEC03F004883AE /* User.swift */; };
 		241620A71CBED891004883AE /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241620A61CBED891004883AE /* UserController.swift */; };
+		74286AB31CCA82D9005594E2 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74286AB21CCA82D9005594E2 /* ChatTableViewCell.swift */; };
 		74B58DA51CC0543200AD9B75 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B58DA41CC0543200AD9B75 /* CoreLocation.framework */; };
 		74B58DA71CC054A400AD9B75 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B58DA61CC054A400AD9B75 /* libsqlite3.tbd */; };
 		74B58DA91CC054AF00AD9B75 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B58DA81CC054AF00AD9B75 /* libz.tbd */; };
@@ -70,6 +71,7 @@
 		240E69DA1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		241620A41CBEC03F004883AE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		241620A61CBED891004883AE /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		74286AB21CCA82D9005594E2 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		74B58DA41CC0543200AD9B75 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		74B58DA61CC054A400AD9B75 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		74B58DA81CC054AF00AD9B75 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -299,6 +301,7 @@
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,
 				74B58DC71CC17B1000AD9B75 /* EventTableViewController.swift */,
 				E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */,
+				74286AB21CCA82D9005594E2 /* ChatTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -335,7 +338,7 @@
 				TargetAttributes = {
 					021ADED01CBD7F0B00DCD798 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 22C3FKDR9Y;
+						DevelopmentTeam = 84RFPT2YUF;
 					};
 				};
 			};
@@ -405,6 +408,7 @@
 				E6E1ACC21CBD97CB005A5792 /* CreateEventViewController.swift in Sources */,
 				E6F7068D1CC69BC50096C89F /* DisasterAnnotation.swift in Sources */,
 				E6DC4CF51CC0371B00768D4E /* LocationController.swift in Sources */,
+				74286AB31CCA82D9005594E2 /* ChatTableViewCell.swift in Sources */,
 				74BF48C31CBEE83700273466 /* EventController.swift in Sources */,
 				240E69DB1CC7EC0D0030AF4F /* ForgotPasswordViewController.swift in Sources */,
 				74B58DD61CC20E7300AD9B75 /* FirebaseChat.swift in Sources */,
