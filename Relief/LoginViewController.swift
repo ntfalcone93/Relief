@@ -50,6 +50,7 @@ class LoginViewController: UIViewController {
         UserController.createUser(firstName, lastName: lastName, email: email, password: password) { (success, user) in
             if success {
                 UserController.sharedInstance.currentUser = user
+                GeoFireController.queryAroundMe()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
@@ -78,6 +79,7 @@ class LoginViewController: UIViewController {
                 UserController.fetchUserWithId(uniqueUserID, completion: { (user) in
                     if let user = user {
                         UserController.sharedInstance.currentUser = user
+                        GeoFireController.queryAroundMe()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 })

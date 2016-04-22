@@ -113,8 +113,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GeoFireController.queryAroundMe()
-        
         if let initialLocationCoordinate = LocationController.sharedInstance.coreLocationManager.location {
             centerMapOnLocation(initialLocationCoordinate)
         }
@@ -128,6 +126,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
         toggleMap()
+        GeoFireController.queryAroundMe()
     }
     
     // MARK: - Map View Delegate

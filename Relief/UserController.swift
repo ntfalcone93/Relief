@@ -20,7 +20,6 @@ class UserController {
             get {
                 guard let uid = FirebaseController.firebase.authData?.uid,
                     let userDictionary = NSUserDefaults.standardUserDefaults().valueForKey(kUser) as? [String: AnyObject] else {
-    
                         return nil
                 }
     

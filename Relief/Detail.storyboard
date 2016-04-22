@@ -36,23 +36,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxP-hd-hVO">
-                                <rect key="frame" x="527" y="133" width="53" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="53" id="qa7-ng-loS"/>
-                                </constraints>
-                                <state key="normal" title="Feed"/>
-                                <connections>
-                                    <action selector="feedButtonTapped:" destination="6nY-tz-ewp" eventType="touchUpInside" id="jQG-pW-0lf"/>
-                                    <segue destination="lpY-oo-7hj" kind="show" identifier="toFeed" id="RIT-Wx-dge"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N2y-Yl-zbH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="7" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N2y-Yl-zbH">
                                 <rect key="frame" x="20" y="252" width="560" height="328"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="needCell" textLabel="Js8-HW-svc" style="IBUITableViewCellStyleDefault" id="wpk-vV-H4q">
+                                    <tableViewCell clipsSubviews="YES" tag="6" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="needCell" textLabel="Js8-HW-svc" style="IBUITableViewCellStyleDefault" id="wpk-vV-H4q">
                                         <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wpk-vV-H4q" id="Knt-eS-7El">
@@ -110,6 +99,18 @@
                                     <action selector="addNeedButtonTapped:" destination="6nY-tz-ewp" eventType="touchUpInside" id="W61-qI-Law"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxP-hd-hVO">
+                                <rect key="frame" x="527" y="134" width="53" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="qa7-ng-loS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Feed"/>
+                                <connections>
+                                    <action selector="feedButtonTapped:" destination="6nY-tz-ewp" eventType="touchUpInside" id="jQG-pW-0lf"/>
+                                    <segue destination="lpY-oo-7hj" kind="show" identifier="toFeed" id="RIT-Wx-dge"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -153,7 +154,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addNeedButton" destination="erT-gy-cUO" id="zNm-6u-yKP"/>
                         <outlet property="collectionPointLabel" destination="AmQ-U1-8gW" id="jxL-PS-3nC"/>
+                        <outlet property="feedButton" destination="pxP-hd-hVO" id="VDd-vx-Ym5"/>
                         <outlet property="joinButton" destination="Wsn-TP-rRX" id="Ioh-S3-c6K"/>
                         <outlet property="memberCountLabel" destination="Lu4-cG-6iw" id="ODh-Pr-Tx6"/>
                         <outlet property="needsLabel" destination="Ril-Kh-Z2q" id="Rnb-RE-RXb"/>
@@ -201,7 +204,7 @@
                                         <rect key="frame" x="0.0" y="28" width="571" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4s4-mp-Ra6" id="8n2-gx-biP">
-                                            <rect key="frame" x="0.0" y="0.0" width="571" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="571" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
