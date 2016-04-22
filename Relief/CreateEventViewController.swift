@@ -88,12 +88,24 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         self.configureView()
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.placeholder = nil
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField == self.titleTextField {
+            self.titleTextField.attributedPlaceholder = NSAttributedString(string: "Event Title", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        } else if textField == self.addressTextField {
+            self.addressTextField.attributedPlaceholder = NSAttributedString(string: "Collection Address", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        }
+    }
+    
     func configureView() {
-        self.titleTextField.attributedPlaceholder = NSAttributedString(string: "Title", attributes: [NSForegroundColorAttributeName: UIColor.reliefDarkYellow()])
+        self.titleTextField.attributedPlaceholder = NSAttributedString(string: "Event Title", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        self.addressTextField.attributedPlaceholder = NSAttributedString(string: "Collection Address", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         self.confirmButton.setBackgroundImage(UIImage(named: "login"), forState: UIControlState.Normal)
         self.confirmButton.tintColor = UIColor.reliefBlack()
     }
-    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()

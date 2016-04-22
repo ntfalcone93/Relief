@@ -32,5 +32,9 @@ extension UIColor {
     static func reliefAlphaBlack() -> UIColor {
         return UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.85)
     }
+    
+    static func reliefPlaceHolderYellow() -> UIColor {
+        return UIColor(colorLiteralRed: 0.710, green: 0.663, blue: 0.051, alpha: 1.00)
+    }
 
 }

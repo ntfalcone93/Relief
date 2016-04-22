@@ -22,6 +22,8 @@ class EventViewController: UIViewController {
     @IBOutlet var memberCountLabel: UILabel!
     @IBOutlet var collectionPointLabel: UILabel!
     @IBOutlet var needsLabel: UILabel!
+    @IBOutlet var feedButton: UIButton!
+    @IBOutlet var addNeedButton: UIButton!
     @IBOutlet var tableView: UITableView!
     var event: Event?
     var memberMode = MemberStatus.Member
@@ -132,6 +134,12 @@ class EventViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.updateWithEvent(self.event)
+        self.configureViews()
+    }
+    
+    func configureViews() {
+        self.feedButton.tintColor = UIColor.reliefYellow()
+        self.addNeedButton.tintColor = UIColor.reliefYellow()
     }
     
     func updateWithEvent(event: Event?) {
@@ -179,7 +187,7 @@ extension EventViewController: UITableViewDataSource, UITableViewDelegate {
         if let event = self.event {
             let need = event.needs[indexPath.row]
             cell.textLabel?.text = need
-            
+            // This is where you can set the background of the cells to a transparent color
 //            cell.backgroundColor = [UIColor clearColor];
 //            cell.backgroundView = [[UIView new] autorelease];
 //            cell.selectedBackgroundView = [[UIView new] autorelease];
