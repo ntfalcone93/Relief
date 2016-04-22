@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreGraphics
 
 class EventTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EventsUpdating {
     @IBOutlet var tableView: UITableView!
+    
+    let cellHeaderTitles = ["Local Events", "All Events"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,14 @@ extension EventTableViewController {
         return EventController.sharedInstance.events.count
     }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section < cellHeaderTitles.count {
+            return cellHeaderTitles[section]
+        }
+        
+        return nil
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath)
         let event = EventController.sharedInstance.events[indexPath.row]
@@ -47,7 +58,15 @@ extension EventTableViewController {
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.cellHeaderTitles.count
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
