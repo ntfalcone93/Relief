@@ -26,6 +26,7 @@ class FirebaseChat {
         MessageController.observeMessagesForThread(threadID) { (message) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.delegate.insertMessageIntoTableview(message)
+                self.delegate.tableViewScrollToBottom()
             })
         }
     }
@@ -35,7 +36,7 @@ class FirebaseChat {
         guard let bodyText = textField.text where bodyText.isEmpty == false else { return }
         MessageController.createMessage(currentUserID, threadID: threadID, bodyText: bodyText, username: username) { (success) in
             if success {
-                print("Oh snap Mr. Lewis")
+                self.delegate.tableViewScrollToBottom()
                 // Change this function - complete with success bool param
             }
         }
@@ -47,6 +48,7 @@ protocol FirebaseChatManager {
     weak var tableview: UITableView! { get }
     weak var messageTextField: UITextField! { get }
     func insertMessageIntoTableview(message: Message)
+    func tableViewScrollToBottom()
 }
 
 extension FirebaseChatManager {
