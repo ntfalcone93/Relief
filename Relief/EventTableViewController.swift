@@ -17,7 +17,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         EventController.sharedInstance.delegate = self
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,7 +44,6 @@ extension EventTableViewController {
         if section < cellHeaderTitles.count {
             return cellHeaderTitles[section]
         }
-        
         return nil
     }
     
@@ -71,19 +69,22 @@ extension EventTableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toDetailFromCell" {
-            let navController = segue.destinationViewController as! UINavigationController
-            let evc = navController.childViewControllers[0] as! EventViewController
             let cell = sender as! UITableViewCell
             let indexPath = self.tableView.indexPathForCell(cell)
+            let navController = segue.destinationViewController as! UINavigationController
+            let evc = navController.childViewControllers[0] as! EventViewController
             let event = EventController.sharedInstance.events[indexPath!.row]
             evc.event = event
-//            evc.view.backgroundColor = UIColor.reliefAlphaBlack()
+            evc.view.backgroundColor = UIColor.reliefAlphaBlack()
             evc.navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
         }
     }
+    
 }
 
-
+// When a user taps a cell we need to send a notification to the map view
+// That notification will present a modal segue.
+// We will need to somehow reference the cell and event assosciated with it (if we can get the indexpath.row we can do it).
 
 
 

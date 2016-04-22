@@ -112,11 +112,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
     // MARK: - View Controller Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let initialLocationCoordinate = LocationController.sharedInstance.coreLocationManager.location {
             centerMapOnLocation(initialLocationCoordinate)
         }
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayEvents), name: "NewLocalEvent", object: nil)
         self.longGestureRecognizer.delegate = self
         mapManager = MapController(delegate: self)
