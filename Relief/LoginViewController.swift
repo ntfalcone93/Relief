@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBOutlets
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
@@ -37,9 +37,19 @@ class LoginViewController: UIViewController {
     
     @IBAction func forgotPasswordButtonTapped(sender: AnyObject) {
         
-        
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.placeholder = nil
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField == self.emailTextField {
+            self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        } else if textField == self.passwordTextField {
+            self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        }
+    }
     
     func signUp() {
         // sign up logic
@@ -142,6 +152,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
         self.tapGetureRecognizer.cancelsTouchesInView = true
         self.tapGetureRecognizer.addTarget(self, action: #selector(self.dismissKeyboards))
         self.view.addGestureRecognizer(self.tapGetureRecognizer)
@@ -152,6 +164,8 @@ class LoginViewController: UIViewController {
         self.logInButton.setBackgroundImage(UIImage.init(named: "login"), forState: UIControlState.Normal)
         self.logInButton.tintColor = UIColor.reliefBlack()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
     }
     
 }
