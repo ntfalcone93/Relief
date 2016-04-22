@@ -14,5 +14,6 @@ class AppearanceController {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         UINavigationBar.appearance().tintColor = UIColor.yellowColor()
         UINavigationBar.appearance().barTintColor = UIColor.reliefBlack()
+        UITableViewCell.appearance().backgroundColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
     }
 }

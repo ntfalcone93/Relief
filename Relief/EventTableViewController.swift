@@ -58,6 +58,7 @@ extension EventTableViewController {
             let indexPath = self.tableView.indexPathForCell(cell)
             let event = EventController.sharedInstance.events[indexPath!.row]
             evc.event = event
+//            evc.view.backgroundColor = UIColor.reliefAlphaBlack()
             evc.navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
         }
     }
