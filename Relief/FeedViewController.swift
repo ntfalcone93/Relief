@@ -32,7 +32,7 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
     @IBAction func sendButtonTapped(sender: UIButton) {
         let firstName = UserController.sharedInstance.currentUser.firstName
         let lastName = UserController.sharedInstance.currentUser.lastName ?? ""
-        chatManager?.messagePosted(messageTextField, username: "\(firstName) \(lastName)")
+        chatManager?.messagePosted(messageTextField, username: "\(firstName)\(lastName)")
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -47,13 +47,22 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath) as? ChatTableViewCell else { return tableView.dequeueReusableCellWithIdentifier("chatCell", forIndexPath: indexPath)}
         let message = chatManager?.messages[indexPath.row]
-        cell.textLabel?.text = message?.messageBodyText
+        cell.usernameTextLabel?.text = message?.username
+        cell.userMessageTextLabel?.text = message?.messageBodyText
         return cell
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }
