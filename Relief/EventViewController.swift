@@ -168,6 +168,7 @@ class EventViewController: UIViewController {
         if segue.identifier == "toFeed" {
             guard let destinationView = segue.destinationViewController as? FeedViewController else { return }
             destinationView.event = event
+            destinationView.view.backgroundColor = UIColor.reliefAlphaBlack()
         }
     }
     
