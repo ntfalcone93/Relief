@@ -43,6 +43,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         } else if textField == self.passwordTextField {
             self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        } else if textField == self.firstNameTextField {
+            self.firstNameTextField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        } else if textField == self.lastNameTextField {
+            self.lastNameTextField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         }
     }
     
@@ -90,7 +94,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 })
             }
         })
-
+        
     }
     
     func toggleViewBasedOnViewMode() {
@@ -149,6 +153,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
+        self.firstNameTextField.delegate = self
+        self.lastNameTextField.delegate = self
         self.tapGetureRecognizer.cancelsTouchesInView = true
         self.tapGetureRecognizer.addTarget(self, action: #selector(self.dismissKeyboards))
         self.view.addGestureRecognizer(self.tapGetureRecognizer)
@@ -161,6 +167,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        self.firstNameTextField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
+        self.lastNameTextField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

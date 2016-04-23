@@ -213,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				241620A61CBED891004883AE /* UserController.swift */,
-				240E69D81CC18E8D0030AF4F /* RevealViewController.swift */,
 				E6DC4CF41CC0371B00768D4E /* LocationController.swift */,
 			);
 			name = Controllers;
@@ -301,6 +300,7 @@
 				E6E1ACC31CBD9C08005A5792 /* EventViewController.swift */,
 				74B58DC71CC17B1000AD9B75 /* EventTableViewController.swift */,
 				E6E1ACC51CBD9C23005A5792 /* FeedViewController.swift */,
+				240E69D81CC18E8D0030AF4F /* RevealViewController.swift */,
 				74286AB21CCA82D9005594E2 /* ChatTableViewCell.swift */,
 			);
 			name = "View Controllers";
