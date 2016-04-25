@@ -30,6 +30,11 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         textField.placeholder = nil
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func textFieldDidEndEditing(textField: UITextField) {
         if textField == emailTextField {
             self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])

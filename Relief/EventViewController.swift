@@ -164,6 +164,11 @@ class EventViewController: UIViewController {
         }
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toFeed" {
             guard let destinationView = segue.destinationViewController as? FeedViewController else { return }

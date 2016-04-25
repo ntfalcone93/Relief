@@ -134,6 +134,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func viewForLogin() {
         firstNameTextField.hidden = true
         lastNameTextField.hidden = true
