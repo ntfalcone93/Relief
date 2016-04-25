@@ -15,6 +15,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet var typePickerView: UIPickerView!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet var confirmButton: UIButton!
+    @IBOutlet var scrollView: UIScrollView!
     
     var currentEventType: EventType?
     var delegate: MapViewController?
@@ -61,6 +62,45 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         EventType.WetMassMovement,
         EventType.WildfiresAndUrbanFires
     ]
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.deregisterFromKeyboardNotifications()
+        super.viewWillDisappear(true)
+    }
+    
+    func registerForKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWasShown), name: "UIKeyboardWillShowNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillBeHidden), name: "UIKeyboardWillHideNotificatin", object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UIKeyboardDidHideNotification", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UIKeyboardWillHideNotification", object: nil)
+    }
+    
+    func keyboardWasShown(notification:NSNotification) {
+        if let info = notification.userInfo! as? NSDictionary {
+            let keyboardSize: CGSize = (info.objectForKey(UIKeyboardFrameBeginUserInfoKey)?.CGRectValue().size)!
+            let buttonOrigin: CGPoint = self.confirmButton.frame.origin
+            let buttonHeight: CGFloat = self.confirmButton.frame.size.height
+            let pixelsAboveKeyboard: CGFloat = 25
+            var visibleRect: CGRect = self.view.frame
+            visibleRect.size.height -= keyboardSize.height
+            if !CGRectContainsPoint(visibleRect, buttonOrigin) {
+                let scrollPoint: CGPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight + pixelsAboveKeyboard)
+                self.scrollView.setContentOffset(scrollPoint, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification:NSNotification) {
+        self.scrollView.setContentOffset(CGPointZero, animated: true)
+    }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerViewDataSource.count

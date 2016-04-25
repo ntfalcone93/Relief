@@ -18,6 +18,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var logInButton: UIButton!
     @IBOutlet var createAccountButton: UIButton!
     @IBOutlet var tapGetureRecognizer: UITapGestureRecognizer!
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var bottomConstraint: NSLayoutConstraint!
     
     var logInModeActivate = true
     
@@ -30,12 +32,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func forgotPasswordButtonTapped(sender: AnyObject) {
-        
-    }
-    
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.placeholder = nil
+    }
+    
+    func registerForKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWasShown), name: "UIKeyboardWillShowNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillBeHidden), name: "UIKeyboardWillHideNotificatin", object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UIKeyboardDidHideNotification", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UIKeyboardWillHideNotification", object: nil)
+    }
+    
+    func keyboardWasShown(notification:NSNotification) {
+        if let info = notification.userInfo! as? NSDictionary {
+            let keyboardSize: CGSize = (info.objectForKey(UIKeyboardFrameBeginUserInfoKey)?.CGRectValue().size)!
+            let buttonOrigin: CGPoint = self.logInButton.frame.origin
+            let buttonHeight: CGFloat = self.logInButton.frame.size.height
+            let pixelsAboveKeyboard: CGFloat = 25
+            var visibleRect: CGRect = self.view.frame
+            visibleRect.size.height -= keyboardSize.height
+            if !CGRectContainsPoint(visibleRect, buttonOrigin) {
+                let scrollPoint: CGPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight + pixelsAboveKeyboard)
+                self.scrollView.setContentOffset(scrollPoint, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification:NSNotification) {
+        self.scrollView.setContentOffset(CGPointZero, animated: true)
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -112,22 +139,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         lastNameTextField.hidden = true
         logInButton.setTitle("Login", forState: .Normal)
         createAccountButton.setTitle("Create Account", forState: .Normal)
-        
     }
     
     func viewForSignUp() {
         firstNameTextField.hidden = false
         lastNameTextField.hidden = false
         logInButton.setTitle("Sign Up", forState: .Normal)
-        createAccountButton.setTitle("Log In", forState: .Normal)
+        createAccountButton.setTitle("Already have an account?", forState: .Normal)
     }
     
     @IBAction func createAccountButtonTapped(sender: UIButton) {
         toggleViewBasedOnViewMode()
-    }
-    
-    @IBAction func forgotButtonTapped(sender: UIButton) {
-        
     }
     
     func makeAlert(warningMessage: String) {
@@ -140,6 +162,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         viewForLogin()
+        self.registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.deregisterFromKeyboardNotifications()
+        super.viewWillDisappear(true)
     }
     
     func dismissKeyboards() {

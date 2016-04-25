@@ -190,7 +190,7 @@
                                         <rect key="frame" x="0.0" y="92" width="571" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4s4-mp-Ra6" id="8n2-gx-biP">
-                                            <rect key="frame" x="0.0" y="0.0" width="571" height="92.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="571" height="93"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYt-RE-ciO">
@@ -208,7 +208,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Message" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa3-hI-Mll">
-                                                    <rect key="frame" x="8" y="40" width="555" height="44.5"/>
+                                                    <rect key="frame" x="8" y="40" width="555" height="45"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44.5" id="rO5-iO-1tP"/>
                                                     </constraints>
