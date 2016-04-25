@@ -12,7 +12,6 @@ import CoreLocation
 let EVENT_ENDPOINT = "events"
 let LOCATION_ENDPOINT = "location"
 
-
 class EventController {
     // Instantiate Shared Instance to allow access to particular events more easily
     static let sharedInstance = EventController()
@@ -288,7 +287,6 @@ class EventController {
         }
     }
 }
-
 
 protocol EventsUpdating {
     weak var tableView: UITableView! { get }
