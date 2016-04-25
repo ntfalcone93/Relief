@@ -12,7 +12,45 @@ import CoreGraphics
 class EventTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EventsUpdating {
     @IBOutlet var tableView: UITableView!
     
-    let cellHeaderTitles = ["Local Events", "All Events"]
+    let cellHeaderTitles = ["User Events", "Local Events"]
+    
+    var userEvents: [Event] {
+        get {
+            guard UserController.sharedInstance.currentUser != nil else { return [] }
+            return EventController.sharedInstance.events.filter { (Event) -> Bool in
+            if Event.members.contains(UserController.sharedInstance.currentUser.identifier!) {
+                print("true in userEvents Array")
+                return true
+            } else if UserController.sharedInstance.currentUser.identifier == nil {
+                print("wtf")
+            }
+            return false
+            }}
+    }
+    
+    var localEvents: [Event] {
+        get {
+            guard UserController.sharedInstance.currentUser != nil else { return [] }
+            return EventController.sharedInstance.events.filter { (Event) -> Bool in
+            if let identifier = UserController.sharedInstance.currentUser.identifier {
+                if !Event.members.contains(identifier) == true {
+                    print("true in localEvents Array")
+                    return true
+                } else if UserController.sharedInstance.currentUser.identifier == nil {
+                    
+                    return false
+                }
+            }
+            return false
+            }
+        }
+    }
+    
+    var allEvents: [Event] {
+        get { guard UserController.sharedInstance.currentUser != nil else { return [] }
+            return userEvents + localEvents
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +67,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         UserController.sharedInstance.logOutUser { (success) in
             if success {
                 self.performSegueWithIdentifier("toLoginFromEventTableView", sender: nil)
+                EventController.sharedInstance.events = []
             }
         }
     }
@@ -36,27 +75,34 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
 }
 
 extension EventTableViewController {
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return EventController.sharedInstance.events.count
+        if section == 0 {
+            return userEvents.count
+        } else {
+            return localEvents.count
+        }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self.cellHeaderTitles.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section < cellHeaderTitles.count {
             return cellHeaderTitles[section]
+        } else {
+            return nil
         }
-        return nil
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath)
-        let event = EventController.sharedInstance.events[indexPath.row]
+        
+        let event = allEvents[indexPath.row]
         cell.textLabel?.text = event.title
         cell.detailTextLabel?.text = "\(event.needs.count) Needs"
         return cell
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.cellHeaderTitles.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
