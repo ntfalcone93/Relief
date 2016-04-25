@@ -17,16 +17,18 @@ class User: FirebaseType {
     private let eventIdsKey = "eventIds"
     private let endpointKey = "endpoint"
     private let jsonValueKey = "jsonValue"
+    private let blockedIDsKey = "blockedIDs"
     
     var firstName: String
     var lastName: String?
     var identifier: String?
     var eventIds: [String]
+    var blockedUserIDs: [String]
     var endpoint = "users"
     
     var jsonValue: [String:AnyObject] {
         
-        return [firstNameKey: firstName, lastNameKey: lastName ?? "", identifierKey: identifier ?? "", eventIdsKey: eventIds.toDic()]
+        return [firstNameKey: firstName, lastNameKey: lastName ?? "", identifierKey: identifier ?? "", eventIdsKey: eventIds.toDic(), blockedIDsKey : blockedUserIDs.toDic()]
     }
 
     init(firstName: String, lastName: String?, identifier: String?) {
@@ -34,6 +36,7 @@ class User: FirebaseType {
         self.lastName = lastName
         self.identifier = identifier
         self.eventIds = []
+        self.blockedUserIDs = []
     }
     
     required init?(json: [String : AnyObject], identifier: String) {
@@ -47,6 +50,13 @@ class User: FirebaseType {
         self.firstName = firstName
         self.lastName = lastName
         self.identifier = identifier
+        
+        if let blockedDic = json[blockedIDsKey] as? [String : AnyObject] {
+            let blockedKeys = Array(blockedDic.keys)
+            self.blockedUserIDs = blockedKeys
+        } else {
+            self.blockedUserIDs = []
+        }
         
         if let eventDic = json[eventIdsKey] as? [String : AnyObject]  {
             let eventKeys = Array(eventDic.keys)

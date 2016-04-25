@@ -28,6 +28,7 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
     
     override func viewDidLoad() {
         fakeMessageTextField.inputAccessoryView = realView
+        tableview.delegate = self
         messageTextField.delegate = self
         fakeMessageTextField.delegate = self
         configureViewElements()
@@ -100,6 +101,26 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
         messageTextField.text = ""
         fakeMessageTextField.text = ""
         tableViewScrollToBottom()
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let chatManager = chatManager, userID = UserController.sharedInstance.currentUser.identifier where chatManager.messages[indexPath.row].senderID != userID else { return }
+        
+        makeAlert(chatManager.messages[indexPath.row].senderID)
+    }
+    
+    func makeAlert(identifier: String) {
+        let alertController = UIAlertController(title: "Block User?", message: "Blocking a user is permanent", preferredStyle: .Alert)
+        let alertBlock = UIAlertAction(title: "Block", style: .Destructive) { (_) in
+            UserController.blockUser(identifier)
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+        let alertCancel = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+        
+        alertController.addAction(alertBlock)
+        alertController.addAction(alertCancel)
+        
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }
 

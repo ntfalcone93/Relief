@@ -12,7 +12,9 @@ import UIKit
 
 
 class FirebaseChat {
+    
     var messages = [Message]()
+    
     var delegate: FirebaseChatManager
     var threadID: String
     
@@ -25,8 +27,10 @@ class FirebaseChat {
     func observeChat() {
         MessageController.observeMessagesForThread(threadID) { (message) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.delegate.insertMessageIntoTableview(message)
-                self.delegate.tableViewScrollToBottom()
+                if !UserController.sharedInstance.currentUser.blockedUserIDs.contains(message.senderID) {
+                    self.delegate.insertMessageIntoTableview(message)
+                    self.delegate.tableViewScrollToBottom()
+                }
             })
         }
     }

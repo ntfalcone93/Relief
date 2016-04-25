@@ -102,5 +102,13 @@ class UserController {
         FirebaseController.firebase.unauth()
         completion(success: true)
     }
+    
+    static func blockUser(identifier: String) {
+        guard var user = UserController.sharedInstance.currentUser else { return }
+        user.blockedUserIDs.append(identifier)
+        user.save()
+        UserController.sharedInstance.currentUser = user
+        
+    }
 }
     
