@@ -123,7 +123,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
         // First call to toggle map is made, toggle mode is
         // updated and map is hidden for initial interaction
-//        toggleMap()
+        toggleMap()
         GeoFireController.queryAroundMe()
     }
     

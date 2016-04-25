@@ -121,7 +121,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 })
             }
         })
-        
     }
     
     func toggleViewBasedOnViewMode() {

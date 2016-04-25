@@ -96,10 +96,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aGc-4F-Nz0" userLabel="bar">
-                                        <rect key="frame" x="29" y="420" width="263" height="1"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6Z-Dd-GSh">
                                         <rect key="frame" x="72" y="427" width="177" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -110,18 +106,33 @@
                                             <action selector="createAccountButtonTapped:" destination="H8P-LG-q2B" eventType="touchUpInside" id="KA4-jy-e5x"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="y4o-7k-a4r">
+                                        <rect key="frame" x="73" y="69" width="174" height="92"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGc-4F-Nz0" userLabel="bar">
+                                        <rect key="frame" x="29" y="418" width="263" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="GyG-ks-uVD" firstAttribute="leading" secondItem="rBv-xL-rTa" secondAttribute="leading" constant="16" id="1y4-ui-EVE"/>
+                                    <constraint firstAttribute="trailing" secondItem="y4o-7k-a4r" secondAttribute="trailing" constant="73" id="2MX-PB-h3o"/>
+                                    <constraint firstItem="g0K-k6-Sfs" firstAttribute="centerX" secondItem="rBv-xL-rTa" secondAttribute="centerX" id="5OP-0F-L05"/>
+                                    <constraint firstItem="gy2-8a-iL2" firstAttribute="top" secondItem="y4o-7k-a4r" secondAttribute="bottom" constant="15" id="6wx-EC-sRS"/>
                                     <constraint firstItem="GyG-ks-uVD" firstAttribute="centerX" secondItem="rBv-xL-rTa" secondAttribute="centerX" id="8bs-dZ-jCV"/>
                                     <constraint firstItem="B6Z-Dd-GSh" firstAttribute="leading" secondItem="g0K-k6-Sfs" secondAttribute="trailing" constant="-146" id="8w7-Ah-G1S"/>
+                                    <constraint firstItem="B6Z-Dd-GSh" firstAttribute="top" secondItem="aGc-4F-Nz0" secondAttribute="bottom" constant="8" symbolic="YES" id="9PS-kN-VMZ"/>
                                     <constraint firstItem="wz4-sL-Lsi" firstAttribute="leading" secondItem="v6Y-Xw-Qxl" secondAttribute="leading" id="BNO-1N-sun"/>
                                     <constraint firstItem="gy2-8a-iL2" firstAttribute="trailing" secondItem="KGm-Nu-K8c" secondAttribute="trailing" id="Bga-0d-yh1"/>
                                     <constraint firstItem="g0K-k6-Sfs" firstAttribute="baseline" secondItem="B6Z-Dd-GSh" secondAttribute="baseline" constant="-44.5" id="DUA-qZ-lk8"/>
+                                    <constraint firstItem="B6Z-Dd-GSh" firstAttribute="centerX" secondItem="rBv-xL-rTa" secondAttribute="centerX" id="JMR-F9-jBe"/>
                                     <constraint firstItem="wz4-sL-Lsi" firstAttribute="trailing" secondItem="v6Y-Xw-Qxl" secondAttribute="trailing" id="LSX-PV-B2q"/>
                                     <constraint firstItem="g0K-k6-Sfs" firstAttribute="top" secondItem="v6Y-Xw-Qxl" secondAttribute="bottom" constant="61" id="LZc-HZ-XUb"/>
                                     <constraint firstItem="GyG-ks-uVD" firstAttribute="top" secondItem="rBv-xL-rTa" secondAttribute="topMargin" id="M1y-hO-Z0K"/>
+                                    <constraint firstItem="aGc-4F-Nz0" firstAttribute="top" secondItem="g0K-k6-Sfs" secondAttribute="bottom" constant="7" id="Oth-OT-W1I"/>
                                     <constraint firstItem="KGm-Nu-K8c" firstAttribute="leading" secondItem="wz4-sL-Lsi" secondAttribute="leading" id="QJO-eS-ayg"/>
+                                    <constraint firstItem="y4o-7k-a4r" firstAttribute="top" secondItem="GyG-ks-uVD" secondAttribute="bottom" id="Rjt-4P-j3K"/>
+                                    <constraint firstItem="aGc-4F-Nz0" firstAttribute="leading" secondItem="rBv-xL-rTa" secondAttribute="leading" constant="29" id="UZF-uE-aSg"/>
                                     <constraint firstItem="KGm-Nu-K8c" firstAttribute="top" secondItem="gy2-8a-iL2" secondAttribute="bottom" constant="8" symbolic="YES" id="Uzt-ag-rFY"/>
                                     <constraint firstItem="v6Y-Xw-Qxl" firstAttribute="leading" secondItem="g0K-k6-Sfs" secondAttribute="leading" constant="-94" id="X2t-So-Jhp"/>
                                     <constraint firstItem="v6Y-Xw-Qxl" firstAttribute="trailing" secondItem="B6Z-Dd-GSh" secondAttribute="trailing" constant="62" id="aoj-bm-FFY"/>
@@ -134,10 +145,12 @@
                                     <constraint firstItem="GyG-ks-uVD" firstAttribute="centerX" secondItem="gy2-8a-iL2" secondAttribute="centerX" id="lJ3-Yq-83k"/>
                                     <constraint firstItem="gy2-8a-iL2" firstAttribute="top" secondItem="GyG-ks-uVD" secondAttribute="bottom" constant="107" id="p1D-25-a49"/>
                                     <constraint firstItem="GyG-ks-uVD" firstAttribute="trailing" secondItem="VlN-KV-awu" secondAttribute="trailing" constant="-7" id="p6p-ch-hc3"/>
+                                    <constraint firstItem="y4o-7k-a4r" firstAttribute="leading" secondItem="rBv-xL-rTa" secondAttribute="leading" constant="73" id="p80-mO-rPG"/>
                                     <constraint firstItem="gy2-8a-iL2" firstAttribute="leading" secondItem="KGm-Nu-K8c" secondAttribute="leading" id="qGc-KN-oy6"/>
                                     <constraint firstItem="wz4-sL-Lsi" firstAttribute="top" secondItem="KGm-Nu-K8c" secondAttribute="bottom" constant="8" symbolic="YES" id="ujr-wJ-m4H"/>
                                     <constraint firstAttribute="trailing" secondItem="gy2-8a-iL2" secondAttribute="trailing" constant="9" id="wKp-VM-teu"/>
                                     <constraint firstAttribute="bottom" secondItem="v6Y-Xw-Qxl" secondAttribute="bottom" constant="140" id="xvO-VD-Ljs"/>
+                                    <constraint firstItem="aGc-4F-Nz0" firstAttribute="centerX" secondItem="rBv-xL-rTa" secondAttribute="centerX" id="yyI-X8-ifd"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -234,4 +247,7 @@
             <point key="canvasLocation" x="977" y="410"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logo" width="204" height="103"/>
+    </resources>
 </document>
