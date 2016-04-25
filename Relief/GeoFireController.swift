@@ -8,7 +8,7 @@
 
 import Foundation
 
-let RADIUS_IN_METERS = Double(40)
+let RADIUS_IN_METERS = Double(160)
 
 class GeoFireController {
     static let geofire = GeoFire(firebaseRef: FirebaseController.firebase.childByAppendingPath(LOCATION_ENDPOINT))
