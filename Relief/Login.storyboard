@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="height" constant="1771" id="QgZ-6f-c4g"/>
                                     <constraint firstAttribute="height" constant="1771" id="T5L-eq-xyX"/>
                                 </constraints>
-                                <mutableString key="text">Collection of Information
+                                <string key="text">Collection of Information
 
 By using Relief, users agree that Relief collects and processes the personally identifiable information (as defined below) they provide by creating a Relief account. We will not share any personally identifiable information with other parties.
 
@@ -60,7 +60,7 @@ If you are concerned about the accuracy of personally identifiable information m
 
 nathanfalcone.dev@gmail.com dylana.slade@gmail.com
 jakeofutah@gmail.com
-kaelino@gmail.com</mutableString>
+kaelino@gmail.com</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="default">
