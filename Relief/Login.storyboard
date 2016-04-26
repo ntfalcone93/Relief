@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -196,20 +197,6 @@ kaelino@gmail.com</string>
                                             <action selector="createAccountButtonTapped:" destination="H8P-LG-q2B" eventType="touchUpInside" id="KA4-jy-e5x"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="y4o-7k-a4r">
-                                        <rect key="frame" x="96" y="69" width="128" height="68"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="174" id="CJK-4Z-ZCX"/>
-                                            <constraint firstAttribute="height" constant="68" id="Meq-bJ-5cH"/>
-                                            <constraint firstAttribute="height" constant="92" id="Wm9-Vz-k1a"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="CJK-4Z-ZCX"/>
-                                                <exclude reference="Wm9-Vz-k1a"/>
-                                            </mask>
-                                        </variation>
-                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGc-4F-Nz0" userLabel="bar">
                                         <rect key="frame" x="29" y="391" width="263" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -231,6 +218,21 @@ kaelino@gmail.com</string>
                                             <segue destination="v3Z-MB-Yvu" kind="presentation" identifier="toPrivacyPolicy" id="hB7-Ez-hez"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="y4o-7k-a4r">
+                                        <rect key="frame" x="107" y="69" width="106" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="y4o-7k-a4r" secondAttribute="height" multiplier="53:28" id="B2o-v6-WDl"/>
+                                            <constraint firstAttribute="width" constant="174" id="CJK-4Z-ZCX"/>
+                                            <constraint firstAttribute="height" constant="56" id="Meq-bJ-5cH"/>
+                                            <constraint firstAttribute="height" constant="92" id="Wm9-Vz-k1a"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="CJK-4Z-ZCX"/>
+                                                <exclude reference="Wm9-Vz-k1a"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="y4o-7k-a4r" firstAttribute="top" secondItem="GyG-ks-uVD" secondAttribute="bottom" id="0Fc-J4-6TE"/>
@@ -255,7 +257,7 @@ kaelino@gmail.com</string>
                                     <constraint firstItem="y4o-7k-a4r" firstAttribute="centerX" secondItem="gy2-8a-iL2" secondAttribute="centerX" id="X3F-T1-F4U"/>
                                     <constraint firstItem="VlN-KV-awu" firstAttribute="top" secondItem="v6Y-Xw-Qxl" secondAttribute="bottom" constant="10" id="Yts-TR-a6N"/>
                                     <constraint firstAttribute="bottom" secondItem="B6Z-Dd-GSh" secondAttribute="bottom" constant="6" id="cuf-wm-Ixt"/>
-                                    <constraint firstItem="gy2-8a-iL2" firstAttribute="top" secondItem="y4o-7k-a4r" secondAttribute="bottom" constant="20" id="dWy-py-pKf"/>
+                                    <constraint firstItem="gy2-8a-iL2" firstAttribute="top" secondItem="y4o-7k-a4r" secondAttribute="bottom" constant="32" id="dWy-py-pKf"/>
                                     <constraint firstItem="B6Z-Dd-GSh" firstAttribute="top" secondItem="aGc-4F-Nz0" secondAttribute="bottom" constant="8" symbolic="YES" id="eLJ-Y2-Uuz"/>
                                     <constraint firstItem="aGc-4F-Nz0" firstAttribute="leading" secondItem="rBv-xL-rTa" secondAttribute="leading" constant="29" id="fAC-wO-ltj"/>
                                     <constraint firstItem="Uox-Kw-EW6" firstAttribute="bottom" secondItem="rBv-xL-rTa" secondAttribute="bottomMargin" id="g4S-Ul-NGl"/>
@@ -266,7 +268,7 @@ kaelino@gmail.com</string>
                                     <constraint firstItem="aGc-4F-Nz0" firstAttribute="top" secondItem="g0K-k6-Sfs" secondAttribute="bottom" constant="7" id="oF9-WR-2UG"/>
                                     <constraint firstItem="Uox-Kw-EW6" firstAttribute="centerX" secondItem="B6Z-Dd-GSh" secondAttribute="centerX" id="pff-gs-VGO"/>
                                     <constraint firstItem="gy2-8a-iL2" firstAttribute="leading" secondItem="rBv-xL-rTa" secondAttribute="leading" constant="9" id="prz-th-mmG"/>
-                                    <constraint firstItem="y4o-7k-a4r" firstAttribute="leading" secondItem="rBv-xL-rTa" secondAttribute="leading" constant="96" id="ql5-Zy-eSY"/>
+                                    <constraint firstItem="y4o-7k-a4r" firstAttribute="leading" secondItem="rBv-xL-rTa" secondAttribute="leading" constant="107" id="ql5-Zy-eSY"/>
                                     <constraint firstItem="y4o-7k-a4r" firstAttribute="centerX" secondItem="GyG-ks-uVD" secondAttribute="centerX" id="svT-dq-gNS"/>
                                     <constraint firstItem="VlN-KV-awu" firstAttribute="centerX" secondItem="g0K-k6-Sfs" secondAttribute="centerX" id="ybk-gn-B7S"/>
                                     <constraint firstItem="KGm-Nu-K8c" firstAttribute="leading" secondItem="wz4-sL-Lsi" secondAttribute="leading" id="zN9-hw-Yqz"/>
