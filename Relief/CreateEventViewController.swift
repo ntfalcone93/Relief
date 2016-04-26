@@ -11,7 +11,6 @@ import CoreLocation
 
 class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     // MARK: - IBOutlets
-    @IBOutlet var titleTextField: UITextField!
     @IBOutlet var typePickerView: UIPickerView!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet var confirmButton: UIButton!
@@ -22,12 +21,11 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     // MARK: - IBActions
     @IBAction func confirmButtonTapped(sender: UIButton) {
-        guard let titleText = titleTextField.text where titleText.isEmpty == false else { return } // Fire alert
         guard let eventType = currentEventType else { return } // Fire alert
-        guard let collectionPoint = addressTextField.text else { return } // Fire alert (do check for valid)
+        guard let collectionPoint = addressTextField.text where !collectionPoint.isEmpty else { return } // Fire alert (do check for valid)
         guard let coordinate = delegate?.mapManager?.currentAnnotation?.coordinate else { return }
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude) // Fire alert
-        EventController.sharedInstance.createEvent(eventType, title: titleText, collectionPoint: collectionPoint, location: location) { (success, event) in
+        EventController.sharedInstance.createEvent(eventType, title: "Title Now Disabled", collectionPoint: collectionPoint, location: location) { (success, event) in
             if success {
                 NSNotificationCenter.defaultCenter().postNotificationName("createEventFinished", object: nil)
                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -71,6 +69,28 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     override func viewWillDisappear(animated: Bool) {
         self.deregisterFromKeyboardNotifications()
         super.viewWillDisappear(true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        self.updateTextFieldWithAnnotationAddress(self.addressTextField, annotation: (self.delegate?.mapManager?.currentAnnotation)!)
+    }
+    
+    func updateTextFieldWithAnnotationAddress(textField: UITextField, annotation: MKAnnotation) {
+        let latitude = annotation.coordinate.latitude
+        let longitude = annotation.coordinate.longitude
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        delegate?.mapManager?.geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+            if error == nil && placemarks?.count > 0 {
+                let placemark = placemarks?.last
+                guard let thoroughfare = placemark?.thoroughfare,
+                    postalCode = placemark?.postalCode,
+                    locality = placemark?.locality else {
+                        return
+                }
+                textField.text = "\(thoroughfare), \(postalCode) \(locality)"
+            }
+        })
     }
     
     func registerForKeyboardNotifications() {
@@ -123,7 +143,6 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
         super.viewDidLoad()
         self.typePickerView.dataSource = self
         self.typePickerView.delegate = self
-        titleTextField.delegate = self
         addressTextField.delegate = self
         self.configureView()
     }
@@ -133,15 +152,12 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        if textField == self.titleTextField {
-            self.titleTextField.attributedPlaceholder = NSAttributedString(string: "Event Title", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
-        } else if textField == self.addressTextField {
+        if textField == self.addressTextField {
             self.addressTextField.attributedPlaceholder = NSAttributedString(string: "Collection Address", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         }
     }
     
     func configureView() {
-        self.titleTextField.attributedPlaceholder = NSAttributedString(string: "Event Title", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         self.addressTextField.attributedPlaceholder = NSAttributedString(string: "Collection Address", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         self.confirmButton.setBackgroundImage(UIImage(named: "login"), forState: UIControlState.Normal)
         self.confirmButton.tintColor = UIColor.reliefBlack()

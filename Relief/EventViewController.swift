@@ -17,7 +17,6 @@ class EventViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var joinButton: UIBarButtonItem!
-    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
     @IBOutlet var memberCountLabel: UILabel!
     @IBOutlet var collectionPointLabel: UILabel!
@@ -35,10 +34,6 @@ class EventViewController: UIViewController {
     
     @IBAction func joinButtonTapped(sender: UIBarButtonItem) {
         makeAlert()
-    }
-    
-    @IBAction func feedButtonTapped(sender: UIButton) {
-        
     }
     
     func switchOnMember(event: Event) {
@@ -144,7 +139,6 @@ class EventViewController: UIViewController {
     
     func updateWithEvent(event: Event?) {
         if let event = event {
-            self.titleLabel.text = event.title
             self.typeLabel.text = event.type
             if self.event?.members.count < 2 {
                 self.memberCountLabel.text = "\(event.members.count) Member"

@@ -14,6 +14,7 @@ class MapController: NSObject {
     var currentAnnotation: DisasterAnnotation?
     var currentOverlay: MKOverlay?
     var delegate: MapUpdating
+    var geoCoder = CLGeocoder()
     
     init(delegate: MapUpdating) {
         self.delegate = delegate
@@ -29,8 +30,8 @@ class MapController: NSObject {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         let annotation = DisasterAnnotation()
         annotation.coordinate = location.coordinate
-        annotation.title = event.title
-        annotation.subtitle = event.type
+        annotation.title = event.type
+        annotation.subtitle = "\(event.needs.count) Needs"
         annotation.disasterEventID = event.identifier
         let circle = MKCircle(centerCoordinate: location.coordinate, radius: 1000)
         delegate.addEventOnMap(circle, annotation: annotation)

@@ -12,6 +12,7 @@ import CoreLocation
 class LocationController {
     static let sharedInstance = LocationController()
     var coreLocationManager = CLLocationManager()
+    var geoCoder = CLGeocoder()
     
     // MARK: - Core Location
     func setUpCoreLocation() {

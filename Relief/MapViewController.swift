@@ -57,7 +57,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         guard annotation.isKindOfClass(DisasterAnnotation) else {
             return nil
         }
-        
         let identifier = "disasterIdentifier"
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         annotationView.enabled = true
@@ -121,9 +120,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
-        // First call to toggle map is made, toggle mode is
-        // updated and map is hidden for initial interaction
-        toggleMap()
         GeoFireController.queryAroundMe()
     }
     
