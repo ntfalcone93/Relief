@@ -210,4 +210,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func buttonToPrivacyPolicy(sender: AnyObject) {
+        performSegueWithIdentifier("toPrivacyPolicy", sender: sender)
+    }
+    
 }

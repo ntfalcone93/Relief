@@ -11,6 +11,8 @@ import UIKit
 
 class User: FirebaseType {
     
+    // User data keys
+    
     private let firstNameKey = "firstName"
     private let lastNameKey = "lastName"
     private let identifierKey = "identifier"
@@ -19,6 +21,8 @@ class User: FirebaseType {
     private let jsonValueKey = "jsonValue"
     private let blockedIDsKey = "blockedIDs"
     
+    // User data declaration
+    
     var firstName: String
     var lastName: String?
     var identifier: String?
@@ -26,11 +30,15 @@ class User: FirebaseType {
     var blockedUserIDs: [String]
     var endpoint = "users"
     
+    // Array conversion
+    
     var jsonValue: [String:AnyObject] {
         
         return [firstNameKey: firstName, lastNameKey: lastName ?? "", identifierKey: identifier ?? "", eventIdsKey: eventIds.toDic(), blockedIDsKey : blockedUserIDs.toDic()]
     }
 
+    // Initialize
+    
     init(firstName: String, lastName: String?, identifier: String?) {
         self.firstName = firstName
         self.lastName = lastName
@@ -38,6 +46,8 @@ class User: FirebaseType {
         self.eventIds = []
         self.blockedUserIDs = []
     }
+    
+    // Initialize json
     
     required init?(json: [String : AnyObject], identifier: String) {
         guard let firstName = json[firstNameKey] as? String,
@@ -67,6 +77,8 @@ class User: FirebaseType {
         }
     }
 }
+
+// Extension to turn array to firebase dictionary
 
 extension Array {
     func toDic() -> [String : AnyObject] {

@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// Login screen presented or not presented dependant on if user has logged in
+
 class RevealViewController: SWRevealViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
