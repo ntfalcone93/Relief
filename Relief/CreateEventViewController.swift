@@ -21,8 +21,24 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     // MARK: - IBActions
     @IBAction func confirmButtonTapped(sender: UIButton) {
-        guard let eventType = currentEventType else { return } // Fire alert
-        guard let collectionPoint = addressTextField.text where !collectionPoint.isEmpty else { return } // Fire alert (do check for valid)
+        guard let eventType = currentEventType else {
+            let alertController = UIAlertController(title: "Cannot Create Event Without an Event Type", message: "Please select an Event Type before creating an event", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) in
+                alertController.dismissViewControllerAnimated(true, completion: nil)
+            })
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        } // Fire alert
+        guard let collectionPoint = addressTextField.text where !collectionPoint.isEmpty else {
+            let alertController = UIAlertController(title: "Cannot Create Event Without an Address", message: "Please add an address before creating an event", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) in
+                alertController.dismissViewControllerAnimated(true, completion: nil)
+            })
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        } // Fire alert (do check for valid)
         guard let coordinate = delegate?.mapManager?.currentAnnotation?.coordinate else { return }
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude) // Fire alert
         EventController.sharedInstance.createEvent(eventType, title: "Title Now Disabled", collectionPoint: collectionPoint, location: location) { (success, event) in
@@ -74,6 +90,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDataSource, UIPic
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         self.updateTextFieldWithAnnotationAddress(self.addressTextField, annotation: (self.delegate?.mapManager?.currentAnnotation)!)
+        self.typePickerView.selectRow(5, inComponent: 0, animated: false)
     }
     
     func updateTextFieldWithAnnotationAddress(textField: UITextField, annotation: MKAnnotation) {
