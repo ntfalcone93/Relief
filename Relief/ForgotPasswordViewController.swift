@@ -20,26 +20,36 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         self.configureViewElements()
     }
     
+    // Forgot Password UI
+    
     func configureViewElements() {
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         self.resetPasswordButton.tintColor = UIColor.reliefYellow()
         self.cancelButton.tintColor = UIColor.reliefYellow()
     }
     
+    // Text field editing
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.placeholder = nil
     }
+    
+    // Text field containing entered text will return
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    //Text field editing finished
+    
     func textFieldDidEndEditing(textField: UITextField) {
         if textField == emailTextField {
             self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.reliefPlaceHolderYellow()])
         }
     }
+    
+    //Button to reset password through firebase
     
     @IBAction func recoverPasswordButtonTapped(sender: AnyObject) {
         let email = emailTextField.text ?? ""
@@ -58,6 +68,8 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
             }
         })
     }
+    
+    // Cancel forgot password button
     
     @IBAction func cancelForgotPasswordTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)

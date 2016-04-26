@@ -15,6 +15,8 @@ class UserController {
     
     private let kUser = "userKey"
     
+    // Firebase - Current user check with data
+    
     var currentUser: User!
             {
             get {
@@ -37,6 +39,7 @@ class UserController {
             }
         }
     
+    // Firebase - Get user identifier
     
     static func fetchUserWithId(identifier: String, completion: (user: User?) -> Void) {
         
@@ -50,6 +53,8 @@ class UserController {
             }
         }
     }
+    
+    // Firebase - Create user
     
     static func createUser(firstName: String, lastName: String?, email: String, password: String, completion: (success: Bool, user: User?) -> Void) {
         
@@ -75,6 +80,8 @@ class UserController {
         }
     }
     
+    // Firebase - User authentication
+    
     static func authenticateUser(email: String, password: String, completion: (success: Bool) -> Void) {
         
         FirebaseController.firebase.authUser(email, password: password) { (error, authData) in
@@ -97,11 +104,15 @@ class UserController {
         }
     }
     
+    // Firebase - log out user
+    
     func logOutUser(completion: (success: Bool) -> Void) {
         
         FirebaseController.firebase.unauth()
         completion(success: true)
     }
+    
+    // Required block user function
     
     static func blockUser(identifier: String) {
         guard var user = UserController.sharedInstance.currentUser else { return }

@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// Disaster/Event Types
+
 enum EventType: String {
     case Epidemic
     case AnimalAndInsectInfestation = "Animal And Insect Infestation"
@@ -30,6 +32,8 @@ enum EventType: String {
     case DisplacedPopulations = "Displaced Populations"
 }
 
+// Disaster/Event type keys
+
 class Event {
     private let titleKey = "title"
     private let collectionPointKey = "collectionPoint"
@@ -42,6 +46,8 @@ class Event {
     private let latitudeKey = "latitude"
     private let longitudeKey = "longitude"
     
+    // Declarations
+    
     var title: String
     var collectionPoint: String
     var members = [String]()
@@ -52,9 +58,13 @@ class Event {
     var latitude: Double
     var longitude: Double
     
+    // Convert to Array
+    
     var jsonValue: [String:AnyObject] {
         return [titleKey: title, eventTypeKey: type, collectionPointKey: collectionPoint, membersKey: members.toDic(), needsKey: needs.toDic(), latitudeKey : latitude, longitudeKey : longitude]
     }
+    
+    // Initialize json
     
     init(title: String, collectionPoint: String, members: [String], needs: [String], identifier: String?, endpoint: String, eventType: EventType, latitude: Double, longitude: Double) {
         self.title = title
@@ -68,6 +78,7 @@ class Event {
         self.longitude = longitude
     }
     
+    // Dictionary with keys
     
     init?(dictionary: Dictionary<String, AnyObject>, identifier: String) {
         guard let title = dictionary[titleKey] as? String,
