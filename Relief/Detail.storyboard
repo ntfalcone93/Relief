@@ -24,7 +24,7 @@
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="needCell" textLabel="Js8-HW-svc" style="IBUITableViewCellStyleDefault" id="wpk-vV-H4q">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wpk-vV-H4q" id="Knt-eS-7El">
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
@@ -176,7 +176,7 @@
                                         <rect key="frame" x="0.0" y="92" width="571" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4s4-mp-Ra6" id="8n2-gx-biP">
-                                            <rect key="frame" x="0.0" y="0.0" width="571" height="93"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="571" height="92.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYt-RE-ciO">

@@ -18,30 +18,31 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         get {
             guard UserController.sharedInstance.currentUser != nil else { return [] }
             return EventController.sharedInstance.events.filter { (Event) -> Bool in
-            if Event.members.contains(UserController.sharedInstance.currentUser.identifier!) {
-                print("true in userEvents Array")
-                return true
-            } else if UserController.sharedInstance.currentUser.identifier == nil {
-                print("wtf")
+                if Event.members.contains(UserController.sharedInstance.currentUser.identifier!) {
+                    print("true in userEvents Array")
+                    return true
+                } else if UserController.sharedInstance.currentUser.identifier == nil {
+                    print("wtf")
+                }
+                return false
             }
-            return false
-            }}
+        }
     }
     
     var localEvents: [Event] {
         get {
             guard UserController.sharedInstance.currentUser != nil else { return [] }
             return EventController.sharedInstance.events.filter { (Event) -> Bool in
-            if let identifier = UserController.sharedInstance.currentUser.identifier {
-                if !Event.members.contains(identifier) == true {
-                    print("true in localEvents Array")
-                    return true
-                } else if UserController.sharedInstance.currentUser.identifier == nil {
-                    
-                    return false
+                if let identifier = UserController.sharedInstance.currentUser.identifier {
+                    if !Event.members.contains(identifier) == true {
+                        print("true in localEvents Array")
+                        return true
+                    } else if UserController.sharedInstance.currentUser.identifier == nil {
+                        
+                        return false
+                    }
                 }
-            }
-            return false
+                return false
             }
         }
     }
@@ -98,9 +99,8 @@ extension EventTableViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath)
-        
         let event = allEvents[indexPath.row]
-        cell.textLabel?.text = event.title
+        cell.textLabel?.text = event.type
         cell.detailTextLabel?.text = "\(event.needs.count) Needs"
         return cell
     }

@@ -166,6 +166,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         viewForLogin()
+        self.firstNameTextField.becomeFirstResponder()
         self.registerForKeyboardNotifications()
     }
     
