@@ -28,9 +28,6 @@ class EventViewController: UIViewController {
     var memberMode = MemberStatus.Member
     
     // MARK: - IBActions
-    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
     
     @IBAction func joinButtonTapped(sender: UIBarButtonItem) {
         makeAlert()
@@ -139,6 +136,7 @@ class EventViewController: UIViewController {
     
     func updateWithEvent(event: Event?) {
         if let event = event {
+            self.event = event
             self.typeLabel.text = event.type
             if self.event?.members.count < 2 {
                 self.memberCountLabel.text = "\(event.members.count) Member"
@@ -164,11 +162,6 @@ class EventViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toFeed" {
-            guard let destinationView = segue.destinationViewController as? FeedViewController else { return }
-            destinationView.event = event
-            destinationView.view.backgroundColor = UIColor.reliefAlphaBlack()
-        }
     }
     
 }

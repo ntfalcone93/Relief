@@ -177,9 +177,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocati
             lastView.view.backgroundColor = UIColor.reliefAlphaBlack()
         } else if segue.identifier == "toDetailfromMap" {
             let destinationViewController = segue.destinationViewController as! UINavigationController
-            let lastView = destinationViewController.childViewControllers[0] as! EventViewController
+            let lastView = destinationViewController.childViewControllers[0] as! FeedViewController
             lastView.event = self.currentEvent!
             lastView.view.backgroundColor = UIColor.reliefAlphaBlack()
+            
         }
     }
     

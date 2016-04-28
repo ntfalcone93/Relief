@@ -62,6 +62,9 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
         textFieldShouldReturn(messageTextField)
     }
     
+    @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         fakeMessageTextField.resignFirstResponder()
@@ -121,6 +124,13 @@ class FeedViewController: UIViewController, FirebaseChatManager, UITextFieldDele
         alertController.addAction(alertCancel)
         
         presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toEvent" {
+            let destinationViewController = segue.destinationViewController as! EventViewController
+            destinationViewController.event = event
+        }
     }
 }
 

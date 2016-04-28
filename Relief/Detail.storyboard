@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EoX-Cr-H78">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gy1-zt-rYm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -89,9 +89,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Chat"/>
-                                <connections>
-                                    <segue destination="lpY-oo-7hj" kind="show" identifier="toFeed" id="RIT-Wx-dge"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lu4-cG-6iw">
                                 <rect key="frame" x="20" y="118" width="447" height="25"/>
@@ -130,11 +127,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="etO-DQ-hpb">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="twd-QH-asp">
-                            <connections>
-                                <action selector="cancelButtonTapped:" destination="6nY-tz-ewp" id="oGw-m9-Z3C"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Join" id="Wsn-TP-rRX">
                             <connections>
                                 <action selector="joinButtonTapped:" destination="6nY-tz-ewp" id="KAp-f3-P69"/>
@@ -154,12 +146,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPa-gy-HAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1370" y="391"/>
+            <point key="canvasLocation" x="1361" y="-369"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="MVC-es-slb">
             <objects>
-                <viewController id="lpY-oo-7hj" customClass="FeedViewController" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="lpY-oo-7hj" customClass="FeedViewController" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lQg-PP-w0E"/>
                         <viewControllerLayoutGuide type="bottom" id="rXa-uo-d43"/>
@@ -173,7 +165,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" rowHeight="93" id="4s4-mp-Ra6" customClass="ChatTableViewCell" customModule="Relief" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="571" height="93"/>
+                                        <rect key="frame" x="0.0" y="28" width="571" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4s4-mp-Ra6" id="8n2-gx-biP">
                                             <rect key="frame" x="0.0" y="0.0" width="571" height="92.5"/>
@@ -275,6 +267,18 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="APw-eI-zoo">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="hbY-o0-XTa">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="lpY-oo-7hj" id="o8r-1v-Rxg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Event Detail" id="xdn-MI-pa6">
+                            <connections>
+                                <segue destination="6nY-tz-ewp" kind="show" identifier="toEvent" id="lnl-u8-kyY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="fakeMessageTextField" destination="vSv-vj-fiJ" id="9ci-d1-nXo"/>
                         <outlet property="fakeSendButton" destination="UHT-9m-6Qc" id="VYN-xt-OEp"/>
@@ -321,25 +325,25 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2055" y="391"/>
+            <point key="canvasLocation" x="2173" y="381"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="sVU-Rr-axa">
+        <scene sceneID="njh-bZ-H0K">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EoX-Cr-H78" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gy1-zt-rYm" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nWe-86-Jnd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gIy-tF-NAb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6nY-tz-ewp" kind="relationship" relationship="rootViewController" id="pOI-Wf-R4W"/>
+                        <segue destination="lpY-oo-7hj" kind="relationship" relationship="rootViewController" id="AXe-zU-KL4"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fMp-px-4WC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w0b-LG-TIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="391"/>
+            <point key="canvasLocation" x="1361" y="381"/>
         </scene>
     </scenes>
 </document>

@@ -117,12 +117,10 @@ extension EventTableViewController {
         if segue.identifier == "toDetailFromCell" {
             let cell = sender as! UITableViewCell
             let indexPath = self.tableView.indexPathForCell(cell)
-            let navController = segue.destinationViewController as! UINavigationController
-            let evc = navController.childViewControllers[0] as! EventViewController
-            let event = EventController.sharedInstance.events[indexPath!.row]
-            evc.event = event
-            evc.view.backgroundColor = UIColor.reliefAlphaBlack()
-            evc.navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
+            let destinationViewController = segue.destinationViewController as! UINavigationController
+            let lastView = destinationViewController.childViewControllers[0] as! FeedViewController
+            lastView.event = allEvents[indexPath!.row]
+            lastView.view.backgroundColor = UIColor.reliefAlphaBlack()
         }
     }
     
