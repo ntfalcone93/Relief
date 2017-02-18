@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ybZ-LY-3O7">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Create Event View Controller-->
+        <scene sceneID="apS-Mv-HUS">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hth-PH-GXH" customClass="CreateEventViewController" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i3k-9R-Gbo"/>
+                        <viewControllerLayoutGuide type="bottom" id="UiD-uN-3Zq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="POT-3m-gpZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xia-Hx-AAj">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kCf-WH-GOV">
+                                        <rect key="frame" x="20" y="388" width="560" height="30"/>
+                                        <state key="normal" title="Confirm"/>
+                                        <connections>
+                                            <action selector="confirmButtonTapped:" destination="hth-PH-GXH" eventType="touchUpInside" id="mnV-4h-egU"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dWf-NJ-J06">
+                                        <rect key="frame" x="20" y="333" width="560" height="30"/>
+                                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.59812721631205679" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqf-ul-1MA">
+                                        <rect key="frame" x="8" y="69" width="584" height="53"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="53" id="WFO-gZ-DLz"/>
+                                        </constraints>
+                                        <string key="text">Select the type of disaster event from the list below. Add a collection address where needs for this disaster will be collected </string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tf-7n-rC5">
+                                        <rect key="frame" x="0.0" y="118" width="600" height="216"/>
+                                        <color key="backgroundColor" red="0.2680587369109948" green="0.2680587369109948" blue="0.2680587369109948" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </pickerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0tf-7n-rC5" firstAttribute="centerX" secondItem="dWf-NJ-J06" secondAttribute="centerX" id="1Nz-VN-hek"/>
+                                    <constraint firstItem="oqf-ul-1MA" firstAttribute="top" secondItem="Xia-Hx-AAj" secondAttribute="top" constant="69" id="9hY-HY-vNS"/>
+                                    <constraint firstItem="0tf-7n-rC5" firstAttribute="top" secondItem="oqf-ul-1MA" secondAttribute="bottom" constant="-4" id="Dn0-Jm-qhN"/>
+                                    <constraint firstAttribute="trailing" secondItem="0tf-7n-rC5" secondAttribute="trailing" id="FOp-m5-xoG"/>
+                                    <constraint firstItem="dWf-NJ-J06" firstAttribute="leading" secondItem="Xia-Hx-AAj" secondAttribute="leading" constant="20" id="IWz-RD-Moj"/>
+                                    <constraint firstItem="dWf-NJ-J06" firstAttribute="leading" secondItem="kCf-WH-GOV" secondAttribute="leading" id="KMP-nn-Zou"/>
+                                    <constraint firstItem="0tf-7n-rC5" firstAttribute="leading" secondItem="Xia-Hx-AAj" secondAttribute="leading" id="LEk-PP-77k"/>
+                                    <constraint firstItem="dWf-NJ-J06" firstAttribute="top" secondItem="0tf-7n-rC5" secondAttribute="bottom" constant="-1" id="cnj-bS-9KI"/>
+                                    <constraint firstAttribute="bottom" secondItem="kCf-WH-GOV" secondAttribute="bottom" constant="182" id="dVO-N8-D3R"/>
+                                    <constraint firstItem="dWf-NJ-J06" firstAttribute="trailing" secondItem="kCf-WH-GOV" secondAttribute="trailing" id="fSZ-HA-9yv"/>
+                                    <constraint firstItem="kCf-WH-GOV" firstAttribute="top" secondItem="dWf-NJ-J06" secondAttribute="bottom" constant="25" id="glf-Ep-CQv"/>
+                                    <constraint firstAttribute="trailing" secondItem="oqf-ul-1MA" secondAttribute="trailing" constant="8" id="nmO-go-qhf"/>
+                                    <constraint firstItem="oqf-ul-1MA" firstAttribute="leading" secondItem="Xia-Hx-AAj" secondAttribute="leading" constant="8" id="vtS-ti-X4l"/>
+                                    <constraint firstItem="oqf-ul-1MA" firstAttribute="centerX" secondItem="Xia-Hx-AAj" secondAttribute="centerX" id="yKv-rR-pdr"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xia-Hx-AAj" firstAttribute="leading" secondItem="POT-3m-gpZ" secondAttribute="leading" id="MGZ-Et-8Be"/>
+                            <constraint firstItem="UiD-uN-3Zq" firstAttribute="top" secondItem="Xia-Hx-AAj" secondAttribute="bottom" id="X5J-NM-23q"/>
+                            <constraint firstAttribute="trailing" secondItem="Xia-Hx-AAj" secondAttribute="trailing" id="YUC-7q-Eqa"/>
+                            <constraint firstItem="Xia-Hx-AAj" firstAttribute="top" secondItem="i3k-9R-Gbo" secondAttribute="bottom" constant="-64" id="x8f-R4-L9f"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Un6-ih-7lV">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QBv-X9-E3S">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="hth-PH-GXH" id="Prn-sw-6Tk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addressTextField" destination="dWf-NJ-J06" id="nK0-R2-kXs"/>
+                        <outlet property="confirmButton" destination="kCf-WH-GOV" id="R9m-tu-55d"/>
+                        <outlet property="scrollView" destination="Xia-Hx-AAj" id="HlT-kI-q1R"/>
+                        <outlet property="typePickerView" destination="0tf-7n-rC5" id="Uqd-2F-JJA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exZ-Rd-C4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1392" y="331"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="t1t-iQ-LdN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ybZ-LY-3O7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cjw-QZ-IgC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hth-PH-GXH" kind="relationship" relationship="rootViewController" id="lWf-oi-sUk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pQO-hm-yaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="580" y="331"/>
+        </scene>
+    </scenes>
+</document>
