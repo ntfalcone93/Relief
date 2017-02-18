@@ -98,18 +98,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let password = passwordTextField.text ?? ""
         FirebaseController.firebase?.authUser(email, password: password, withCompletionBlock: { (error, fAuthData) -> Void in
             if error != nil {
-                if let errorCode = FAuthenticationError(rawValue: error.code) {
-                    switch errorCode {
-                    case .userDoesNotExist:
-                        self.makeAlert("User Does Not Exist")
-                    case FAuthenticationError.invalidPassword:
-                        self.makeAlert("Invalid Password")
-                    case FAuthenticationError.invalidEmail:
-                        self.makeAlert("Invalid Email")
-                    default:
-                        self.makeAlert("Unkown Error, Try Again")
-                    }
-                }
+//                if let errorCode = FAuthenticationError(rawValue: error.code) {
+//                    switch errorCode {
+//                    case .userDoesNotExist:
+//                        self.makeAlert("User Does Not Exist")
+//                    case FAuthenticationError.invalidPassword:
+//                        self.makeAlert("Invalid Password")
+//                    case FAuthenticationError.invalidEmail:
+//                        self.makeAlert("Invalid Email")
+//                    default:
+//                        self.makeAlert("Unkown Error, Try Again")
+//                    }
+//                }
             } else {
                 let uniqueUserID = fAuthData?.uid
                 UserController.fetchUserWithId(uniqueUserID!, completion: { (user) in
